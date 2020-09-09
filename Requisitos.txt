@@ -1,0 +1,43 @@
+Login-Admin
+Login-Usuario
+
+Menu puede contener un navbar arriba o izqueirda
+y un carrusel mostrando imagenés de las escuelas
+
+Usuario(Alumno) contiene:
+	Nombre
+	apellidos
+	edad
+	color de cinta (Grado de cinta)
+	mensualidad (Si ya pagó su mensualidad)
+	Discapacidades (Si no tiene seria null)
+	estatus (Activo, Inactivo)
+	Años que lleva entrenando
+	tutor (En caso de ser menor de edad)
+	Escuela (aqui hay varias cedes de jaguares por todo QRO)
+	Hora de entrenamiento (A que hora va a entrenar)
+	El alumno solamente puede ver su informacion
+
+Profesor contiene:
+	Nombre
+	apellidos
+	Edad
+	Escuela (De que escuela es profesor)
+	Grado( Que grado de cinta negra es)
+	El profesor puede dar de alta a solamente alumnos
+
+Admin:
+	El admin solamente puede el dar de alta a profesores y escuelas
+	Nombre
+	Apellidos
+	Edad
+
+Escuela Contiene:
+	Nombre
+	Lugar
+	Años que lleva la escuela
+	AlumnosFk (Cuantos alumnos son en la escuela)
+	Horarios (Cuales horarios manejan)
+	
+
+Faltan unas cosas pero ya estoy hablando con el profesor, mas tarde actualizo la informacion
