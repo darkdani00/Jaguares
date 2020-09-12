@@ -8,6 +8,8 @@ Usuario(Alumno) contiene:
 	Nombre
 	apellidos
 	edad
+	Telefono
+	Correo
 	color de cinta (Grado de cinta)
 	mensualidad (Si ya pagó su mensualidad)
 	Discapacidades (Si no tiene seria null)
@@ -22,6 +24,7 @@ Profesor contiene:
 	Nombre
 	apellidos
 	Edad
+	Telefono
 	Escuela (De que escuela es profesor)
 	Grado( Que grado de cinta negra es)
 	El profesor puede dar de alta a solamente alumnos
@@ -39,5 +42,36 @@ Escuela Contiene:
 	AlumnosFk (Cuantos alumnos son en la escuela)
 	Horarios (Cuales horarios manejan)
 	
+Equipo Contiene: (En esta seccion es para pago de equipo)
+	Careta
+	Peto
+	Rodilleras
+	Antebrazeras
+	Bucal
+	Empeineras
+	Guantes
+	palchagis
+	Uniforme (pants y chamarra)
+	Camiseta de la escuela
+
+Extras: (En esta seccion será el extra como Torneos,Examenes y topes que se lleven a cabo)
+	CostoTorneos
+	FechaTorneos
+	LugarTorneo
+	CostoTopes
+	FechaTopes
+	CostoExamen
+	FechaExamen
+
+
+
+---------VISTAS------
+--Se agregará un nueva vista donde contenga la lista de todos los alumnos por horarios
+	Como lista tipo excel
+	En caso de que el niño Falte se envie un mensaje o correo al numero que tenga el alumno registrado
+
+--Se agregará otra vista donde muestre un calendario y los dias que tengan entrenamiento muestre que rutina 
+	tienen que llevar a cabo. Al igual los Torneos que son del año y los Examenes.
+
 
 Faltan unas cosas pero ya estoy hablando con el profesor, mas tarde actualizo la informacion
