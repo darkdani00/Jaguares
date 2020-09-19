@@ -2,6 +2,7 @@
 function openSideMenu(){
     document.getElementById('side_menu').style.width='250px';
     document.getElementById('main').style.marginLeft='250px';
+    document.getElementsByClassName('top-bar').style.marginLeft='250px';
 }
 
 function closeSideMenu(){
