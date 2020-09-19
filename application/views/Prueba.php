@@ -71,3 +71,6 @@ Subele a la greibol sirve un jose cuervo
 que quiero empedarme como se empeda mi pueblo
 subele a la greibol...(5)</h1>
 <br>
+
+<!-- este div es para cerra el main de la sidebar -->
+</div>
