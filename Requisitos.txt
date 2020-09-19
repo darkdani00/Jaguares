@@ -75,3 +75,33 @@ Extras: (En esta seccion será el extra como Torneos,Examenes y topes que se lle
 
 
 Faltan unas cosas pero ya estoy hablando con el profesor, mas tarde actualizo la informacion
+
+
+-------FUNCIONES----
+Funciones de adminis
+Funciones de administración
+Cuando un alumno no registre asistencia enviar mensaje en automático, donde se exprese que se le extrañó y que lo esperamos pronto.
+El administrador puede agregar alumnos en cada sucursal y horario.
+Generar en automático el link de compras.
+Podemos hacer el vínculo con el catálogo de venta. O poder enviar a la página de la tienda local de conveniencia de artículos deportivos (se puede cobrar  por vincular a la tienda o tratar de llegar a un acuerdo comercial) 
+
+En la programación de exámenes realizar en automático su formato "ficha de examen donde se incluya su foto y datos para calificar durante el examen"
+Cuando se programa un evento, cambio de cinta, examen o torneo  generar una alerta (al contacto programado) que recuerde del compromiso y de la fecha de pago.
+Al tener sus registros de pago, generar el corte administrativo semanal mensual o diario. (Ingresos vs egreso.) 
+
+Generar un apartado para competidores de alta competencia donde se agreguen documentos de registro como acta curp RFC identificación etc. Pará la inscripción a eventos de Ranking o eventos clasificatorios( selectivo estatal, o Junior). 
+En este apartado poder vincular  hacia las páginas que tienen el ranking naciónal o internacional. 
+Ahí mismo podemos agregar videos y fotos de sus competencias. 
+
+se puede agregar su trabajo trimestral macrociclo  (plan de entrenamiento).
+
+Funciones como usuario 
+con cada registro de presentación de examen se puede desbloquear el programa trimestral, se puede accesar a vocabulario por grado y se puede accesar a videos  de corrección de técnica básica (más trabajo en la edición de videos pero eso venderá)
+
+Con la modalidad a distancia de pueden generar sesiones específicas. (puede ser una clase pregraba de los profesores titulares de cada sesión o con un referente de la institución o un referente nacional o internacional)
+
+En caso de no haber llegado a clase ese día en el mensaje  en automático donde no llego a la sesión mandar el link para que pueda ver una clase pregrabada para que no se quede sin sesión.
+ (al igual que el apartado anterior puede irse generando de acuerdo al presupuesto de crecimiento de la aplicación). 
+  Imagina que podamos grabar a María espinoza haciendo un desplazamiento al frente y detallando los errores más comunes. 
+  O a Steven López enviando un saludo y tomando un extracto de algún seminario  Pagarles  pero con el crecimiento de la app puedan verlo en cualquier lado. 
+  Esto le dará mayor valor comercial pero "Esto sería para la versión más avanzada"

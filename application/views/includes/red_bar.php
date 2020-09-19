@@ -4,10 +4,10 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto ml-5">
             <li class="nav-item active mr-3">
-                <a class="nav-link" href="#"><i class="fab fa-facebook-f"></i> <span class="sr-only"></span></a>
+                <a class="nav-link" href="https://www.facebook.com/Jaguares-TKD-Quer%C3%A9taro-288080018943"><i class="fab fa-facebook-f"></i> <span class="sr-only"></span></a>
             </li>
             <li class="nav-item active mr-3">
-                <a class="nav-link" href="#"><i class="fab fa-instagram"></i> <span class="sr-only"></span></a>
+                <a class="nav-link" href="https://www.instagram.com/jaguarestkdazteca/"><i class="fab fa-instagram"></i> <span class="sr-only"></span></a>
             </li>
             <li class="nav-item active mr-3">
                 <a class="nav-link" href="#"><i class="fab fa-twitter"></i> <span class="sr-only"></span></a>
