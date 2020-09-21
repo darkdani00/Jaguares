@@ -1,13 +1,15 @@
 <!-- navbar start -->
 <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #a72123;">
-  
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav mr-auto ml-5">
+        <ul class="navbar-nav mr-auto">
             <li class="nav-item active mr-3">
-                <a class="nav-link" href="https://www.facebook.com/Jaguares-TKD-Quer%C3%A9taro-288080018943"><i class="fab fa-facebook-f"></i> <span class="sr-only"></span></a>
+                <a class="nav-link" href="https://www.facebook.com/Jaguares-TKD-Quer%C3%A9taro-288080018943" target="_blank"><i class="fab fa-facebook-f"></i> <span class="sr-only"></span></a>
             </li>
             <li class="nav-item active mr-3">
-                <a class="nav-link" href="https://www.instagram.com/jaguarestkdazteca/"><i class="fab fa-instagram"></i> <span class="sr-only"></span></a>
+                <a class="nav-link" href="https://www.instagram.com/jaguarestkdazteca/" target="_blank"><i class="fab fa-instagram"></i> <span class="sr-only"></span></a>
             </li>
             <li class="nav-item active mr-3">
                 <a class="nav-link" href="#"><i class="fab fa-twitter"></i> <span class="sr-only"></span></a>
@@ -17,7 +19,7 @@
             </li>
         </ul>
     </div>
-    <div class="navbar-collapse collapse w-100 order-3 dual-collapse2 mr-5">
+    <div class="collapse navbar-collapse"   id="navbarNavDropdown">
         <ul class="navbar-nav ml-auto">
             <li class="nav-item active">
                 <a class="nav-link" href="#">Conocenos</a>

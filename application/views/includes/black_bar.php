@@ -3,8 +3,10 @@
     <a class="navbar-brand ml-5" href="<?=base_url("Welcome");?>">
         <img src="<?=base_url("resources/img/logo.jpg");?>" width="60" height="60" alt="" >
     </a>
-
-    <div class="navbar-collapse collapse w-100 order-3 dual-collapse2 mr-5">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown2" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+    <div class="navbar-collapse collapse" id="navbarNavDropdown2"> 
         <ul class="navbar-nav ml-auto">
             <li class="nav-item active">
                 <a class="nav-link" href="<?=base_url("Ubicaciones");?>">UBICACIONES</a>
