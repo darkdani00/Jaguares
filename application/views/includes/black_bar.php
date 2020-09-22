@@ -1,5 +1,5 @@
 <!-- navbar start -->
-<nav class="navbar navbar-expand-lg navbar-dark stick-bar black_bar_size" style="background-color: #000000;">
+<nav class="navbar navbar-expand-lg navbar-dark sticky-top black_bar_size" style="background-color: #000000;">
     <a class="navbar-brand ml-5" href="<?=base_url("Welcome");?>">
         <img src="<?=base_url("resources/img/logo.jpg");?>" width="60" height="60" alt="" >
     </a>

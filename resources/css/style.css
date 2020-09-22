@@ -1,20 +1,3 @@
-
-/* *{
-    margin: 0;
-    padding: 0;
-} */
-
 body{
     font-family: 'Kumbh Sans', sans-serif;
-}
-
-/* Este es para que la barra negra se quede en top despues del scroll */
-.stick-bar{
-    position: sticky;
-    top: 0;
-    /* z-index: 1; */
-}
-/* Tamaño barra negra */
-.black_bar_size{
-    /* height: 10vh !important; */
 }
