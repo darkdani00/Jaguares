@@ -10,6 +10,8 @@
     <link href="<?=base_url("resources/fontawesome/css/all.css");?>" rel="stylesheet">
     <!-- customize styles -->
     <link href="<?=base_url("resources/css/style.css");?>" rel="stylesheet">
+    <!-- google fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Kumbh+Sans&display=swap" rel="stylesheet"> 
 </head>
 <body>
     
