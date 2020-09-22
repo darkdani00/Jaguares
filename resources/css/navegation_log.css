@@ -82,7 +82,11 @@
 
 @media(max-width:568px){
     .nav{
-        width: var(--nav-icon-width);
+        width: 100%;
+        height: var(--nav-icon-width);
+        display: flex;
+        align-content: center;
+        justify-content: center;
     }
 
     .nav_label{
@@ -91,6 +95,7 @@
 
     .main-content{
         left: var(--nav-icon-width);
+        top: 110px;
     }
 
     .hide_collapse{
