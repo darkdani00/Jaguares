@@ -9,7 +9,7 @@
     <!-- Font awesome -->
     <link href="<?=base_url("resources/fontawesome/css/all.css");?>" rel="stylesheet">
     <!-- customize styles -->
-    <link href="<?=base_url("resources/css/sidebar.css");?>" rel="stylesheet">
+    <link href="<?=base_url("resources/css/navegation_log.css");?>" rel="stylesheet">
 </head>
 <body>
     
