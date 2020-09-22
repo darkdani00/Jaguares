@@ -6,15 +6,13 @@
     --sideBar-icons-color-hover:  #1c1b1b;
 }
 .sidebar-container{
-    height: inherit;
     display: flex;
 }
 
 .nav{
     width: 200px;
-    min-height: 100vh;
+    height: 100vh;
     margin-top: 55px;
-    /* display: flex; */
     flex-direction: column;
     background-color: var(--sideBar-color);
     transition: width 0.2s;
@@ -86,11 +84,16 @@
     .nav{
         width: var(--nav-icon-width);
     }
+
     .nav_label{
         display: none;
     }
 
     .main-content{
         left: var(--nav-icon-width);
+    }
+
+    .hide_collapse{
+        display: none;
     }
 }

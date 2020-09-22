@@ -1,4 +1,4 @@
-<div class="main-content">
+<div class="main-content" id="main-content">
     <h1 style="text-align:center">Subele a la gribol sirveme un blagleibol
     pa vajar el pase por que ya me ando torciendo
     Subele a la gribol sirveme un blagleibol

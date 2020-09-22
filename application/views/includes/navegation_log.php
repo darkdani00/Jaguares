@@ -1,7 +1,7 @@
 <!-- sideBar start -->
 <div class="sidebar-container">
     <nav class="nav">
-        <a href="#" class="nav_link nav_icon-container" id="btnOpen"><i class="fas fa-bars"></i></a>
+        <a href="#" class="nav_link nav_icon-container hide_collapse" id="btnOpen"><i class="fas fa-bars"></i></a>
         <a href="#" class="nav_link">
             <div class="nav_icon-container">
                 <i class="fas fa-chalkboard-teacher"></i>
