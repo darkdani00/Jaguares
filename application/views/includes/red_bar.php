@@ -28,7 +28,7 @@
                 <a class="nav-link" href="#">Directorio</a>
             </li>
             <li class="nav-item <?=@$profesores_selected ? 'active' : '';?>">
-                <a class="nav-link" href="#">Profesores</a>
+                <a class="nav-link" href="<?=base_url('Profesores');?>">Profesores</a>
             </li>
         </ul>
     </div>
