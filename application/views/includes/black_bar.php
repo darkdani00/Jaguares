@@ -8,13 +8,13 @@
   </button>
     <div class="navbar-collapse collapse" id="navbarNavDropdown2"> 
         <ul class="navbar-nav ml-auto">
-            <li class="nav-item active">
+            <li class="nav-item <?=@$ubicaciones_selected ? 'active' : '';?>">
                 <a class="nav-link" href="<?=base_url("Ubicaciones");?>">UBICACIONES</a>
             </li>
-            <li class="nav-item active">
+            <li class="nav-item <?=@$Acerca_de_selected ? 'active' : '';?>">
                 <a class="nav-link" href="<?=base_url("Acerca");?>">ACERCA DE</a>
             </li>
-            <li class="nav-item dropdown active">
+            <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
                     aria-haspopup="true" aria-expanded="false">
                     INICIAR SESION

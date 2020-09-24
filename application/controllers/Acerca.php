@@ -8,7 +8,8 @@ class Acerca extends CI_Controller {
 	{
 		$this->load->view('includes/header');
 		$this->load->view('includes/red_bar');
-		$this->load->view('includes/black_bar');
+		$data_menu['Acerca_de_selected'] = true;
+		$this->load->view('includes/black_bar',$data_menu);
 		$this->load->view('view/Acerca_page');
 		$this->load->view('includes/footer');
 	}
