@@ -52,25 +52,8 @@
     white-space: nowrap;
 }
 
-.red-bar{
-    padding: 0;
-    overflow-y: auto;
-    position: absolute;
-    top: 0;
-    right: 0;
-    left: 0;
-}
 
-.red-bar-collapsed{
-    padding: 0;
-    overflow-y: auto;
-    position: absolute;
-    top: 0;
-    right: 0;
-    left: var(--nav-icon-width);
-}
-
-.main-content{
+/* .main-content{
     position: absolute;
     top: 60px;
     left: 200px;
@@ -78,7 +61,7 @@
 
 .main-content-collapsed{
     left: var(--nav-icon-width);
-}
+} */
 
 @media(max-width:568px){
     .nav{
