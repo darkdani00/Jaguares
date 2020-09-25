@@ -3,19 +3,19 @@
     <div id="sidebar-container" style="background-color: #000000;">
         <div class="logo text-light mt-4"><h4>Jaguares</h4></div>
         <div class="menu">
-            <a href="#" class="d-block p-3 text-light">
+            <a href="#" class="text-light inline">
                 <div class="nav_icon-container">
                     <i class="fas fa-chalkboard-teacher"></i>
                 </div>
                 <span class="nav_label">Maestros</span>
             </a>
-            <a href="#" class="d-block p-3 text-light">
+            <a href="#" class="text-light inline">
                 <div class="nav_icon-container">
                     <i class="fas fa-users"></i>
                 </div>
                 <span class="nav_label">Alumnos</span>
             </a>
-            <a href="#" class="d-block p-3 text-light">
+            <a href="#" class="text-light inline">
                 <div class="nav_icon-container">
                     <i class="fas fa-school"></i>
                 </div>

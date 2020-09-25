@@ -22,6 +22,36 @@ a:hover{
     width: 250px;
 } 
 
+.menu{
+    display: flex;
+    flex-direction: column;
+}
+
+.nav_icon-container{
+    width: var(--nav-icon-width);
+    height: var(--nav-icon-width);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.nav_label{
+    white-space: nowrap;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.inline{
+    display: flex;
+    flex-direction: row;
+}
+
+.inline:hover{
+    background-color: var(--sideBar-icons-color-hover);
+}
+
 #content{
     overflow-y: auto;
     height: 100vh;
