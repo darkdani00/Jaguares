@@ -1,0 +1,42 @@
+:root{
+    --nav-icon-width: 50px;
+    --nav-border-width: 8px;
+    --sideBar-color: #000000;
+    --sideBar-icons-color:white;
+    --sideBar-icons-color-hover:  #1c1b1b;
+}
+
+body{
+    overflow: hidden;
+}
+
+a:hover{
+    text-decoration: none;
+}
+
+#sidebar-container{
+    min-height: 100vh;
+}
+
+#sidebar-container .menu{
+    width: 250px;
+} 
+
+#content{
+    overflow-y: auto;
+    height: 100vh;
+    padding-bottom: 5rem;
+}
+
+@media(max-width:568px){
+
+    #sidebar-container .menu{
+        width: var(--nav-icon-width);
+    }
+    .nav_label{
+        display: none;
+    }
+    .logo{
+        display: none;
+    }
+}
