@@ -11,18 +11,8 @@
             <li class="nav-item <?=@$ubicaciones_selected ? 'active' : '';?>">
                 <a class="nav-link" href="<?=base_url("Ubicaciones");?>">Ubicaciones</a>
             </li>
-            <li class="nav-item <?=@$Acerca_de_selected ? 'active' : '';?>">
-                <a class="nav-link" href="<?=base_url("Acerca");?>">Acerca de</a>
-            </li>
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
-                    aria-haspopup="true" aria-expanded="false">
-                    Iniciar sesi&oacute;n
-                </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="<?=base_url("Login");?>">Alumno</a>
-                    <a class="dropdown-item" href="<?=base_url("Login");?>">Profesor</a>
-                </div>
+            <li class="nav-item <?=@$login_selected ? 'active' : '';?>">
+                <a class="nav-link" href="<?=base_url("Login");?>">Iniciar sesi&oacute;n</a>
             </li>
         </ul>
     </div>

@@ -21,8 +21,8 @@
     </div>
     <div class="collapse navbar-collapse"   id="navbarNavDropdown">
         <ul class="navbar-nav ml-auto">
-            <li class="nav-item <?=@$conocenos_selected ? 'active' : '';?>">
-                <a class="nav-link" href="#">Conocenos</a>
+            <li class="nav-item <?=@$Acerca_de_selected ? 'active' : '';?>">
+                <a class="nav-link" href="<?=base_url("Acerca");?>">Conocenos</a>
             </li>
             <li class="nav-item <?=@$directorio_selected ? 'active' : '';?>">
                 <a class="nav-link" href="#">Directorio</a>
