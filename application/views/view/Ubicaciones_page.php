@@ -16,10 +16,11 @@
 
                     <h5>Escuela Plateros</h5>
                     <p>Horarios: <br />
-                        Lunes,Miercoles y Viernes <br />
+                        Lunes,Miercoles y Viernes <br/>
                         7:00am a 9:00am <br />
                         4:00pm a 7:00pm
                     </p>
+                    <div><i class="fas fa-phone"></i>2871982371</div>
                 </div>
             </div>
         </div>
@@ -39,6 +40,7 @@
                         7:00am a 9:00am <br />
                         4:00pm a 7:00pm
                     </p>
+                    <div><i class="fas fa-phone"></i>2871982371</div>
                 </div>
             </div>
         </div>
@@ -58,6 +60,7 @@
                         7:00am a 9:00am <br />
                         4:00pm a 7:00pm
                     </p>
+                    <div><i class="fas fa-phone"></i>2871982371</div>
                 </div>
             </div>
         </div>
@@ -81,6 +84,7 @@
                         7:00am a 9:00am <br />
                         4:00pm a 7:00pm
                     </p>
+                    <div><i class="fas fa-phone"></i>2871982371</div>
                 </div>
             </div>
         </div>
@@ -100,6 +104,7 @@
                         7:00am a 9:00am <br />
                         4:00pm a 7:00pm
                     </p>
+                    <div><i class="fas fa-phone"></i>2871982371</div>
                 </div>
             </div>
         </div>
@@ -120,6 +125,7 @@
                         7:00am a 9:00am <br />
                         4:00pm a 7:00pm
                     </p>
+                    <div><i class="fas fa-phone"></i>2871982371</div>
                 </div>
             </div>
         </div>

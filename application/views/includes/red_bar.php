@@ -24,11 +24,8 @@
             <li class="nav-item <?=@$Acerca_de_selected ? 'active' : '';?>">
                 <a class="nav-link" href="<?=base_url("Acerca");?>">Conocenos</a>
             </li>
-            <li class="nav-item <?=@$directorio_selected ? 'active' : '';?>">
-                <a class="nav-link" href="#">Directorio</a>
-            </li>
-            <li class="nav-item <?=@$profesores_selected ? 'active' : '';?>">
-                <a class="nav-link" href="<?=base_url('Profesores');?>">Profesores</a>
+            <li class="nav-item <?=@$ubicaciones_selected ? 'active' : '';?>">
+                <a class="nav-link" href="<?=base_url("Ubicaciones");?>">Directorio</a>
             </li>
         </ul>
     </div>
