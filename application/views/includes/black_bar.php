@@ -8,8 +8,14 @@
   </button>
     <div class="navbar-collapse collapse" id="navbarNavDropdown2"> 
         <ul class="navbar-nav ml-auto">
-            <li class="nav-item <?=@$login_selected ? 'active' : '';?>">
-                <a class="nav-link" href="<?=base_url("Login");?>">Iniciar sesi&oacute;n</a>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Iniciar sesi&oacute;n
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="<?=base_url("Login_alumno");?>">Alumnos</a>
+                    <a class="dropdown-item" href="<?=base_url("Login_profesor");?>">Maestros</a>
+                </div>
             </li>
         </ul>
     </div>

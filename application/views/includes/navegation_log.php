@@ -3,13 +3,13 @@
     <div id="sidebar-container" style="background-color: #000000;">
         <div class="logo text-light mt-4"><h4>Jaguares</h4></div>
         <div class="menu">
-            <a href="#" class="text-light inline">
+            <a href="<?=base_url("Profesores");?>" class="text-light inline">
                 <div class="nav_icon-container">
                     <i class="fas fa-chalkboard-teacher"></i>
                 </div>
                 <span class="nav_label">Maestros</span>
             </a>
-            <a href="#" class="text-light inline">
+            <a href="<?=base_url("Alumnos");?>" class="text-light inline">
                 <div class="nav_icon-container">
                     <i class="fas fa-users"></i>
                 </div>
