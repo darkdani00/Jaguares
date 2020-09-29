@@ -24,7 +24,7 @@
                             <div class="card-body">
                                 <div class="row mb-2">
                                     <div class="col-3">
-                                        <i class="fas fa-venus-marzs"></i>
+                                        <i class="fas fa-venus-mars"></i>
                                     </div>
                                     <div class="col-9">
                                         <div>G&eacute;nero: <span class="text-dark">Masculino</span></div>
@@ -248,18 +248,109 @@
             <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                <div class="modal-header bg-secondary">
+                    <h5 class="modal-title" id="exampleModalLabel">Registro de Alumnos</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
-                    ...
+                    <!-- formulario -->
+                    <form>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Nombre</label>
+                            <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">Apellido Paterno</label>
+                            <input type="text" class="form-control" id="exampleInputPassword1">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">Apellido Materno</label>
+                            <input type="text" class="form-control" id="exampleInputPassword1">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">Edad</label>
+                            <input type="number" class="form-control" id="exampleInputPassword1">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleFormControlSelect1">G&eacute;nero</label>
+                            <select class="form-control" id="exampleFormControlSelect1">
+                            <option>Masculino</option>
+                            <option>Femenino</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">N&uacute;mero de tel&eacute;fono</label>
+                            <input type="text" class="form-control" id="exampleInputPassword1">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">Correo</label>
+                            <input type="email" class="form-control" id="exampleInputPassword1">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleFormControlSelect1">Grado de cinta</label>
+                            <select class="form-control" id="exampleFormControlSelect1">
+                            <option>Cinta Blanca</option>
+                            <option>Cinta Amarilla</option>
+                            <option>Cinta Naranja</option>
+                            <option>Cinta Naranja Avanzado</option>
+                            <option>Cinta Verde</option>
+                            <option>Cinta Verde Avanzado</option>
+                            <option>Cinta Azul</option>
+                            <option>Cinta Azul Avanzado</option>
+                            <option>Cinta Roja</option>
+                            <option>Cinta Roja Avanzado</option>
+                            <option>Cinta Negra</option>
+                            </select>
+                        </div>
+                        <!-- Aqui mi idea is que haya un input de select pero que las opciones vengan de la base de datos como lo que himos con alfredo -->
+                        <div class="form-group">
+                            <label for="exampleFormControlSelect1">Escuela</label>
+                            <select class="form-control" id="exampleFormControlSelect1">
+                            <option>Escuela 1</option>
+                            <option>Escuela 2</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleFormControlSelect1">Profesor</label>
+                            <select class="form-control" id="exampleFormControlSelect1">
+                            <option>profe 1</option>
+                            <option>profe 2</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleFormControlSelect1">Discapacidades</label>
+                            <select class="form-control" id="exampleFormControlSelect1">
+                            <option>Si</option>
+                            <option>No</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">A&ntilde;os de entrenamiento</label>
+                            <input type="number" class="form-control" id="exampleInputPassword1">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">Tutor</label>
+                            <input type="text" class="form-control" id="exampleInputPassword1">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">Hora de entrenamiento</label>
+                            <input type="time" class="form-control" id="exampleInputPassword1">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleFormControlSelect1">Mensualidad Pagada</label>
+                            <select class="form-control" id="exampleFormControlSelect1">
+                            <option>Si</option>
+                            <option>No</option>
+                            </select>
+                        </div>
+                    </form>
+                    <!-- formulario -->
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
+                    <button type="button" class="btn btn-success">Guardar</button>
                 </div>
                 </div>
             </div>

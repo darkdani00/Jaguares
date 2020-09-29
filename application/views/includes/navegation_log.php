@@ -1,7 +1,7 @@
 <!-- sideBar start -->
 <div class="d-flex">
     <div id="sidebar-container" style="background-color: #000000;">
-        <div class="logo text-light mt-4"><h4>Jaguares</h4></div>
+        <div class="logo text-light mt-4 ml-3"><h4>Jaguares</h4></div>
         <div class="menu">
             <a href="<?=base_url("Profesores");?>" class="text-light inline">
                 <div class="nav_icon-container">
