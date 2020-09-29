@@ -22,7 +22,7 @@
                         Daniel Alonso Orduña
                     </h5>
                     <h6>
-                        Alumno
+                        Profesor
                     </h6>
                     <ul class="nav nav-tabs" id="myTab" role="tablist">
                         <li class="nav-item">
@@ -63,18 +63,18 @@
                         </div>
                         <div class="row">
                             <div class="col-md-6">
-                                <label>Edad</label>
+                                <label>Género</label>
                             </div>
                             <div class="col-md-6">
-                                <p>20</p>
+                                <p>Masculino</p>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-md-6">
-                                <label>Email</label>
+                                <label>Edad</label>
                             </div>
                             <div class="col-md-6">
-                                <p>email@gmail.com</p>
+                                <p>20</p>
                             </div>
                         </div>
                         <div class="row">
@@ -95,52 +95,13 @@
                         </div>
                         <div class="row">
                             <div class="col-md-6">
-                                <label>Discapacidades</label>
-                            </div>
-                            <div class="col-md-6">
-                                <p>NULL</p>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <label>Años de entrenamiento</label>
-                            </div>
-                            <div class="col-md-6">
-                                <p>10 años</p>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <label>Tutor</label>
-                            </div>
-                            <div class="col-md-6">
-                                <p>+18</p>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <label>Horario de entrenamiento</label>
-                            </div>
-                            <div class="col-md-6">
-                                <p>6:00pm-7:00pm</p>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <label>Mensualidad</label>
-                            </div>
-                            <div class="col-md-6">
-                                <p>Pagada</p>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6">
                                 <label>Escuela</label>
                             </div>
                             <div class="col-md-6">
                                 <p>Plateros</p>
                             </div>
                         </div>
+                        
                     </div>
                     <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
                         <div class="row">
