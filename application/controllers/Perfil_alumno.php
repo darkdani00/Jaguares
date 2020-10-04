@@ -11,7 +11,7 @@ class Perfil_alumno extends MY_RootController {
     
 
 	public function index()
-	{
+	{		
         $this->load->view('includes/header_log');
         $this->load->view('includes/navegation_log.php');
 		$this->load->view('alumnos/perfil_page_alumno');

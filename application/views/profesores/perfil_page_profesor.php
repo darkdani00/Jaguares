@@ -3,6 +3,9 @@
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <link rel="stylesheet" href="<?=base_url('resources/css/perfil.css');?>">
 
+<?php
+    $current_session = $this->session->userdata('user_sess');
+?>
 
 <div class="container emp-profile">
     <form method="post">
@@ -19,7 +22,7 @@
             <div class="col-md-6">
                 <div class="profile-head">
                     <h5>
-                        Daniel Alonso Orduña
+                        <?=$current_session->nombre_maestro." ".$current_session->apellido_paterno_maestro." ".$current_session->apellido_materno_maestro?>
                     </h5>
                     <h6>
                         Profesor
@@ -50,7 +53,7 @@
                                 <label>Nombre</label>
                             </div>
                             <div class="col-md-6">
-                                <p>Daniel</p>
+                                <p><?=$current_session->nombre_maestro?></p>
                             </div>
                         </div>
                         <div class="row">
@@ -58,7 +61,7 @@
                                 <label>Apellidos</label>
                             </div>
                             <div class="col-md-6">
-                                <p>Alonso Oruña</p>
+                                <p><?=$current_session->apellido_paterno_maestro." ".$current_session->apellido_materno_maestro?></p>
                             </div>
                         </div>
                         <div class="row">
@@ -66,7 +69,7 @@
                                 <label>Género</label>
                             </div>
                             <div class="col-md-6">
-                                <p>Masculino</p>
+                                <p><?=$current_session->genero_maestro?></p>
                             </div>
                         </div>
                         <div class="row">
@@ -74,7 +77,7 @@
                                 <label>Edad</label>
                             </div>
                             <div class="col-md-6">
-                                <p>20</p>
+                                <p><?=$current_session->edad_maestro?></p>
                             </div>
                         </div>
                         <div class="row">
@@ -82,7 +85,7 @@
                                 <label>Número celular</label>
                             </div>
                             <div class="col-md-6">
-                                <p>442 335 3851</p>
+                                <p><?=$current_session->telefono_maestro?></p>
                             </div>
                         </div>
                         <div class="row">
@@ -90,7 +93,7 @@
                                 <label>Color de cinta</label>
                             </div>
                             <div class="col-md-6">
-                                <p>2do Dan</p>
+                                <p><?=$current_session->grado_cinta_maestro?></p>
                             </div>
                         </div>
                         <div class="row">
