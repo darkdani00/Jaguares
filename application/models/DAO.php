@@ -63,4 +63,16 @@ class DAO extends CI_Model {
         }
     }
     
+    function selectEntity($entityName,$whereClause= array(),$isUnique = FALSE){
+        if($whereClause){
+            $this->db->where($whereClause);
+        }
+        $query = $this->db->get($entityName);
+        if($this->db->error()['message'] != ''){
+            return $isUnique ? null : array();
+        }else{
+            return $isUnique ? $query->row(): $query->result();
+        }
+    }
+    
 }
