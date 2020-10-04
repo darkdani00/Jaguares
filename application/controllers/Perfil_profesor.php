@@ -1,8 +1,13 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Perfil_profesor extends CI_Controller {
+class Perfil_profesor extends MY_RootController {
 
+	function __construct()
+	{
+		parent::__construct();
+		$this->__validateSessionProfesor();
+    }
 
 	public function index()
 	{

@@ -14,5 +14,11 @@ class MY_RootController extends CI_Controller {
             redirect('Login_alumno');
         }
     }
+    public function __validateSessionProfesor(){
+        $session = $this->session->userdata('user_sess');
+        if (!@$session->email_maestro) {
+            redirect('Login_profesor');
+        }
+    }
 
 }
