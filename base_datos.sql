@@ -17,7 +17,7 @@ CREATE TABLE maestro(
     genero_maestro enum("Masculino","Femenino") NOT NULL,
     edad_maestro INT NOT NULL,
     telefono_maestro INT, 
-    grado_cinta_alumno VARCHAR(80),
+    grado_cinta_maestro VARCHAR(80),
     password_maestro VARCHAR(80) NOT NULL DEFAULT "password",
     email_maestro VARCHAR(80) NOT NULL UNIQUE
 );
