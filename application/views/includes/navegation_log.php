@@ -51,7 +51,7 @@
                             <a class="dropdown-item" href="#">Mi perfil</a>
                             <a class="dropdown-item" href="#">Another action</a>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#">Cerrar Sesi&oacute;n</a>
+                            <a class="dropdown-item" href="<?=base_url('login_alumno/logout');?>">Cerrar Sesi&oacute;n</a>
                             </div>
                         </li>
                     </ul>

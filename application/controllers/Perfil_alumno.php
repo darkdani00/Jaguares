@@ -1,8 +1,14 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Perfil_alumno extends CI_Controller {
+class Perfil_alumno extends MY_RootController {
 
+	function __construct()
+	{
+		parent::__construct();
+		$this->__validateSessionAlumno();
+    }
+    
 
 	public function index()
 	{
@@ -11,4 +17,5 @@ class Perfil_alumno extends CI_Controller {
 		$this->load->view('alumnos/perfil_page_alumno');
 		$this->load->view('includes/footer_log');
 	}
+
 }
