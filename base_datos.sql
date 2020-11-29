@@ -17,9 +17,12 @@ CREATE TABLE maestro(
     genero_maestro enum("Masculino","Femenino") NOT NULL,
     edad_maestro INT NOT NULL,
     telefono_maestro INT, 
+    -- este va a ser un enum
     grado_cinta_maestro VARCHAR(80),
     password_maestro VARCHAR(80) NOT NULL DEFAULT "password",
-    email_maestro VARCHAR(80) NOT NULL UNIQUE
+    email_maestro VARCHAR(80) NOT NULL UNIQUE,
+    escuelaFk INT NOT NULL,
+    FOREIGN KEY(escuelaFk) REFERENCES escuela(id_escuela)
 );
 
 CREATE TABLE alumno(
@@ -32,9 +35,19 @@ CREATE TABLE alumno(
     telefono_alumno INT, 
     email_alumno VARCHAR(80) NOT NULL UNIQUE,
     password_alumno VARCHAR(80) NOT NULL DEFAULT "password",
-    grado_cinta_alumno VARCHAR(80)
+    -- este va a ser un enum
+    grado_cinta_alumno VARCHAR(80),
+    escuelaFk INT NOT NULL,
+    FOREIGN KEY(escuelaFk) REFERENCES escuela(id_escuela)
 );
 
-INSERT INTO alumno(nombre_alumno,apellido_paterno_alumno,apellido_materno_alumno,genero_alumno,edad_alumno,telefono_alumno,email_alumno,grado_cinta_alumno,password_alumno) VALUES("Juan","Hernandez","Ramirez","Masculino",13,21231231,"juan_hdez@gmail.com","Roja","1234"),
-("Mario","Hernandez","Dorantes","Masculino",13,21231231,"mario_hdez@gmail.com","Roja","1234");
-INSERT INTO maestro(nombre_maestro,apellido_paterno_maestro,apellido_materno_maestro,genero_maestro,edad_maestro,telefono_maestro,grado_cinta_alumno,password_maestro,email_maestro) VALUES("Ricardo","Milos","Milos","Masculino",28,1241233123,"Negra","1234","ricardo@milos.com");
+INSERT INTO escuela(nombre_escuela,direccion_escuela, telefono_escuela) VALUES ('jaguares','centro',137861);
+
+INSERT INTO alumno(nombre_alumno,apellido_paterno_alumno,apellido_materno_alumno,genero_alumno,edad_alumno,telefono_alumno,email_alumno,grado_cinta_alumno,password_alumno,escuelaFk) VALUES("Juan","Hernandez","Ramirez","Masculino",13,21231231,"juan_hdez@gmail.com","Roja","1234"),
+("Mario","Hernandez","Dorantes","Masculino",13,21231231,"mario_hdez@gmail.com","Roja","1234",1);
+INSERT INTO maestro(nombre_maestro,apellido_paterno_maestro,apellido_materno_maestro,genero_maestro,edad_maestro,telefono_maestro,grado_cinta_alumno,password_maestro,email_maestro,escuelaFk) VALUES("Ricardo","Milos","Milos","Masculino",28,1241233123,"Negra","1234","ricardo@milos.com",1);
+
+
+CREATE OR REPLACE VIEW alumno_view AS SELECT a.*,e.* FROM alumno AS a JOIN escuela AS e ON a.escuelaFk = e.id_escuela;
+
+CREATE OR REPLACE VIEW maestro_view AS SELECT m.*,e.* FROM maestro AS m JOIN escuela AS e ON m.escuelaFk = e.id_escuela;
