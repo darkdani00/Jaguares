@@ -76,8 +76,10 @@
         </div>
         <div class="form-group">
             <label for="escuela_prof">Escuela</label>
-            <select id="escuela_prof" name="escuela_prof" style="width: 100%;">
-                <option value=""></option>
+            <select id="escuela_prof" name="escuela_prof" class="form-control">
+                <?php foreach($container_data as $escuela){ ?>
+                    <option value="<?=$escuela->id_escuela?>"><?=$escuela->nombre_escuela?></option>
+                    <?php } ?>
             </select>
             <?php if (@$errors['escuela_prof']) {
                         ?>

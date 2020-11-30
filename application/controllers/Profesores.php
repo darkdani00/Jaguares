@@ -67,7 +67,8 @@ class Profesores extends CI_Controller {
 	}
 
 	public function showProfesoresForm(){
-		$this->load->view('profesores/profesores_form',TRUE);
+		$data['container_data'] = $this->DAO->selectEntity('escuela');
+		echo $this->load->view('profesores/profesores_form',$data,TRUE);
     }
 }
 
