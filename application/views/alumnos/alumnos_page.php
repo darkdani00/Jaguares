@@ -8,7 +8,7 @@
         <div class="row">
             <!-- card -->
             <?php foreach($container_data as $alumno){ ?>
-            <div class="col-xl-3 col-md-6 mb-4">
+            <div class="col-xl-4 col-lg-4 col-md-6 mb-4">
                 <div class="card mb-3" style="max-width: 540px;">
                     <div class="card-header">
                         <div class="row pt-4">

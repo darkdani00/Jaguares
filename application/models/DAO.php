@@ -6,7 +6,7 @@ class DAO extends CI_Model {
 	public function login($email,$password)
 	{
 		$this->db->where('email_alumno',$email);
-        $query = $this->db->get('alumno');
+        $query = $this->db->get('alumno_view');
         $alumno_existe = $query->row();
         if($alumno_existe){
             if($alumno_existe->password_alumno == $password){
@@ -36,7 +36,7 @@ class DAO extends CI_Model {
 	public function login_profesor($email,$password)
 	{
 		$this->db->where('email_maestro',$email);
-        $query = $this->db->get('maestro');
+        $query = $this->db->get('maestro_view');
         $maestro_existe = $query->row();
         if($maestro_existe){
             if($maestro_existe->password_maestro == $password){
@@ -72,6 +72,26 @@ class DAO extends CI_Model {
             return $isUnique ? null : array();
         }else{
             return $isUnique ? $query->row(): $query->result();
+        }
+    }
+
+    function saveOrUpdateEntity($entityName,$data,$whereClause = array()){
+        if ($whereClause) {
+            $this->db->where($whereClause);
+            $this->db->update($entityName,$data);
+        }else{
+            $this->db->insert($entityName,$data);
+        }
+        if ($this->db->error()['message'] != '') {
+            return array(
+                "status" => "error",
+                "message" => $this->db->error()['message']
+            );
+        }else{
+            return array(
+                "status" => "success",
+                "message" => $whereClause ? 'Datos Actualizados correctamente' : 'Datos Registrados correctamente'
+            );
         }
     }
     

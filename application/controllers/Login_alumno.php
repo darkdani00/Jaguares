@@ -35,7 +35,7 @@ class Login_alumno extends CI_Controller {
 				if($user_exists["status"] == "success"){
 					// crear sesion
 					$this->session->set_userdata('user_sess',$user_exists['data']);
-					redirect("Perfil_alumno");
+					redirect("alumnos/perfil_alumno");
 				}else{
 					$error_msg = "Usuario y/o Contraseña incorrecto";
 					$this->session->set_flashdata('error_msg',$error_msg);
@@ -51,7 +51,7 @@ class Login_alumno extends CI_Controller {
 	function _isLoggin(){
 		$session = $this->session->userdata('user_sess');
 		if (@$session->email_alumno) {
-			redirect('Perfil_alumno');
+			redirect('alumnos/perfil_alumno');
 		}
 	}
 

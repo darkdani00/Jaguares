@@ -22,16 +22,24 @@ $(function() {
                 var convert_response = JSON.parse(response);
                 if (convert_response.status == "success") {
                     //cerrar modal, cargar datos
-                    $(document).find('#modal_profesores').modal('hide');
-                    // load_data();
+                    $(document).find('#modalView').modal('hide');
+                    load_data();
                     Swal.fire(
                         'Correcto',
                         'Formulario enviado correctamente',
                         'success'
                     );
                 } else if (convert_response.status == "error") {
-                    //Indefinido
+                    // si falla la bd
+                    Swal.fire(
+                        'Error',
+                        convert_response.message,
+                        'error'
+                    );
                 } else {
+                    // arregar algo para que se vuelva a llenar el select
+                    fillSelectEscuela();
+
                     $(document).find('#modalContent').empty().append(convert_response.data);
                 }
             }
@@ -40,4 +48,27 @@ $(function() {
 
 });
 
+// funcion para que se vuelva a llenar el select
+function fillSelectEscuela(){
+    $.ajax({
+        'url': '<?=base_url('profesores/get_Escuelas');?>',
+        'success': function(response) {
+            var convert_response = JSON.parse(response);
+
+            convert_response.forEach(function(element){
+                $(document).find('#escuela_prof').append('<option value="'+element.id_escuela+'">'+element.nombre_escuela+'</option>');
+            });
+            // esta es la idea, pero mandarlo como un arreglo
+        }
+    })
+}
+
+function load_data() {
+    $.ajax({
+        'url': '<?=base_url('profesores/showDataContainer');?>',
+        'success': function(response) {
+            $(document).find('#data_container').empty().append(response);
+        }
+    })
+}
 </script>

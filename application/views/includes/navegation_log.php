@@ -1,3 +1,7 @@
+<?php
+    $current_session = $this->session->userdata('user_sess');
+?>
+
 <!-- sideBar start -->
 <div class="d-flex">
     <div id="sidebar-container" style="background-color: #000000;">
@@ -41,13 +45,13 @@
                         </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Daniel Alonso Ordu&ntilde;a
+                            <?=@$current_session->nombre_maestro." ".@$current_session->apellido_paterno_maestro." ".@$current_session->apellido_materno_maestro;?>
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="#">Mi perfil</a>
+                            <a class="dropdown-item" href="<?=base_url('profesores/perfil_profesor');?>">Mi perfil</a>
                             <a class="dropdown-item" href="#">Another action</a>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="<?=base_url('login_alumno/logout');?>">Cerrar Sesi&oacute;n</a>
+                            <a class="dropdown-item" href="<?=base_url('login_profesor/logout');?>">Cerrar Sesi&oacute;n</a>
                             </div>
                         </li>
                     </ul>

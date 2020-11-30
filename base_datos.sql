@@ -4,13 +4,13 @@ USE jaguares;
 
 CREATE TABLE escuela(
     id_escuela INT PRIMARY KEY AUTO_INCREMENT,
-    nombre_escuela VARCHAR(80),
+    nombre_escuela VARCHAR(80) NOT NULL,
     direccion_escuela TEXT,
     telefono_escuela INT
 );
 
 CREATE TABLE maestro(
-    id_maestro INT PRIMARY KEY AUTO_INCREMENT,
+    id_maestro INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
     nombre_maestro VARCHAR(80) NOT NULL,
     apellido_paterno_maestro VARCHAR(80) NOT NULL,
     apellido_materno_maestro VARCHAR(80),
@@ -22,7 +22,8 @@ CREATE TABLE maestro(
     password_maestro VARCHAR(80) NOT NULL DEFAULT "password",
     email_maestro VARCHAR(80) NOT NULL UNIQUE,
     escuelaFk INT NOT NULL,
-    FOREIGN KEY(escuelaFk) REFERENCES escuela(id_escuela)
+    FOREIGN KEY(escuelaFk) REFERENCES escuela(id_escuela),
+    user_type enum('Admin','Normal') DEFAULT 'Normal'
 );
 
 CREATE TABLE alumno(

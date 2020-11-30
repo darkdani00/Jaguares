@@ -10,6 +10,9 @@
     <link href="<?=base_url("resources/fontawesome/css/all.css");?>" rel="stylesheet">
     <!-- customize styles -->
     <link href="<?=base_url("resources/css/navegation.css");?>" rel="stylesheet">
+    <!-- estilos perfil -->
+    <link rel="stylesheet" href="<?=base_url('resources/css/perfil.css');?>">
+
 </head>
 <body>
     

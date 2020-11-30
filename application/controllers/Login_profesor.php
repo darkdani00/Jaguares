@@ -31,7 +31,7 @@ class Login_profesor extends CI_Controller {
 				if($user_exists["status"] == "success"){
 					// crear sesion
 					$this->session->set_userdata('user_sess',$user_exists['data']);
-					redirect("Perfil_profesor");
+					redirect("profesores/perfil_profesor");
 				}else{
 					$error_msg = "Usuario y/o Contraseña incorrecto";
 					$this->session->set_flashdata('error_msg',$error_msg);
@@ -47,7 +47,12 @@ class Login_profesor extends CI_Controller {
 	function _isLoggin(){
 		$session = $this->session->userdata('user_sess');
 		if (@$session->email_maestro) {
-			redirect('Perfil_profesor');
+			redirect('profesores/perfil_profesor');
 		}
+	}
+
+	public function logout(){
+		$this->session->unset_userdata('user_sess');
+		redirect('','refresh');
 	}
 }
