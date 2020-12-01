@@ -12,6 +12,9 @@ $(function() {
 
     $("#modalView").on("shown.bs.modal", function(e) {
         fillSelectEscuela();
+        $('#grado_cinta_prof').select2({
+            theme: "bootstrap4"
+        });
     });
 
     $(document).on('submit', '#form_profesores', function(e) {
@@ -43,6 +46,9 @@ $(function() {
                 } else {
                     $(document).find('#modalContent').empty().append(convert_response.data);
                     fillSelectEscuela();
+                    $('#grado_cinta_prof').select2({
+                        theme: "bootstrap4"
+                    });
                     // poner en rojo input
                     $.each(convert_response.errors, function(key, value) {
                         $("#" + key).addClass("is-invalid");
@@ -70,7 +76,7 @@ function fillSelectEscuela() {
             });
         }
     });
-    $('#escuela_prof').select2({ 
+    $('#escuela_prof').select2({
         theme: "bootstrap4"
     });
 }

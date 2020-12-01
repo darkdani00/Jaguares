@@ -14,6 +14,9 @@ $(function() {
     $("#modalView").on("shown.bs.modal", function(e) {
         fillSelectEscuela();
         fillSelectProfes();
+        $('#grado_cinta_alumno').select2({
+            theme: "bootstrap4"
+        });
     });
 
     $(document).on('submit', '#form_alumnos', function(e) {
@@ -46,6 +49,9 @@ $(function() {
                     $(document).find('#modalContent').empty().append(convert_response.data);
                     fillSelectEscuela();
                     fillSelectProfes();
+                    $('#grado_cinta_alumno').select2({
+                        theme: "bootstrap4"
+                    });
                     $.each(convert_response.errors, function(key, value) {
                         $("#" + key).addClass("is-invalid");
                         $("#" + key).after(
@@ -72,7 +78,7 @@ function fillSelectEscuela() {
             });
         }
     });
-    $('#escuela_alumno').select2({ 
+    $('#escuela_alumno').select2({
         theme: "bootstrap4"
     });
 }
@@ -90,7 +96,7 @@ function fillSelectProfes() {
             });
         }
     });
-    $('#prof_alumno').select2({ 
+    $('#prof_alumno').select2({
         theme: "bootstrap4"
     });
 }
