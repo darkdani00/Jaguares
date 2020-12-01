@@ -3,17 +3,23 @@ $(function() {
 
     $(document).on('click', '#openModal', function() {
         $.ajax({
-            'url': '<?=base_url('Profesores/showProfesoresForm');?>',
+            'url': '<?=base_url('alumnos/showAlumnosForm');?>',
             'success': function(response) {
                 $(document).find('#modalContent').empty().append(response);
             }
         });
     });
 
-    $(document).on('submit', '#form_profesores', function(e) {
+    
+    $("#modalView").on("shown.bs.modal", function (e) {
+        fillSelectEscuela();
+        fillSelectProfes();
+      });
+
+    $(document).on('submit', '#form_alumnos', function(e) {
         e.preventDefault();
         $.ajax({
-            'url': '<?=base_url('Profesores/saveOrUpdate');?>',
+            'url': '<?=base_url('alumnos/saveOrUpdate');?>',
             'data': new FormData(this),
             'contentType': false,
             'processData': false,
@@ -37,9 +43,8 @@ $(function() {
                         'error'
                     );
                 } else {
-                    // arregar algo para que se vuelva a llenar el select
                     fillSelectEscuela();
-
+                    fillSelectProfes();
                     $(document).find('#modalContent').empty().append(convert_response.data);
                 }
             }
@@ -51,12 +56,25 @@ $(function() {
 // funcion para que se vuelva a llenar el select
 function fillSelectEscuela(){
     $.ajax({
-        'url': '<?=base_url('profesores/get_Escuelas');?>',
+        'url': '<?=base_url('alumnos/get_Escuelas');?>',
         'success': function(response) {
             var convert_response = JSON.parse(response);
 
             convert_response.forEach(function(element){
-                $(document).find('#escuela_prof').append('<option value="'+element.id_escuela+'">'+element.nombre_escuela+'</option>');
+                $(document).find('#escuela_alumno').append('<option value="'+element.id_escuela+'">'+element.nombre_escuela+'</option>');
+            });
+        }
+    })
+}
+
+function fillSelectProfes(){
+    $.ajax({
+        'url': '<?=base_url('alumnos/get_Profesores');?>',
+        'success': function(response) {
+            var convert_response = JSON.parse(response);
+
+            convert_response.forEach(function(element){
+                $(document).find('#prof_alumno').append('<option value="'+element.id_maestro+'">'+element.nombre_maestro+" "+element.apellido_paterno_maestro+" "+element.apellido_materno_maestro+'</option>');
             });
         }
     })
@@ -64,7 +82,7 @@ function fillSelectEscuela(){
 
 function load_data() {
     $.ajax({
-        'url': '<?=base_url('profesores/showDataContainer');?>',
+        'url': '<?=base_url('alumnos/showDataContainer');?>',
         'success': function(response) {
             $(document).find('#data_container').empty().append(response);
         }
