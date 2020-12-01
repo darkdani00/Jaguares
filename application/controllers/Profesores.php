@@ -67,7 +67,6 @@ class Profesores extends MY_RootController {
 
 		}else{
 			// mandar errores a la vista
-			$data['errors'] = $this->form_validation->error_array();
             $data['current_data'] = $this->input->post();
             $data_response = array(
                 "status" => "warning",

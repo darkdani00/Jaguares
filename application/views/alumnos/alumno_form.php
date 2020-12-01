@@ -9,38 +9,18 @@
         <div class="form-group">
             <label for="nom_alumno">Nombre</label>
             <input type="text" class="form-control" id="nom_alumno" name="nom_alumno">
-            <?php if (@$errors['nom_alumno']) {
-                        ?>
-            <small class="form-text text-danger float-right"><?=$errors['nom_alumno'];?></small>
-            <?php
-                    } ?>
         </div>
         <div class="form-group">
             <label for="ape_pa_alumno">Apellido Paterno</label>
             <input type="text" class="form-control" id="ape_pa_alumno" name="ape_pa_alumno">
-             <?php if (@$errors['ape_pa_alumno']) {
-                        ?>
-            <small class="form-text text-danger float-right"><?=$errors['ape_pa_alumno'];?></small>
-            <?php
-                    } ?>
         </div>
         <div class="form-group">
             <label for="ape_mat_alumno">Apellido Materno</label>
             <input type="text" class="form-control" id="ape_mat_alumno" name="ape_mat_alumno">
-             <?php if (@$errors['ape_mat_alumno']) {
-                        ?>
-            <small class="form-text text-danger float-right"><?=$errors['ape_mat_alumno'];?></small>
-            <?php
-                    } ?>
         </div>
         <div class="form-group">
             <label for="edad_alumno">Edad</label>
             <input type="number" class="form-control" id="edad_alumno" name="edad_alumno">
-             <?php if (@$errors['edad_alumno']) {
-                        ?>
-            <small class="form-text text-danger float-right"><?=$errors['edad_alumno'];?></small>
-            <?php
-                    } ?>
         </div>
         <div class="form-group">
             <label for="genero_alumno">G&eacute;nero</label>
@@ -57,20 +37,10 @@
         <div class="form-group">
             <label for="num_alumno">N&uacute;mero de tel&eacute;fono</label>
             <input type="text" class="form-control" id="num_alumno" name="num_alumno">
-             <?php if (@$errors['num_alumno']) {
-                        ?>
-            <small class="form-text text-danger float-right"><?=$errors['num_alumno'];?></small>
-            <?php
-                    } ?>
         </div>
         <div class="form-group">
             <label for="email">Correo</label>
             <input type="email" class="form-control" id="email" name="email">
-             <?php if (@$errors['email']) {
-                        ?>
-            <small class="form-text text-danger float-right"><?=$errors['email'];?></small>
-            <?php
-                    } ?>
         </div>
         <div class="form-group">
             <label for="grado_cinta_alumno">Grado de cinta</label>
@@ -128,29 +98,14 @@
         <div class="form-group">
             <label for="entrenamiento">A&ntilde;os de entrenamiento</label>
             <input type="number" class="form-control" id="entrenamiento" name="entrenamiento">
-             <?php if (@$errors['entrenamiento']) {
-                        ?>
-            <small class="form-text text-danger float-right"><?=$errors['entrenamiento'];?></small>
-            <?php
-                    } ?>
         </div>
         <div class="form-group">
             <label for="tutor">Tutor</label>
             <input type="text" class="form-control" id="tutor" name="tutor">
-             <?php if (@$errors['tutor']) {
-                        ?>
-            <small class="form-text text-danger float-right"><?=$errors['tutor'];?></small>
-            <?php
-                    } ?>
         </div>
         <div class="form-group">
             <label for="hora_entrenamiento">Hora de entrenamiento</label>
             <input type="time" class="form-control" id="hora_entrenamiento" name="hora_entrenamiento">
-             <?php if (@$errors['hora_entrenamiento']) {
-                        ?>
-            <small class="form-text text-danger float-right"><?=$errors['hora_entrenamiento'];?></small>
-            <?php
-                    } ?>
         </div>
         <div class="form-group">
             <label for="pagado">Mensualidad Pagada</label>

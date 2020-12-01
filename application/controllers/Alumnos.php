@@ -85,12 +85,12 @@ class Alumnos extends MY_RootController {
 
 		}else{
 			// mandar errores a la vista
-			$data['errors'] = $this->form_validation->error_array();
             $data['current_data'] = $this->input->post();
             $data_response = array(
                 "status" => "warning",
                 "message" => "Información incorrecta, valida los campos!",
-                "data" =>  $this->load->view('alumnos/alumno_form',$data,TRUE)
+				"data" =>  $this->load->view('alumnos/alumno_form',$data,TRUE),
+				'errors' => $this->form_validation->error_array()
             );
 		}
 		echo json_encode($data_response);

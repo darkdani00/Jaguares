@@ -46,6 +46,12 @@ $(function() {
                     fillSelectEscuela();
                     fillSelectProfes();
                     $(document).find('#modalContent').empty().append(convert_response.data);
+                    $.each(convert_response.errors, function(key, value) {
+                        $("#" + key).addClass("is-invalid");
+                        $("#" + key).after(
+                            '<div class="invalid-feedback">' + value + "</div>"
+                        );
+                    });
                 }
             }
         });
