@@ -41,11 +41,8 @@ $(function() {
                         'error'
                     );
                 } else {
-                    // arregar algo para que se vuelva a llenar el select
-                    fillSelectEscuela();
-
                     $(document).find('#modalContent').empty().append(convert_response.data);
-
+                    fillSelectEscuela();
                     // poner en rojo input
                     $.each(convert_response.errors, function(key, value) {
                         $("#" + key).addClass("is-invalid");
@@ -72,7 +69,10 @@ function fillSelectEscuela() {
                     '">' + element.nombre_escuela + '</option>');
             });
         }
-    })
+    });
+    $('#escuela_prof').select2({ 
+        theme: "bootstrap4"
+    });
 }
 
 function load_data() {

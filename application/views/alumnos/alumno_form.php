@@ -28,11 +28,6 @@
                 <option>Masculino</option>
                 <option>Femenino</option>
             </select>
-             <?php if (@$errors['genero_alumno']) {
-                        ?>
-            <small class="form-text text-danger float-right"><?=$errors['genero_alumno'];?></small>
-            <?php
-                    } ?>
         </div>
         <div class="form-group">
             <label for="num_alumno">N&uacute;mero de tel&eacute;fono</label>
@@ -57,31 +52,16 @@
                 <option>Cinta Roja Avanzado</option>
                 <option>Cinta Negra</option>
             </select>
-             <?php if (@$errors['grado_cinta_alumno']) {
-                        ?>
-            <small class="form-text text-danger float-right"><?=$errors['grado_cinta_alumno'];?></small>
-            <?php
-                    } ?>
         </div>
         <div class="form-group">
             <label for="escuela_alumno">Escuela</label>
             <select class="form-control" id="escuela_alumno" name="escuela_alumno">
             </select>
-             <?php if (@$errors['escuela_alumno']) {
-                        ?>
-            <small class="form-text text-danger float-right"><?=$errors['escuela_alumno'];?></small>
-            <?php
-                    } ?>
         </div>
         <div class="form-group">
             <label for="prof_alumno">Profesor</label>
             <select class="form-control" id="prof_alumno" name="prof_alumno">
             </select>
-             <?php if (@$errors['prof_alumno']) {
-                        ?>
-            <small class="form-text text-danger float-right"><?=$errors['prof_alumno'];?></small>
-            <?php
-                    } ?>
         </div>
         <div class="form-group">
             <label for="discapacidades">Discapacidades</label>
@@ -89,11 +69,6 @@
                 <option>Si</option>
                 <option>No</option>
             </select>
-             <?php if (@$errors['discapacidades']) {
-                        ?>
-            <small class="form-text text-danger float-right"><?=$errors['discapacidades'];?></small>
-            <?php
-                    } ?>
         </div>
         <div class="form-group">
             <label for="entrenamiento">A&ntilde;os de entrenamiento</label>
@@ -113,11 +88,6 @@
                 <option>Si</option>
                 <option>No</option>
             </select>
-             <?php if (@$errors['pagado']) {
-                        ?>
-            <small class="form-text text-danger float-right"><?=$errors['pagado'];?></small>
-            <?php
-                    } ?>
         </div>
     </div>
     <div class="modal-footer">

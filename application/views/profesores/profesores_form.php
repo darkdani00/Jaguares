@@ -67,11 +67,6 @@
             <label for="escuela_prof">Escuela</label>
             <select id="escuela_prof" name="escuela_prof" class="form-control" value="<?=@$current_data['escuela_prof'];?>">
             </select>
-            <?php if (@$errors['escuela_prof']) {
-                        ?>
-            <small class="form-text text-danger float-right"><?=$errors['escuela_prof'];?></small>
-            <?php
-                    } ?>
         </div>
     </div>
     <div class="modal-footer">

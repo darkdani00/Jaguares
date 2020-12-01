@@ -10,11 +10,11 @@ $(function() {
         });
     });
 
-    
-    $("#modalView").on("shown.bs.modal", function (e) {
+
+    $("#modalView").on("shown.bs.modal", function(e) {
         fillSelectEscuela();
         fillSelectProfes();
-      });
+    });
 
     $(document).on('submit', '#form_alumnos', function(e) {
         e.preventDefault();
@@ -43,9 +43,9 @@ $(function() {
                         'error'
                     );
                 } else {
+                    $(document).find('#modalContent').empty().append(convert_response.data);
                     fillSelectEscuela();
                     fillSelectProfes();
-                    $(document).find('#modalContent').empty().append(convert_response.data);
                     $.each(convert_response.errors, function(key, value) {
                         $("#" + key).addClass("is-invalid");
                         $("#" + key).after(
@@ -60,30 +60,39 @@ $(function() {
 });
 
 // funcion para que se vuelva a llenar el select
-function fillSelectEscuela(){
+function fillSelectEscuela() {
     $.ajax({
         'url': '<?=base_url('alumnos/get_Escuelas');?>',
         'success': function(response) {
             var convert_response = JSON.parse(response);
 
-            convert_response.forEach(function(element){
-                $(document).find('#escuela_alumno').append('<option value="'+element.id_escuela+'">'+element.nombre_escuela+'</option>');
+            convert_response.forEach(function(element) {
+                $(document).find('#escuela_alumno').append('<option value="' + element.id_escuela +
+                    '">' + element.nombre_escuela + '</option>');
             });
         }
-    })
+    });
+    $('#escuela_alumno').select2({ 
+        theme: "bootstrap4"
+    });
 }
 
-function fillSelectProfes(){
+function fillSelectProfes() {
     $.ajax({
         'url': '<?=base_url('alumnos/get_Profesores');?>',
         'success': function(response) {
             var convert_response = JSON.parse(response);
 
-            convert_response.forEach(function(element){
-                $(document).find('#prof_alumno').append('<option value="'+element.id_maestro+'">'+element.nombre_maestro+" "+element.apellido_paterno_maestro+" "+element.apellido_materno_maestro+'</option>');
+            convert_response.forEach(function(element) {
+                $(document).find('#prof_alumno').append('<option value="' + element.id_maestro +
+                    '">' + element.nombre_maestro + " " + element.apellido_paterno_maestro +
+                    " " + element.apellido_materno_maestro + '</option>');
             });
         }
-    })
+    });
+    $('#prof_alumno').select2({ 
+        theme: "bootstrap4"
+    });
 }
 
 function load_data() {
@@ -92,6 +101,6 @@ function load_data() {
         'success': function(response) {
             $(document).find('#data_container').empty().append(response);
         }
-    })
+    });
 }
 </script>
