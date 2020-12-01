@@ -10,6 +10,10 @@ $(function() {
         });
     });
 
+    $("#modalView").on("shown.bs.modal", function(e) {
+        fillSelectEscuela();
+    });
+
     $(document).on('submit', '#form_profesores', function(e) {
         e.preventDefault();
         $.ajax({
@@ -41,6 +45,14 @@ $(function() {
                     fillSelectEscuela();
 
                     $(document).find('#modalContent').empty().append(convert_response.data);
+
+                    // poner en rojo input
+                    $.each(convert_response.errors, function(key, value) {
+                        $("#" + key).addClass("is-invalid");
+                        $("#" + key).after(
+                            '<div class="invalid-feedback">' + value + "</div>"
+                        );
+                    });
                 }
             }
         });
@@ -49,14 +61,15 @@ $(function() {
 });
 
 // funcion para que se vuelva a llenar el select
-function fillSelectEscuela(){
+function fillSelectEscuela() {
     $.ajax({
         'url': '<?=base_url('profesores/get_Escuelas');?>',
         'success': function(response) {
             var convert_response = JSON.parse(response);
 
-            convert_response.forEach(function(element){
-                $(document).find('#escuela_prof').append('<option value="'+element.id_escuela+'">'+element.nombre_escuela+'</option>');
+            convert_response.forEach(function(element) {
+                $(document).find('#escuela_prof').append('<option value="' + element.id_escuela +
+                    '">' + element.nombre_escuela + '</option>');
             });
         }
     })

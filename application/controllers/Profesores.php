@@ -72,7 +72,8 @@ class Profesores extends MY_RootController {
             $data_response = array(
                 "status" => "warning",
                 "message" => "Información incorrecta, valida los campos!",
-                "data" =>  $this->load->view('profesores/profesores_form',$data,TRUE)
+				"data" =>  $this->load->view('profesores/profesores_form',$data,TRUE),
+				"errors" => $this->form_validation->error_array()
             );
 		}
 		echo json_encode($data_response);
