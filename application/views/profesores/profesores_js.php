@@ -49,6 +49,11 @@ $(function() {
                     $('#grado_cinta_prof').select2({
                         theme: "bootstrap4"
                     });
+                    $("#form_profesores")
+                        .find("select, input")
+                        .each(function() {
+                            $(this).addClass("is-valid");
+                        });
                     // poner en rojo input
                     $.each(convert_response.errors, function(key, value) {
                         $("#" + key).addClass("is-invalid");

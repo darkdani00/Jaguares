@@ -52,6 +52,11 @@ $(function() {
                     $('#grado_cinta_alumno').select2({
                         theme: "bootstrap4"
                     });
+                    $("#form_alumnos")
+                        .find("select, input")
+                        .each(function() {
+                            $(this).addClass("is-valid");
+                        });
                     $.each(convert_response.errors, function(key, value) {
                         $("#" + key).addClass("is-invalid");
                         $("#" + key).after(

@@ -8,19 +8,19 @@
     <div class="modal-body">
         <div class="form-group">
             <label for="nom_alumno">Nombre</label>
-            <input type="text" class="form-control" id="nom_alumno" name="nom_alumno">
+            <input type="text" class="form-control" id="nom_alumno" name="nom_alumno" value="<?=@$current_data['nom_alumno'];?>">
         </div>
         <div class="form-group">
             <label for="ape_pa_alumno">Apellido Paterno</label>
-            <input type="text" class="form-control" id="ape_pa_alumno" name="ape_pa_alumno">
+            <input type="text" class="form-control" id="ape_pa_alumno" name="ape_pa_alumno" value="<?=@$current_data['ape_pa_alumno'];?>">
         </div>
         <div class="form-group">
             <label for="ape_mat_alumno">Apellido Materno</label>
-            <input type="text" class="form-control" id="ape_mat_alumno" name="ape_mat_alumno">
+            <input type="text" class="form-control" id="ape_mat_alumno" name="ape_mat_alumno" value="<?=@$current_data['ape_mat_alumno'];?>">
         </div>
         <div class="form-group">
             <label for="edad_alumno">Edad</label>
-            <input type="number" class="form-control" id="edad_alumno" name="edad_alumno">
+            <input type="number" class="form-control" id="edad_alumno" name="edad_alumno" value="<?=@$current_data['edad_alumno'];?>">
         </div>
         <div class="form-group">
             <label for="genero_alumno">G&eacute;nero</label>
@@ -31,11 +31,11 @@
         </div>
         <div class="form-group">
             <label for="num_alumno">N&uacute;mero de tel&eacute;fono</label>
-            <input type="text" class="form-control" id="num_alumno" name="num_alumno">
+            <input type="text" class="form-control" id="num_alumno" name="num_alumno" value="<?=@$current_data['num_alumno'];?>">
         </div>
         <div class="form-group">
             <label for="email">Correo</label>
-            <input type="email" class="form-control" id="email" name="email">
+            <input type="email" class="form-control" id="email" name="email" value="<?=@$current_data['email'];?>">
         </div>
         <div class="form-group">
             <label for="grado_cinta_alumno">Grado de cinta</label>
@@ -72,15 +72,15 @@
         </div>
         <div class="form-group">
             <label for="entrenamiento">A&ntilde;os de entrenamiento</label>
-            <input type="number" class="form-control" id="entrenamiento" name="entrenamiento">
+            <input type="number" class="form-control" id="entrenamiento" name="entrenamiento" value="<?=@$current_data['entrenamiento'];?>">
         </div>
         <div class="form-group">
             <label for="tutor">Tutor</label>
-            <input type="text" class="form-control" id="tutor" name="tutor">
+            <input type="text" class="form-control" id="tutor" name="tutor" value="<?=@$current_data['tutor'];?>">
         </div>
         <div class="form-group">
             <label for="hora_entrenamiento">Hora de entrenamiento</label>
-            <input type="time" class="form-control" id="hora_entrenamiento" name="hora_entrenamiento">
+            <input type="time" class="form-control" id="hora_entrenamiento" name="hora_entrenamiento" value="<?=@$current_data['hora_entrenamiento'];?>">
         </div>
         <div class="form-group">
             <label for="pagado">Mensualidad Pagada</label>
