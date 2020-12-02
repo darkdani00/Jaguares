@@ -38,6 +38,11 @@ $(function() {
                     );
                 } else {
                     $(document).find('#modalContent').empty().append(convert_response.data);
+                    $("#form_escuelas")
+                        .find("textarea,input")
+                        .each(function() {
+                            $(this).addClass("is-valid");
+                        });
                     // poner en rojo input
                     $.each(convert_response.errors, function(key, value) {
                         $("#" + key).addClass("is-invalid");
