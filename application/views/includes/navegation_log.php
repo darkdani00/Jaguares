@@ -19,7 +19,7 @@
                 </div>
                 <span class="nav_label">Alumnos</span>
             </a>
-            <a href="#" class="text-light inline">
+            <a href="<?=base_url("Escuelas");?>" class="text-light inline">
                 <div class="nav_icon-container">
                     <i class="fas fa-school"></i>
                 </div>
