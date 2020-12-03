@@ -8,13 +8,11 @@
                     <form id="search-bar">
                         <div class="input-group mb-3">
                             <div class="input-group-prepend">
-                                <button class="btn btn-secondary dropdown-toggle" type="button" data-toggle="dropdown"
-                                    aria-haspopup="true" aria-expanded="false">Nombre</button>
-                                <div class="dropdown-menu">
-                                    <a class="dropdown-item" href="#">Apellidos</a>
-                                    <a class="dropdown-item" href="#">Edad</a>
-                                    <a class="dropdown-item" href="#">Escuela</a>
-                                </div>
+                                <select name="search-options" id="search-options" class="btn btn-secondary">
+                                    <option value="nombre_alumno" >Nombre</option>
+                                    <option value="edad_alumno" >Edad</option>
+                                    <option value="nombre_escuela" >Escuela</option>
+                                </select>
                             </div>
                             <input type="text" class="form-control" aria-label="Search input with dropdown button" name="search-input" id="search-input">
                             <div class="input-group-append">

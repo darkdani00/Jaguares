@@ -99,7 +99,7 @@ class Alumnos extends MY_RootController {
 
 	public function searchAlumno(){
 		$where = array(
-			"nombre_alumno" => $this->input->post("search-input")
+			$this->input->post("search-options") => $this->input->post("search-input"),
 		);
 		$data_container['container_data'] = $this->DAO->selectEntity('alumno_view',$where);
 		echo $this->load->view('alumnos/alumnos_data_page',$data_container,TRUE);
