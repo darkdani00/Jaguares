@@ -58,6 +58,14 @@ a:hover{
     padding-bottom: 5rem;
 }
 
+/* search bar */
+.search-box {
+    margin: 100px auto;
+}
+.search-box .btn-light {
+    border: 1px solid #ced4da;
+}
+
 @media(max-width:568px){
 
     #sidebar-container .menu{

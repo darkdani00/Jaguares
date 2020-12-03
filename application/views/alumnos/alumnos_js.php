@@ -68,6 +68,22 @@ $(function() {
         });
     });
 
+    $(document).on('submit', '#search-bar', function(e) {
+        // con ajax mandar a una funcion que me regrese el contenedor con la informacion que quiero
+        e.preventDefault();
+        $.ajax({
+            'url': '<?=base_url('alumnos/searchAlumno');?>',
+            'data': new FormData(this),
+            'contentType': false,
+            'processData': false,
+            'method': "post",
+            'success': function(response) {
+                $(document).find('#data_container').empty().append(response);
+            }
+        });
+    });
+
+
 });
 
 // funcion para que se vuelva a llenar el select
