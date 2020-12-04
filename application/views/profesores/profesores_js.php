@@ -66,6 +66,20 @@ $(function() {
         });
     });
 
+    $(document).on('submit', '#search-bar', function(e) {
+        e.preventDefault();
+        $.ajax({
+            'url': '<?=base_url('profesores/searchProfesor');?>',
+            'data': new FormData(this),
+            'contentType': false,
+            'processData': false,
+            'method': "post",
+            'success': function(response) {
+                $(document).find('#data_container').empty().append(response);
+            }
+        });
+    });
+
 });
 
 // funcion para que se vuelva a llenar el select

@@ -55,6 +55,20 @@ $(function() {
         });
     });
 
+    $(document).on('submit', '#search-bar', function(e) {
+        e.preventDefault();
+        $.ajax({
+            'url': '<?=base_url('escuelas/searchEscuela');?>',
+            'data': new FormData(this),
+            'contentType': false,
+            'processData': false,
+            'method': "post",
+            'success': function(response) {
+                $(document).find('#data_container').empty().append(response);
+            }
+        });
+    });
+
 });
 
 function load_data() {

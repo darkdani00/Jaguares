@@ -65,6 +65,14 @@ class Escuelas extends MY_RootController {
 
 	}
 
+	public function searchEscuela(){
+		$where = array(
+			"nombre_escuela" => $this->input->post("search-input")
+		);
+		$data_container['container_data'] = $this->DAO->selectEntity('escuela',$where);
+		echo $this->load->view('escuelas/escuelas_data_page',$data_container,TRUE);
+	}
+
 
 	public function showEscuelasForm(){
 		$this->load->view('escuelas/escuelas_form');
