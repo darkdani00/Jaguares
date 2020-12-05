@@ -99,10 +99,14 @@ class Alumnos extends MY_RootController {
 
 	public function searchAlumno(){
 		// agregar que pase algo si no existe en la base de datos por si modifican el html
-		$where = array(
-			$this->input->post("search-options") => $this->input->post("search-input"),
-		);
-		$data_container['container_data'] = $this->DAO->selectEntity('alumno_view',$where);
+		if ($this->input->post("search-input")==null) {
+			$data_container['container_data'] = $this->DAO->selectEntity('alumno_view');
+		}else{
+			$where = array(
+				$this->input->post("search-options") => $this->input->post("search-input"),
+			);
+			$data_container['container_data'] = $this->DAO->selectEntity('alumno_view',$where);
+		}
 		echo $this->load->view('alumnos/alumnos_data_page',$data_container,TRUE);
 	}
 

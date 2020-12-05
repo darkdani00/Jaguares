@@ -80,10 +80,15 @@ class Profesores extends MY_RootController {
 	}
 
 	public function searchProfesor(){
-		$where = array(
-			$this->input->post("search-options") => $this->input->post("search-input"),
-		);
-		$data_container['container_data'] = $this->DAO->selectEntity('maestro_view',$where);
+		if ($this->input->post("search-input")==null) {
+			$data_container['container_data'] = $this->DAO->selectEntity('maestro_view');
+		}
+		else{
+			$where = array(
+				$this->input->post("search-options") => $this->input->post("search-input"),
+			);
+			$data_container['container_data'] = $this->DAO->selectEntity('maestro_view',$where);
+		}
 		echo $this->load->view('profesores/profesores_data_page',$data_container,TRUE);
 	}
 
