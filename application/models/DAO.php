@@ -94,5 +94,39 @@ class DAO extends CI_Model {
             );
         }
     }
+
+    function createClass($clase_data,$alumnos){
+        // empezar transaccion
+        $this->db->trans_start();
+        // primero insertar en clase
+        $this->db->insert('clase',$clase_data);
+
+        // obtener el id del ultmo insertado en clase
+        // $last_inserted =  $this->db->query('SELECT LAST_INSERT_ID()');
+        $last_inserted = $this->db->insert_id();
+        // hacer un ciclo foreach para que valla registrando los id de los alumnos en la tabla con el id de clase
+        foreach($alumnos as $alumno){
+            // insertar los alumnos a alumnos_clase
+            $data = array(
+                'alumnoFk' => $alumno,
+                'claseFk' => $last_inserted
+            );
+            $this->db->insert('alumnos_clase',$data);
+        } 
+        // terminar transaccion
+        $this->db->trans_complete();
+        //Para que me regrese los errores
+        if ($this->db->trans_status() === FALSE){
+            return array(
+                "status" => "error",
+                "message" => $this->db->error()['message']
+            );
+        }else{
+            return array(
+                "status" => "success",
+                "message" => 'Datos Registrados correctamente'
+            );
+        }
+    } 
     
 }

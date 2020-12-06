@@ -24,7 +24,7 @@ CREATE TABLE maestro(
     email_maestro VARCHAR(80) NOT NULL UNIQUE,
     escuelaFk INT NOT NULL,
     FOREIGN KEY(escuelaFk) REFERENCES escuela(id_escuela),
-    user_type enum('Admin','Normal') DEFAULT 'Normal',
+    user_type enum('Admin','Maestro') DEFAULT 'Maestro' NOT NULL,
     created_maestro timestamp default current_timestamp,
     update_maestro timestamp default current_timestamp on update current_timestamp
 );
@@ -49,9 +49,53 @@ CREATE TABLE alumno(
     tutor_alumno VARCHAR(80),
     hora_entrenamiento_alumno DATETIME,
     pago_realizado enum('si','no'),
+    user_type enum('Alumno') DEFAULT 'Alumno' NOT NULL,
     created_alumno timestamp default current_timestamp,
     update_alumno timestamp default current_timestamp on update current_timestamp
 );
+
+CREATE TABLE clase(
+    id_clase INT PRIMARY KEY AUTO_INCREMENT,
+    hora_inicia TIME NOT NULL,
+    hora_termina TIME NOT NULL,
+    dia_semana INT,
+    profeFk INT NOT NULL,
+    FOREIGN KEY(profeFk) REFERENCES maestro(id_maestro)
+);
+
+INSERT INTO clase(hora_inicia,hora_termina,dia_semana,profeFk) VALUES('12:00:00','13:00:00',1,1);
+
+CREATE OR REPLACE VIEW clase_view AS SELECT m.*, c.* FROM clase AS c JOIN maestro AS m ON c.profeFk = m.id_maestro;
+
+CREATE TABLE alumnos_clase(
+    id_alumnos_clase INT PRIMARY KEY AUTO_INCREMENT,
+    alumnoFk INT NOT NULL,
+    FOREIGN KEY(alumnoFk) REFERENCES alumno(id_alumno),
+    claseFk INT NOT NULL,
+    FOREIGN KEY(claseFk) REFERENCES clase(id_clase)
+);
+
+INSERT INTO alumnos_clase(alumnoFk,claseFk) VALUES(1,1);
+
+CREATE TABLE asistencia(
+    id_asistencia INT PRIMARY KEY AUTO_INCREMENT,
+    fecha DATE,
+    claseFk INT NOT NULL,
+    FOREIGN KEY(claseFk) REFERENCES clase(id_clase)
+);
+
+INSERT INTO asistencia(fecha,claseFk) VALUES('2020-12-01',1);
+
+CREATE TABLE asistencia_alumno(
+    id_asistencia_alumno INT PRIMARY KEY AUTO_INCREMENT,
+    alumnos_clase_fk INT NOT NULL,
+    FOREIGN KEY(alumnos_clase_fk) REFERENCES alumnos_clase(id_alumnos_clase),
+    asistenciaFk INT NOT NULL,
+    FOREIGN KEY(asistenciaFk) REFERENCES asistencia(id_asistencia),
+    asistencia enum("Presente","Ausente")
+);
+
+INSERT INTO asistencia_alumno(alumnos_clase_fk,asistenciaFk,asistencia) VALUES(1,1,'Presente');
 
 INSERT INTO escuela(nombre_escuela,direccion_escuela, telefono_escuela) VALUES ('jaguares','centro',137861);
 

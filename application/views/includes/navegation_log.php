@@ -25,6 +25,12 @@
                 </div>
                 <span class="nav_label">Escuelas</span>
             </a>
+            <a href="<?=base_url("Asistencias");?>" class="text-light inline">
+                <div class="nav_icon-container">
+                    <i class="fas fa-user-check"></i>
+                </div>
+                <span class="nav_label">Asistencias</span>
+            </a>
         </div>
     </div>
     <!-- sideBar end -->
