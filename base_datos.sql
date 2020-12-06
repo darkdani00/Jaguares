@@ -77,21 +77,11 @@ CREATE TABLE alumnos_clase(
 
 INSERT INTO alumnos_clase(alumnoFk,claseFk) VALUES(1,1);
 
-CREATE TABLE asistencia(
-    id_asistencia INT PRIMARY KEY AUTO_INCREMENT,
-    fecha DATE,
-    claseFk INT NOT NULL,
-    FOREIGN KEY(claseFk) REFERENCES clase(id_clase)
-);
-
-INSERT INTO asistencia(fecha,claseFk) VALUES('2020-12-01',1);
-
 CREATE TABLE asistencia_alumno(
     id_asistencia_alumno INT PRIMARY KEY AUTO_INCREMENT,
+    fecha DATE NOT NULL,
     alumnos_clase_fk INT NOT NULL,
     FOREIGN KEY(alumnos_clase_fk) REFERENCES alumnos_clase(id_alumnos_clase),
-    asistenciaFk INT NOT NULL,
-    FOREIGN KEY(asistenciaFk) REFERENCES asistencia(id_asistencia),
     asistencia enum("Presente","Ausente")
 );
 
@@ -107,3 +97,8 @@ INSERT INTO maestro(nombre_maestro,apellido_paterno_maestro,apellido_materno_mae
 CREATE OR REPLACE VIEW alumno_view AS SELECT a.*,e.*,m.id_maestro,m.nombre_maestro,m.apellido_paterno_maestro,m.apellido_materno_maestro FROM alumno AS a JOIN escuela AS e ON a.escuelaFk = e.id_escuela JOIN maestro AS m ON a.profeFk = m.id_maestro;
 
 CREATE OR REPLACE VIEW maestro_view AS SELECT m.*,e.* FROM maestro AS m JOIN escuela AS e ON m.escuelaFk = e.id_escuela;
+
+CREATE OR REPLACE VIEW clase_view AS SELECT c.*,m.*  FROM clase AS c JOIN maestro AS m ON c.profeFk = m.id_maestro;
+
+CREATE OR REPLACE VIEW alumnos_clase_view AS SELECT ac.*,c.hora_inicia,c.hora_termina,c.dia_semana,a.*  FROM alumnos_clase AS ac JOIN alumno AS a ON ac.alumnoFk = a.id_alumno JOIN clase AS c ON ac.claseFk = c.id_clase;
+

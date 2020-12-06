@@ -24,41 +24,45 @@ $(function() {
             'method': "post",
             'success': function(response) {
                 var convert_response = JSON.parse(response);
-                console.log(convert_response.message);
-                // if (convert_response.status == "success") {
-                //     //cerrar modal, cargar datos
-                //     $(document).find('#modalView').modal('hide');
-                //     load_data();
-                //     Swal.fire(
-                //         'Correcto',
-                //         'Formulario enviado correctamente',
-                //         'success'
-                //     );
-                // } else if (convert_response.status == "error") {
-                //     // si falla la bd
-                //     Swal.fire(
-                //         'Error',
-                //         convert_response.message,
-                //         'error'
-                //     );
-                // } else {
-                //     $(document).find('#modalContent').empty().append(convert_response.data);
-                //     $("#form_escuelas")
-                //         .find("textarea,input")
-                //         .each(function() {
-                //             $(this).addClass("is-valid");
-                //         });
-                //     // poner en rojo input
-                //     $.each(convert_response.errors, function(key, value) {
-                //         $("#" + key).addClass("is-invalid");
-                //         $("#" + key).after(
-                //             '<div class="invalid-feedback">' + value + "</div>"
-                //         );
-                //     });
-                // }
-
+                if (convert_response.status == "success") {
+                    //cerrar modal, cargar datos
+                    $(document).find('#modalView').modal('hide');
+                    load_data();
+                    Swal.fire(
+                        'Correcto',
+                        convert_response.message,
+                        'success'
+                    );
+                } else if (convert_response.status == "error") {
+                    // si falla la bd
+                    Swal.fire(
+                        'Error',
+                        convert_response.message,
+                        'error'
+                    );
+                } else {
+                    $(document).find('#modalContent').empty().append(convert_response.data);
+                    fillSelectAlumnos();
+                    $("#form_clases")
+                        .find("select,input")
+                        .each(function() {
+                            $(this).addClass("is-valid");
+                        });
+                    // poner en rojo input
+                    $.each(convert_response.errors, function(key, value) {
+                        $("#" + key).addClass("is-invalid");
+                        $("#" + key).after(
+                            '<div class="invalid-feedback">' + value + "</div>"
+                        );
+                    });
+                }
             }
         });
+    });
+
+    $(document).on('submit', '#form_asistencias', function(e) {
+        e.preventDefault();
+        alert("U click the button");
     });
 
     $(document).on('submit', '#search-bar', function(e) {
@@ -71,6 +75,23 @@ $(function() {
             'method': "post",
             'success': function(response) {
                 $(document).find('#data_container').empty().append(response);
+            }
+        });
+    });
+
+    $(document).on('click','.asistencias-view',function(e){
+        e.preventDefault();
+        // obtener el id de la clase con  data-key 
+        id_clase = $(this).attr('data-key');
+        // Abrir  un modal que sea para registrar las asistencias
+        var _data = {
+                "clase_id" : id_clase
+            };
+        $.ajax({
+            'url': '<?=base_url('Asistencias/showAsistenciasForm');?>',
+            'data' : _data,
+            'success': function(response) {
+                $(document).find('#modalContent').empty().append(response);
             }
         });
     });

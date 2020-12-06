@@ -128,5 +128,14 @@ class DAO extends CI_Model {
             );
         }
     } 
+
+    function customQuery($query){
+        $result = $this->db->query($query)->result();
+        if ($this->db->error()['message'] != '') {
+           return null;
+        }else{
+            return $result;
+        }
+    }
     
 }

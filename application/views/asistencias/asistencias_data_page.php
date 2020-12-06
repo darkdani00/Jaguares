@@ -14,15 +14,15 @@
                 </div>
             </div>
             <div class="row text-muted">
-                <div class="col-md-8">
+                <div class="col-12">
                     <div class="card-body">
-                    <div class="row  mb-2">
+                        <div class="row  mb-2">
                             <div class="col-3">
                                 <i class="fas fa-calendar-day"></i>
                             </div>
                             <div class="col-9">
                                 <div>D&iacute;a de la semana: <span class="text-dark">
-                                <?php switch ($clase->dia_semana) {
+                                        <?php switch ($clase->dia_semana) {
                                     case 1:
                                         echo 'Lunes';
                                         break;
@@ -49,7 +49,7 @@
                                         break;
                                 }    
                                 ?>
-                                </span></div>
+                                    </span></div>
                             </div>
                         </div>
                         <div class="row mb-2">
@@ -57,10 +57,14 @@
                                 <i class="fas fa-chalkboard-teacher"></i>
                             </div>
                             <div class="col-9">
-                                <div>Profesor: <span class="text-dark"><?=$clase->nombre_maestro." ".$clase->apellido_paterno_maestro ." ".$clase->apellido_materno_maestro ?></span>
+                                <div>Profesor: <span
+                                        class="text-dark"><?=$clase->nombre_maestro." ".$clase->apellido_paterno_maestro ." ".$clase->apellido_materno_maestro ?></span>
                                 </div>
                             </div>
                         </div>
+                    </div>
+                    <div class="card-footer">
+                        <button class="btn btn-warning asistencias-view" data-key="<?=$clase->id_clase;?>" data-toggle="modal" data-target="#modalView"><i class="fas fa-plus"></i></button>
                     </div>
                 </div>
             </div>

@@ -27,6 +27,12 @@ class Asistencias extends MY_RootController {
 		echo $this->load->view('asistencias/clase_form',$data,TRUE);
 	}
 
+	public function showAsistenciasForm(){
+		$clase = $this->input->get('clase_id');
+		$data['alumnos_data'] = $this->DAO->customQuery("SELECT * FROM alumnos_clase_view WHERE claseFk = '$clase' ");
+		echo $this->load->view('asistencias/asistencias_form',$data,TRUE);
+	}
+
 	public function showDataContainer()
     {        
         $data_container['container_data'] = $this->DAO->selectEntity('clase_view');
@@ -68,6 +74,7 @@ class Asistencias extends MY_RootController {
 			} 
 		}else{
 			$data['current_data'] = $this->input->post();
+			$data['container_data'] = $this->session->userdata('user_sess');
             $data_response = array(
                 "status" => "warning",
                 "message" => "Información incorrecta, valida los campos!",
