@@ -53,6 +53,7 @@ CREATE TABLE alumno(
     update_alumno timestamp default current_timestamp on update current_timestamp
 );
 
+<<<<<<< Updated upstream
 INSERT INTO escuela(nombre_escuela,direccion_escuela, telefono_escuela) VALUES ('jaguares','centro',137861);
 
 INSERT INTO alumno(nombre_alumno,apellido_paterno_alumno,apellido_materno_alumno,genero_alumno,edad_alumno,telefono_alumno,email_alumno,grado_cinta_alumno,password_alumno,escuelaFk) VALUES("Juan","Hernandez","Ramirez","Masculino",13,21231231,"juan_hdez@gmail.com","Roja","1234"),
@@ -63,3 +64,49 @@ INSERT INTO maestro(nombre_maestro,apellido_paterno_maestro,apellido_materno_mae
 CREATE OR REPLACE VIEW alumno_view AS SELECT a.*,e.*,m.id_maestro,m.nombre_maestro,m.apellido_paterno_maestro,m.apellido_materno_maestro FROM alumno AS a JOIN escuela AS e ON a.escuelaFk = e.id_escuela JOIN maestro AS m ON a.profeFk = m.id_maestro;
 
 CREATE OR REPLACE VIEW maestro_view AS SELECT m.*,e.* FROM maestro AS m JOIN escuela AS e ON m.escuelaFk = e.id_escuela;
+=======
+CREATE TABLE clase(
+    id_clase INT PRIMARY KEY AUTO_INCREMENT,
+    hora_inicia TIME NOT NULL,
+    hora_termina TIME NOT NULL,
+    dia_semana INT,
+    profeFk INT NOT NULL,
+    FOREIGN KEY(profeFk) REFERENCES maestro(id_maestro)
+);
+
+CREATE TABLE alumnos_clase(
+    id_alumnos_clase INT PRIMARY KEY AUTO_INCREMENT,
+    alumnoFk INT NOT NULL,
+    FOREIGN KEY(alumnoFk) REFERENCES alumno(id_alumno),
+    claseFk INT NOT NULL,
+    FOREIGN KEY(claseFk) REFERENCES clase(id_clase)
+);
+
+CREATE TABLE asistencia_alumno(
+    id_asistencia_alumno INT PRIMARY KEY AUTO_INCREMENT,
+    fecha DATE NOT NULL,
+    alumnos_clase_fk INT NOT NULL,
+    FOREIGN KEY(alumnos_clase_fk) REFERENCES alumnos_clase(id_alumnos_clase),
+    asistencia enum("Presente","Ausente")
+);
+
+-- Vistas ---
+CREATE OR REPLACE VIEW clase_view AS SELECT m.*, c.* FROM clase AS c JOIN maestro AS m ON c.profeFk = m.id_maestro;
+
+CREATE OR REPLACE VIEW alumno_view AS SELECT a.*,e.*,m.id_maestro,m.nombre_maestro,m.apellido_paterno_maestro,m.apellido_materno_maestro FROM alumno AS a JOIN escuela AS e ON a.escuelaFk = e.id_escuela JOIN maestro AS m ON a.profeFk = m.id_maestro;
+
+CREATE OR REPLACE VIEW maestro_view AS SELECT m.*,e.* FROM maestro AS m JOIN escuela AS e ON m.escuelaFk = e.id_escuela;
+
+CREATE OR REPLACE VIEW clase_view AS SELECT c.*,m.*  FROM clase AS c JOIN maestro AS m ON c.profeFk = m.id_maestro;
+
+CREATE OR REPLACE VIEW alumnos_clase_view AS SELECT ac.*,c.hora_inicia,c.hora_termina,c.dia_semana,a.*  FROM alumnos_clase AS ac JOIN alumno AS a ON ac.alumnoFk = a.id_alumno JOIN clase AS c ON ac.claseFk = c.id_clase;
+
+-- Escuela --
+INSERT INTO escuela(nombre_escuela,direccion_escuela,telefono_escuela) VALUES ('Central','Santa Monica',2456013);
+INSERT INTO escuela(nombre_escuela,direccion_escuela,telefono_escuela) VALUES ('Pie de la cuesta','Pie de la cuesta',41543215);
+INSERT INTO escuela(nombre_escuela,direccion_escuela,telefono_escuela) VALUES ('Reforma','por un lugar',245681);
+-- Maestro --
+INSERT INTO maestro(nombre_maestro,apellido_paterno_maestro,apellido_materno_maestro,genero_maestro,edad_maestro,telefono_maestro,grado_cinta_maestro,password_maestro,email_maestro,escuelaFk) VALUES ('maestro','prueba','perron','Masculino',30,442534586,'Cinta Negra','contraseña','maestro@maestro.com',3);
+-- Alumno --
+INSERT INTO alumno(nombre_alumno,apellido_paterno_alumno,apellido_materno_alumno,genero_alumno,edad_alumno,telefono_alumno,email_alumno,password_alumno,grado_cinta_alumno,escuelaFk,profeFk,discapacidad_alumno,years_entrenamiento,tutor_alumno,hora_entrenamiento_alumno,pago_realizado) VALUES ('Max','Smith','juarez','Femenino',15,445245624,'alumno@alumno.com','alumno','Cinta Verde',2,3,'no',0,'Maria juana','05','si');
+>>>>>>> Stashed changes
