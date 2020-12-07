@@ -24,10 +24,10 @@
                 <tr>
                     <td><?=$alumno->nombre_alumno ." ".$alumno->apellido_paterno_alumno ." ".$alumno->apellido_materno_alumno ?></td>
                     <td class="text-center">
-                        <input class="form-check-input" type="radio" name="name1" value="Presente">
+                        <input class="form-check-input" type="radio" name="name_<?=$alumno->id_alumnos_clase?>" value="Presente" checked>
                     </td>
                     <td class="text-center">
-                        <input class="form-check-input" type="radio" name="name1" value="Ausente">
+                        <input class="form-check-input" type="radio" name="name_<?=$alumno->id_alumnos_clase?>" value="Ausente">
                     </td>
                 </tr>
                 <?php } ?>

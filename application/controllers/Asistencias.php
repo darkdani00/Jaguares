@@ -85,6 +85,13 @@ class Asistencias extends MY_RootController {
 		echo json_encode($data_response);
 	}
 
+	public function saveAsistencia(){
+
+		$data_response = $this->input->post();
+		echo json_encode($data_response);
+
+	}
+
 	public function searchClase(){
 		// buscar clase por hora inicio y dia
 		if ($this->input->post("search-input")==null) {

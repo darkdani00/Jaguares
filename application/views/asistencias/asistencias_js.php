@@ -62,7 +62,17 @@ $(function() {
 
     $(document).on('submit', '#form_asistencias', function(e) {
         e.preventDefault();
-        alert("U click the button");
+        $.ajax({
+            'url': '<?=base_url('Asistencias/saveAsistencia');?>',
+            'data': new FormData(this),
+            'contentType': false,
+            'processData': false,
+            'method': "post",
+            'success': function(response) {
+                var convert_response = JSON.parse(response);
+                console.log(convert_response);
+            }
+        });
     });
 
     $(document).on('submit', '#search-bar', function(e) {
