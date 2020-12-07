@@ -30,6 +30,7 @@ class Asistencias extends MY_RootController {
 	public function showAsistenciasForm(){
 		$clase = $this->input->get('clase_id');
 		$data['alumnos_data'] = $this->DAO->customQuery("SELECT * FROM alumnos_clase_view WHERE claseFk = '$clase' ");
+		$data['clase_data'] = $this->input->get('clase_id');
 		echo $this->load->view('asistencias/asistencias_form',$data,TRUE);
 	}
 
@@ -86,10 +87,55 @@ class Asistencias extends MY_RootController {
 	}
 
 	public function saveAsistencia(){
-
-		$data_response = $this->input->post();
+		$this->load->library('form_validation');
+		$this->form_validation->set_rules('fecha_asistencia','Fecha asistencia','required');
+		if ($this->form_validation->run()) {
+			$contador = 0;
+			$datos = array();
+			foreach(array_values($this->input->post()) as $valores){
+				if ($contador==0) {
+					$clase_id = $valores;
+					$contador = $contador +1;
+				}elseif($contador==1){
+					$fecha = $valores; 
+					$contador = $contador +1;
+				}
+				else{
+					$split = explode('_',$valores);
+					array_push($datos,
+					array(
+						'fecha'=> $fecha,
+						'alumnos_clase_fk' => $split['1'],
+						'asistencia' => $split['0']
+					)
+				);
+				}
+			}
+			$response = $this->DAO->saveAttendance($datos);
+			if ($response['status'] == "success") {
+				$data_response = array(
+					"status" => $response['status'],
+					"message" => $response['message']
+				);
+			}else{
+				$data_response = array(
+					"status" => $response['status'],
+					"message" => $response['message']
+				);
+			}
+		}else{
+			$data['current_data'] = $this->input->post();
+			$data['clase_data'] = $this->input->post('clase_id');
+			$clase = $this->input->post('clase_id');
+			$data['alumnos_data'] = $this->DAO->customQuery("SELECT * FROM alumnos_clase_view WHERE claseFk = '$clase' ");
+            $data_response = array(
+                "status" => "warning",
+                "message" => "Información incorrecta, valida los campos!",
+				"data" =>  $this->load->view('asistencias/asistencias_form',$data,TRUE),
+				'errors' => $this->form_validation->error_array()
+            );
+		}			
 		echo json_encode($data_response);
-
 	}
 
 	public function searchClase(){

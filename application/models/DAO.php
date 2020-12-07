@@ -137,5 +137,25 @@ class DAO extends CI_Model {
             return $result;
         }
     }
+
+    function saveAttendance($alumno_asistencia){
+        $this->db->trans_start();
+        foreach($alumno_asistencia as $asistencia){
+            $this->db->insert('asistencia_alumno',$asistencia);
+        }
+        $this->db->trans_complete();
+        if ($this->db->trans_status() === FALSE){
+            return array(
+                "status" => "error",
+                "message" => $this->db->error()['message']
+            );
+        }else{
+            return array(
+                "status" => "success",
+                "message" => 'Datos Registrados correctamente'
+            );
+        }
+    }
+
     
 }

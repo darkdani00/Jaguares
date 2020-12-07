@@ -6,6 +6,7 @@
 </div>
 <form id="form_asistencias">
     <div class="modal-body">
+        <input type="hidden" value="<?php echo $clase_data?>" name="clase_id">
         <div class="form-group">
             <label for="fecha_asistencia">Fecha</label>
             <input type="date" class="form-control" name="fecha_asistencia" id="fecha_asistencia">
@@ -24,10 +25,10 @@
                 <tr>
                     <td><?=$alumno->nombre_alumno ." ".$alumno->apellido_paterno_alumno ." ".$alumno->apellido_materno_alumno ?></td>
                     <td class="text-center">
-                        <input class="form-check-input" type="radio" name="name_<?=$alumno->id_alumnos_clase?>" value="Presente" checked>
+                        <input class="form-check-input" type="radio" name="name_<?=$alumno->id_alumnos_clase?>" value="Presente_<?=$alumno->id_alumnos_clase?>" checked>
                     </td>
                     <td class="text-center">
-                        <input class="form-check-input" type="radio" name="name_<?=$alumno->id_alumnos_clase?>" value="Ausente">
+                        <input class="form-check-input" type="radio" name="name_<?=$alumno->id_alumnos_clase?>" value="Ausente_<?=$alumno->id_alumnos_clase?>">
                     </td>
                 </tr>
                 <?php } ?>

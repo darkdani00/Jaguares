@@ -70,7 +70,30 @@ $(function() {
             'method': "post",
             'success': function(response) {
                 var convert_response = JSON.parse(response);
-                console.log(convert_response);
+                if (convert_response.status == "success") {
+                    $(document).find('#modalView').modal('hide');
+                    Swal.fire(
+                        'Correcto',
+                        convert_response.message,
+                        'success'
+                    );
+                } else if (convert_response.status == "error") {
+                    // si falla la bd
+                    Swal.fire(
+                        'Error',
+                        convert_response.message,
+                        'error'
+                    );
+                } else {
+                    $(document).find('#modalContent').empty().append(convert_response.data);
+                    // poner en rojo input
+                    $.each(convert_response.errors, function(key, value) {
+                        $("#" + key).addClass("is-invalid");
+                        $("#" + key).after(
+                            '<div class="invalid-feedback">' + value + "</div>"
+                        );
+                    });
+                }
             }
         });
     });

@@ -102,3 +102,5 @@ CREATE OR REPLACE VIEW clase_view AS SELECT c.*,m.*  FROM clase AS c JOIN maestr
 
 CREATE OR REPLACE VIEW alumnos_clase_view AS SELECT ac.*,c.hora_inicia,c.hora_termina,c.dia_semana,a.*  FROM alumnos_clase AS ac JOIN alumno AS a ON ac.alumnoFk = a.id_alumno JOIN clase AS c ON ac.claseFk = c.id_clase;
 
+CREATE OR REPLACE VIEW asistencia_alumno_view AS SELECT aa.*, ac.*,a.*,c.hora_inicia,c.hora_termina,c.dia_semana FROM asistencia_alumno AS aa JOIN alumnos_clase AS ac ON aa.alumnos_clase_fk = ac.id_alumnos_clase JOIN alumno AS a ON ac.alumnoFk = a.id_alumno JOIN clase AS c ON ac.claseFk = c.id_clase;
+
