@@ -63,10 +63,6 @@ CREATE TABLE clase(
     FOREIGN KEY(profeFk) REFERENCES maestro(id_maestro)
 );
 
-INSERT INTO clase(hora_inicia,hora_termina,dia_semana,profeFk) VALUES('12:00:00','13:00:00',1,1);
-
-CREATE OR REPLACE VIEW clase_view AS SELECT m.*, c.* FROM clase AS c JOIN maestro AS m ON c.profeFk = m.id_maestro;
-
 CREATE TABLE alumnos_clase(
     id_alumnos_clase INT PRIMARY KEY AUTO_INCREMENT,
     alumnoFk INT NOT NULL,
@@ -74,8 +70,6 @@ CREATE TABLE alumnos_clase(
     claseFk INT NOT NULL,
     FOREIGN KEY(claseFk) REFERENCES clase(id_clase)
 );
-
-INSERT INTO alumnos_clase(alumnoFk,claseFk) VALUES(1,1);
 
 CREATE TABLE asistencia_alumno(
     id_asistencia_alumno INT PRIMARY KEY AUTO_INCREMENT,
@@ -85,14 +79,33 @@ CREATE TABLE asistencia_alumno(
     asistencia enum("Presente","Ausente")
 );
 
-INSERT INTO asistencia_alumno(alumnos_clase_fk,asistenciaFk,asistencia) VALUES(1,1,'Presente');
+CREATE TABLE clase(
+    id_clase INT PRIMARY KEY AUTO_INCREMENT,
+    hora_inicia TIME NOT NULL,
+    hora_termina TIME NOT NULL,
+    dia_semana INT,
+    profeFk INT NOT NULL,
+    FOREIGN KEY(profeFk) REFERENCES maestro(id_maestro)
+);
 
-INSERT INTO escuela(nombre_escuela,direccion_escuela, telefono_escuela) VALUES ('jaguares','centro',137861);
+CREATE TABLE alumnos_clase(
+    id_alumnos_clase INT PRIMARY KEY AUTO_INCREMENT,
+    alumnoFk INT NOT NULL,
+    FOREIGN KEY(alumnoFk) REFERENCES alumno(id_alumno),
+    claseFk INT NOT NULL,
+    FOREIGN KEY(claseFk) REFERENCES clase(id_clase)
+);
 
-INSERT INTO alumno(nombre_alumno,apellido_paterno_alumno,apellido_materno_alumno,genero_alumno,edad_alumno,telefono_alumno,email_alumno,grado_cinta_alumno,password_alumno,escuelaFk) VALUES("Juan","Hernandez","Ramirez","Masculino",13,21231231,"juan_hdez@gmail.com","Roja","1234"),
-("Mario","Hernandez","Dorantes","Masculino",13,21231231,"mario_hdez@gmail.com","Roja","1234",1);
-INSERT INTO maestro(nombre_maestro,apellido_paterno_maestro,apellido_materno_maestro,genero_maestro,edad_maestro,telefono_maestro,grado_cinta_alumno,password_maestro,email_maestro,escuelaFk) VALUES("Ricardo","Milos","Milos","Masculino",28,1241233123,"Negra","1234","ricardo@milos.com",1);
+CREATE TABLE asistencia_alumno(
+    id_asistencia_alumno INT PRIMARY KEY AUTO_INCREMENT,
+    fecha DATE NOT NULL,
+    alumnos_clase_fk INT NOT NULL,
+    FOREIGN KEY(alumnos_clase_fk) REFERENCES alumnos_clase(id_alumnos_clase),
+    asistencia enum("Presente","Ausente")
+);
 
+-- Vistas ---
+CREATE OR REPLACE VIEW clase_view AS SELECT m.*, c.* FROM clase AS c JOIN maestro AS m ON c.profeFk = m.id_maestro;
 
 CREATE OR REPLACE VIEW alumno_view AS SELECT a.*,e.*,m.id_maestro,m.nombre_maestro,m.apellido_paterno_maestro,m.apellido_materno_maestro FROM alumno AS a JOIN escuela AS e ON a.escuelaFk = e.id_escuela JOIN maestro AS m ON a.profeFk = m.id_maestro;
 
