@@ -15,7 +15,7 @@ class Profesores extends MY_RootController {
 	{
         $this->load->view('includes/header_log');
 		$this->load->view('includes/navegation_log.php');
-		$data_container['container_data'] = $this->DAO->selectEntity('maestro');
+		$data_container['container_data'] = $this->DAO->selectEntity('maestro_view');
 		$data_main['container_data'] = $this->load->view('profesores/profesores_data_page',$data_container,TRUE);
 		$this->load->view('profesores/profesores_page',$data_main);
 		$this->load->view('includes/footer_log');

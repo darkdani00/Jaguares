@@ -15,7 +15,13 @@ class Asistencias extends MY_RootController {
 	{
         $this->load->view('includes/header_log');
 		$this->load->view('includes/navegation_log.php');
-		$data_container['container_data'] = $this->DAO->selectEntity('clase_view');
+		$current_session = $this->session->userdata('user_sess');
+		if ($current_session->user_type == 'Admin') {
+			$data_container['container_data'] = $this->DAO->customQuery('SELECT * FROM clase_view ORDER BY dia_semana,hora_inicia');
+		}else{
+			// traer solo las clases de este profe
+			$data_container['container_data'] = $this->DAO->customQuery("SELECT * FROM clase_view WHERE profeFk = '$current_session->id_maestro' ORDER BY dia_semana,hora_inicia");
+		}
 		$data_main['container_data'] = $this->load->view('asistencias/asistencias_data_page',$data_container,TRUE);
 		$this->load->view('asistencias/asistencias_page',$data_main);
 		$this->load->view('includes/footer_log');

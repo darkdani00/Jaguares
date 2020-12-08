@@ -22,7 +22,7 @@
                 </div>
             </div>
         </div>
-        <div class="row mt-3">
+        <div class="row mt-3 mb-5">
             <div class="col-12" id='data_container'>
                 <?=$container_data;?>
             </div>

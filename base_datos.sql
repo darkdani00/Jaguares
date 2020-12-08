@@ -47,7 +47,6 @@ CREATE TABLE alumno(
     discapacidad_alumno enum('si','no'),
     years_entrenamiento INT,
     tutor_alumno VARCHAR(80),
-    hora_entrenamiento_alumno DATETIME,
     pago_realizado enum('si','no'),
     user_type enum('Alumno') DEFAULT 'Alumno' NOT NULL,
     created_alumno timestamp default current_timestamp,

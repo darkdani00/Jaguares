@@ -14,7 +14,12 @@ class Alumnos extends MY_RootController {
 	{
         $this->load->view('includes/header_log');
 		$this->load->view('includes/navegation_log.php');
-		$data_container['container_data'] = $this->DAO->selectEntity('alumno_view');
+		$current_session = $this->session->userdata('user_sess');
+		if ($current_session->user_type == 'Admin') {
+			$data_container['container_data'] = $this->DAO->selectEntity('alumno_view');
+		}else{
+			$data_container['container_data'] = $this->DAO->customQuery("SELECT * FROM alumno_view WHERE profeFk = '$current_session->id_maestro'");
+		}
 		$data_main['container_data'] = $this->load->view('alumnos/alumnos_data_page',$data_container,TRUE);
 		$this->load->view('alumnos/alumnos_page',$data_main);
 		$this->load->view('includes/footer_log');

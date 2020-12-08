@@ -1,3 +1,6 @@
+<?php
+  $current_session = $this->session->userdata('user_sess');
+?>
 <div class="row">
     <!-- card -->
     <?php foreach($container_data as $clase){ ?>
@@ -52,6 +55,7 @@
                                     </span></div>
                             </div>
                         </div>
+                        <?php if ($current_session->user_type == 'Admin') { ?>
                         <div class="row mb-2">
                             <div class="col-3">
                                 <i class="fas fa-chalkboard-teacher"></i>
@@ -62,9 +66,11 @@
                                 </div>
                             </div>
                         </div>
+                        <?php }  ?>
                     </div>
                     <div class="card-footer">
-                        <button class="btn btn-warning asistencias-view" data-key="<?=$clase->id_clase;?>" data-toggle="modal" data-target="#modalView"><i class="fas fa-plus"></i></button>
+                        <button class="btn btn-warning asistencias-view" data-key="<?=$clase->id_clase;?>"
+                            data-toggle="modal" data-target="#modalView"><i class="fas fa-plus"></i></button>
                     </div>
                 </div>
             </div>

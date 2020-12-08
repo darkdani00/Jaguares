@@ -67,7 +67,7 @@
                                         <i class="fas fa-school"></i>
                                     </div>
                                     <div class="col-9">
-                                        <div>Escuela: <span class="text-dark">???</span></div>
+                                        <div>Escuela: <span class="text-dark"><?=$profe->nombre_escuela?></span></div>
                                     </div>
                                 </div>
                             </div>
