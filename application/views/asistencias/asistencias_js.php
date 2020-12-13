@@ -112,17 +112,76 @@ $(function() {
         });
     });
 
-    $(document).on('click','.asistencias-view',function(e){
+    $(document).on('click', '#delete-btn', function(e) {
+        e.preventDefault();
+        Swal.fire({
+            title: '¿Seguro?',
+            showDenyButton: true,
+            showCancelButton: true,
+            confirmButtonText: `Save`,
+            denyButtonText: `Don't save`,
+        }).then((result) => {
+            if (result.isConfirmed) {
+                Swal.fire('Saved!', '', 'success')
+            } else if (result.isDenied) {
+                Swal.fire('Changes are not saved', '', 'info')
+            }
+        });
+    });
+
+    $(document).on('click','#edit-btn',function(e){
+        id_clase = $(this).attr('data-key');
+        var _data = {
+            "clase_id": id_clase
+        };
+        $.ajax({
+            'url': '<?=base_url('Asistencias/showClasesEditForm');?>',
+            'data': _data,
+            'success': function(response) {
+                $(document).find('#modalContent').empty().append(response);
+            }
+        });
+    });
+
+    $(document).on('click','.remove-alumno',function(e){
+        e.preventDefault();
+        id_alumno_clase = $(this).attr('data-key');
+        var _data = {
+            "id_alumnos_clase": id_alumno_clase
+        };
+        $.ajax({
+            'url': '<?=base_url('Asistencias/removeAlumnoClase');?>',
+            'data': _data,
+            'success': function(response) {
+                var convert_response = JSON.parse(response);
+                if (convert_response.status=="success") {
+                    Swal.fire(
+                        'Correcto',
+                        convert_response.message,
+                        'success'
+                    );
+                }else{
+                    Swal.fire(
+                        'Error',
+                        convert_response.message,
+                        'error'
+                    );
+                }
+            }
+        });
+    });
+
+    $(document).on('click', '.asistencias-view', function(e) {
         e.preventDefault();
         // obtener el id de la clase con  data-key 
         id_clase = $(this).attr('data-key');
         // Abrir  un modal que sea para registrar las asistencias
         var _data = {
-                "clase_id" : id_clase
-            };
+            "clase_id": id_clase
+        };
         $.ajax({
             'url': '<?=base_url('Asistencias/showAsistenciasForm');?>',
-            'data' : _data,
+            'data': _data,
             'success': function(response) {
                 $(document).find('#modalContent').empty().append(response);
             }
@@ -140,15 +199,16 @@ function load_data() {
     })
 }
 
-function fillSelectAlumnos(){
+function fillSelectAlumnos() {
     $.ajax({
         'url': '<?=base_url('Asistencias/get_Alumnos');?>',
         'success': function(response) {
             var convert_response = JSON.parse(response);
 
             convert_response.forEach(function(element) {
-                $(document).find('#alumno_clase').append('<option value="' + element.id_alumno  +
-                    '">' + element.nombre_alumno  + " "+element.apellido_paterno_alumno +" "+element.apellido_materno_alumno + '</option>');
+                $(document).find('#alumno_clase').append('<option value="' + element.id_alumno +
+                    '">' + element.nombre_alumno + " " + element.apellido_paterno_alumno + " " +
+                    element.apellido_materno_alumno + '</option>');
             });
         }
     });

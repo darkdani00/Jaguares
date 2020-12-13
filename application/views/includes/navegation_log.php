@@ -17,7 +17,7 @@
         break;
         case 'Alumno':
           $menus = array(
-            array("menu_text" => "Asistencias","menu_uri" => "Asistencias", "menu_icon"=>"fas fa-user-check")
+            array("menu_text" => "Mis Asistencias","menu_uri" => "Asistencias/asistencias_alumno", "menu_icon"=>"fas fa-user-check")
           );
         break;
       }

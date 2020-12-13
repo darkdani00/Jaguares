@@ -71,6 +71,9 @@
                     <div class="card-footer">
                         <button class="btn btn-warning asistencias-view" data-key="<?=$clase->id_clase;?>"
                             data-toggle="modal" data-target="#modalView"><i class="fas fa-plus"></i></button>
+                        <button class="btn btn-danger" data-key="<?=$clase->id_clase;?>" id="delete-btn"><i class="fas fa-trash"></i></button>
+                        <button class="btn btn-success" data-key="<?=$clase->id_clase;?>" id="edit-btn" data-toggle="modal"
+                        data-target="#modalView"><i class="fas fa-pencil-alt"></i></button>
                     </div>
                 </div>
             </div>

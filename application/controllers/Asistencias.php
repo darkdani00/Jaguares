@@ -33,6 +33,14 @@ class Asistencias extends MY_RootController {
 		echo $this->load->view('asistencias/clase_form',$data,TRUE);
 	}
 
+	public function showClasesEditForm(){
+		$clase = $this->input->get('clase_id');
+		$data['alumnos_data'] = $this->DAO->customQuery("SELECT * FROM alumnos_clase_view WHERE claseFk = '$clase' ");
+		$data['clase_info'] = $this->DAO->selectEntity('clase',array('id_clase'=>$clase),TRUE);
+		$data['clase_data'] = $this->input->get('clase_id');
+		echo $this->load->view('asistencias/clase_edit_form',$data,TRUE);
+	}
+
 	public function showAsistenciasForm(){
 		$clase = $this->input->get('clase_id');
 		$data['alumnos_data'] = $this->DAO->customQuery("SELECT * FROM alumnos_clase_view WHERE claseFk = '$clase' ");
@@ -144,6 +152,14 @@ class Asistencias extends MY_RootController {
 		echo json_encode($data_response);
 	}
 
+	public function removeAlumnoClase(){
+		$data_response = array(
+			"status" => "success",
+			"message" => "Hola"
+		);
+		echo json_encode($data_response);
+	}
+
 	public function searchClase(){
 		// buscar clase por hora inicio y dia
 		if ($this->input->post("search-input")==null) {
@@ -164,5 +180,22 @@ class Asistencias extends MY_RootController {
 		);
 		$data_response = $this->DAO->selectEntity('alumno',$where);
 		echo json_encode($data_response);
+	}
+
+
+	// Esta funcion es para la pagina en donde el alumno ve sus asistencias
+	public function asistencias_alumno(){
+		$this->load->view('includes/header_log');
+		$this->load->view('includes/navegation_log.php');
+		$current_session = $this->session->userdata('user_sess');
+		if ($current_session->user_type == 'Admin') {
+			$data_container['container_data'] = $this->DAO->customQuery('SELECT * FROM clase_view ORDER BY dia_semana,hora_inicia');
+		}else{
+			$data_container['container_data'] = $this->DAO->customQuery("SELECT * FROM clase_view WHERE profeFk = '$current_session->id_maestro' ORDER BY dia_semana,hora_inicia");
+		}
+		$data_main['container_data'] = $this->load->view('asistencias/asistencias_data_page',$data_container,TRUE);
+		$this->load->view('asistencias/asistencias_page',$data_main);
+		$this->load->view('includes/footer_log');
+		$this->load->view('asistencias/asistencias_js');
 	}
 }
