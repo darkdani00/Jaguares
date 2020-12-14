@@ -129,6 +129,26 @@ class DAO extends CI_Model {
         }
     } 
 
+    function delete_alumno_clase($alumnos){
+        $this->db->trans_start();
+        foreach($alumnos as $alumno){
+            $this->db->where('id_alumnos_clase',$alumno);
+            $this->db->delete('alumnos_clase');
+        } 
+        $this->db->trans_complete();
+        if ($this->db->trans_status() === FALSE){
+            return array(
+                "status" => "error",
+                "message" => $this->db->error()['message']
+            );
+        }else{
+            return array(
+                "status" => "success",
+                "message" => 'Datos Eliminados correctamente'
+            );
+        }
+    }
+
     function customQuery($query){
         $result = $this->db->query($query)->result();
         if ($this->db->error()['message'] != '') {

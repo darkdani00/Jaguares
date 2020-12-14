@@ -143,24 +143,28 @@ $(function() {
         });
     });
 
-    $(document).on('click','.remove-alumno',function(e){
+    $(document).on('submit','#delete_alumnos_form',function(e){
         e.preventDefault();
-        id_alumno_clase = $(this).attr('data-key');
-        var _data = {
-            "id_alumnos_clase": id_alumno_clase
-        };
         $.ajax({
-            'url': '<?=base_url('Asistencias/removeAlumnoClase');?>',
-            'data': _data,
+            'url': '<?=base_url('Asistencias/removeAlumnosClase');?>',
+            'data': new FormData(this),
+            'contentType': false,
+            'processData': false,
+            'method': "post",
             'success': function(response) {
                 var convert_response = JSON.parse(response);
-                if (convert_response.status=="success") {
+                if (convert_response.status == "success") {
+                    // actualizar el contenedor alumnos_container
+                    load_alumnos_clase(convert_response.clase_id);
+                } else if (convert_response.status == "error") {
+                    // si falla la bd
                     Swal.fire(
-                        'Correcto',
+                        'Error',
                         convert_response.message,
-                        'success'
+                        'error'
                     );
-                }else{
+                } else {
+                    // si falla algo
                     Swal.fire(
                         'Error',
                         convert_response.message,
@@ -196,7 +200,21 @@ function load_data() {
         'success': function(response) {
             $(document).find('#data_container').empty().append(response);
         }
-    })
+    });
+}
+
+function load_alumnos_clase(clase_id){
+    var _data = {
+            "clase_id": clase_id
+        };
+    $.ajax({
+        'url': '<?=base_url('Asistencias/showAlumnosClaseContainer');?>',
+        'data': _data,
+        'success': function(response) {
+            $(document).find('#alumnos_container').empty().append(response);
+            $(document).find('#alumnos_container').prepend('<input type="hidden" value="'+clase_id+'" name="clase_id">');
+        }
+    });
 }
 
 function fillSelectAlumnos() {

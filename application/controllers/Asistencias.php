@@ -35,7 +35,8 @@ class Asistencias extends MY_RootController {
 
 	public function showClasesEditForm(){
 		$clase = $this->input->get('clase_id');
-		$data['alumnos_data'] = $this->DAO->customQuery("SELECT * FROM alumnos_clase_view WHERE claseFk = '$clase' ");
+		$data_container['alumnos_data'] = $this->DAO->customQuery("SELECT * FROM alumnos_clase_view WHERE claseFk = '$clase' ");
+		$data['container_data'] = $this->load->view('asistencias/alumnos_clase_edit',$data_container,TRUE);
 		$data['clase_info'] = $this->DAO->selectEntity('clase',array('id_clase'=>$clase),TRUE);
 		$data['clase_data'] = $this->input->get('clase_id');
 		echo $this->load->view('asistencias/clase_edit_form',$data,TRUE);
@@ -52,6 +53,13 @@ class Asistencias extends MY_RootController {
     {        
         $data_container['container_data'] = $this->DAO->selectEntity('clase_view');
         echo $this->load->view('asistencias/asistencias_data_page',$data_container,TRUE);
+	}
+
+	public function showAlumnosClaseContainer(){
+		$clase = $this->input->get('clase_id'); 
+		$data['alumnos_data'] = $this->DAO->customQuery("SELECT * FROM alumnos_clase_view WHERE claseFk = '$clase' ");
+		$data['clase_data'] = $clase;
+		echo $this->load->view('asistencias/alumnos_clase_edit',$data,TRUE);
 	}
 
 	public function saveOrUpdate(){
@@ -152,11 +160,32 @@ class Asistencias extends MY_RootController {
 		echo json_encode($data_response);
 	}
 
-	public function removeAlumnoClase(){
-		$data_response = array(
-			"status" => "success",
-			"message" => "Hola"
-		);
+	public function removeAlumnosClase(){
+		$this->load->library('form_validation');
+		$this->form_validation->set_rules('alumno_clase[]','Alumnos','required');
+		$this->form_validation->set_rules('clase_id','Identificador de clase','required|numeric');
+		if ($this->form_validation->run()) {
+			$response = $this->DAO->delete_alumno_clase($this->input->post('alumno_clase[]'));
+			if ($response['status'] == "success") {
+				$data_response = array(
+					"status" => $response['status'],
+					"message" => $response['message'],
+					"clase_id" => $this->input->post('clase_id')
+				);
+			}else{
+				$data_response = array(
+					"status" => $response['status'],
+					"message" => $response['message']
+				);
+			}
+		}else{
+			$data['current_data'] = $this->input->post();
+            $data_response = array(
+                "status" => "warning",
+                "message" => "Selecciona algo boludo",
+				'errors' => $this->form_validation->error_array()
+            );
+		}			
 		echo json_encode($data_response);
 	}
 
