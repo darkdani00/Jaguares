@@ -117,19 +117,47 @@ $(function() {
         Swal.fire({
             title: '¿Seguro?',
             showDenyButton: true,
-            showCancelButton: true,
-            confirmButtonText: `Save`,
-            denyButtonText: `Don't save`,
+            confirmButtonText: `Continuar`,
+            denyButtonText: `Cancelar`,
+            icon: 'warning'
         }).then((result) => {
             if (result.isConfirmed) {
-                Swal.fire('Saved!', '', 'success')
+                id_clase = $(this).attr('data-key');
+                var _data = {
+                    "clase_id": id_clase
+                };
+                $.ajax({
+                    'url': '<?=base_url('Asistencias/delete_clase');?>',
+                    'data': _data,
+                    'success': function(response) {
+                        var convert_response = JSON.parse(response);
+                        if (convert_response.status == "success") {
+                            // actualizar el contenedor 
+                            load_data();
+                        } else if (convert_response.status == "error") {
+                            // si falla la bd
+                            Swal.fire(
+                                'Error',
+                                convert_response.message,
+                                'error'
+                            );
+                        } else {
+                            // si falla algo
+                            Swal.fire(
+                                'Error',
+                                convert_response.message,
+                                'error'
+                            );
+                        }
+                    }
+                });
             } else if (result.isDenied) {
-                Swal.fire('Changes are not saved', '', 'info')
+                Swal.close()
             }
         });
     });
 
-    $(document).on('click','#edit-btn',function(e){
+    $(document).on('click', '#edit-btn', function(e) {
         id_clase = $(this).attr('data-key');
         var _data = {
             "clase_id": id_clase
@@ -143,7 +171,7 @@ $(function() {
         });
     });
 
-    $(document).on('submit','#delete_alumnos_form',function(e){
+    $(document).on('submit', '#delete_alumnos_form', function(e) {
         e.preventDefault();
         $.ajax({
             'url': '<?=base_url('Asistencias/removeAlumnosClase');?>',
@@ -177,7 +205,7 @@ $(function() {
 
     $(document).on('click', '.asistencias-view', function(e) {
         e.preventDefault();
-        // obtener el id de la clase con  data-key 
+        // obtener el id de la clase con  data-key
         id_clase = $(this).attr('data-key');
         // Abrir  un modal que sea para registrar las asistencias
         var _data = {
@@ -203,16 +231,17 @@ function load_data() {
     });
 }
 
-function load_alumnos_clase(clase_id){
+function load_alumnos_clase(clase_id) {
     var _data = {
-            "clase_id": clase_id
-        };
+        "clase_id": clase_id
+    };
     $.ajax({
         'url': '<?=base_url('Asistencias/showAlumnosClaseContainer');?>',
         'data': _data,
         'success': function(response) {
             $(document).find('#alumnos_container').empty().append(response);
-            $(document).find('#alumnos_container').prepend('<input type="hidden" value="'+clase_id+'" name="clase_id">');
+            $(document).find('#alumnos_container').prepend('<input type="hidden" value="' + clase_id +
+                '" name="clase_id">');
         }
     });
 }

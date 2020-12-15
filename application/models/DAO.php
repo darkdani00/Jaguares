@@ -177,5 +177,21 @@ class DAO extends CI_Model {
         }
     }
 
+    function deleteItemEntity($entityName,$whereClause){
+        $this->db->where($whereClause);
+        $this->db->delete($entityName);
+        if ($this->db->error()['message'] != '') {
+            return array(
+                "status" => "error",
+                "message" => $this->db->error()['message']
+            );
+        }else{
+            return array(
+                "status" => "success",
+                "message" => 'Datos Eliminados correctamente'
+            );
+         }
+    }
+
     
 }

@@ -189,6 +189,23 @@ class Asistencias extends MY_RootController {
 		echo json_encode($data_response);
 	}
 
+	public function delete_clase(){
+		$clase = $this->input->get('clase_id'); 
+		$response = $this->DAO->deleteItemEntity('clase',array('id_clase'=>$clase));
+		if($response['status']=='error'){
+			$data_response = array(
+                "status" =>$response['status'],
+                "message" =>  $response['message']
+            );
+		}else{
+			$data_response = array(
+                "status" => $response['status'],
+                "message" => $response['message']
+            );
+		}
+		echo json_encode($data_response);
+	}
+
 	public function searchClase(){
 		// buscar clase por hora inicio y dia
 		if ($this->input->post("search-input")==null) {
