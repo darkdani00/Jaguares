@@ -206,6 +206,35 @@ class Asistencias extends MY_RootController {
 		echo json_encode($data_response);
 	}
 
+	public function addAlumnosClase(){
+		$this->load->library('form_validation');
+		$this->form_validation->set_rules('alumno_clase[]','Alumnos','required');
+		$this->form_validation->set_rules('clase_id','Identificador de clase','required|numeric');
+		if ($this->form_validation->run()) {
+			$response = $this->DAO->add_new_alumno_clase($this->input->post('alumno_clase[]'),$this->input->post('clase_id'));
+			if ($response['status'] == "success") {
+				$data_response = array(
+					"status" => $response['status'],
+					"message" => $response['message'],
+					"clase_id" => $this->input->post('clase_id')
+				);
+			}else{
+				$data_response = array(
+					"status" => $response['status'],
+					"message" => $response['message'],
+					"clase_id" => $this->input->post('clase_id')
+				);
+			}			
+		}else{
+            $data_response = array(
+                "status" => "warning",
+                "message" => "Debes agregar algun alumno",
+				'errors' => $this->form_validation->error_array()
+            );
+		}			
+		echo json_encode($data_response);
+	}
+
 	public function searchClase(){
 		// buscar clase por hora inicio y dia
 		if ($this->input->post("search-input")==null) {

@@ -60,6 +60,29 @@ $(function() {
         });
     });
 
+    $(document).on('submit', '#agregar_alumno_clase_form', function(e) {
+        e.preventDefault();
+        $.ajax({
+            'url': '<?=base_url('Asistencias/addAlumnosClase');?>',
+            'data': new FormData(this),
+            'contentType': false,
+            'processData': false,
+            'method': "post",
+            'success': function(response) {
+                var convert_response = JSON.parse(response);
+                if (convert_response.status == "success") {
+                    load_alumnos_clase(convert_response.clase_id);
+                } else {
+                    Swal.fire(
+                        convert_response.status,
+                        convert_response.message,
+                        convert_response.status
+                    );
+                }
+            }
+        });
+    });
+
     $(document).on('submit', '#form_asistencias', function(e) {
         e.preventDefault();
         $.ajax({

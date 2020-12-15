@@ -48,17 +48,18 @@
     </form>
     <form id="agregar_alumno_clase_form">
         <div class="form-group">
+            <input type="hidden" value="<?php echo $clase_data?>" name="clase_id">
             <label for="alumno_clase">Agregar Alumnos</label>
             <select class="form-control" id="alumno_clase" name="alumno_clase[]" multiple="multiple">
             </select>
         </div>
         <div class="row">
             <div class="col">
-                <button class="btn btn-success float-right">Agregar</button>
+                <button class="btn btn-success float-right" type="submit">Agregar</button>
             </div>
         </div>
     </form>
 </div>
 <div class="modal-footer">
-    <button type="submit" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+    <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
 </div>
