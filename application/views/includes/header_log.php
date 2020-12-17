@@ -12,6 +12,8 @@
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet" />
     <!-- stilos bootstrap para select2 -->
     <link rel="stylesheet" href="<?=base_url("resources/select2-bootstrap.css");?>" />
+    <!-- datatables -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.22/css/jquery.dataTables.css" />
     <!-- estilos perfil -->
     <link rel="stylesheet" href="<?=base_url('resources/css/perfil.css');?>">
     <!-- customize styles -->
