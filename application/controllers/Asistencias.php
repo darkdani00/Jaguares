@@ -263,6 +263,12 @@ class Asistencias extends MY_RootController {
 		echo json_encode($data_response);
 	}
 
+	public function get_Clases_Alumno(){
+		$current_session = $this->session->userdata('user_sess');
+		$data_response =  $this->DAO->selectEntity('alumnos_clase_view',array('id_alumno'=>$current_session->id_alumno));
+		echo json_encode($data_response);
+	}
+
 
 	// Esta funcion es para la pagina en donde el alumno ve sus asistencias
 	public function asistencias_alumno(){

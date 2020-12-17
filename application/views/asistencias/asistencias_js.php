@@ -291,6 +291,54 @@ $(function() {
         ]
       });
 
+    var _mytable = $("#table_clases_alumno").DataTable({
+        ajax: {
+          url: "<?=base_url('Asistencias/get_Clases_Alumno');?>",
+          dataSrc: "",
+        },
+        columns: [
+          { data: "hora_inicia", defaultContent: "" },
+          { data: "hora_termina", defaultContent: "" },
+          { data: null },
+        ],
+        columnDefs: [
+          {
+            data: "dia_semana",
+            render : function(data, type,row){
+                var dia = "";
+                switch(data.dia_semana){
+                    case '1':
+                        dia = 'Lunes';
+                    break;
+                    case '2':
+                        dia = 'Martes';
+                    break;
+                    case '3':
+                        dia = 'Mi&eacute;rcoles';
+                    break;
+                    case '4':
+                        dia = 'Jueves';
+                    break;
+                    case '5':
+                        dia = 'Viernes';
+                    break;
+                    case '6':
+                        dia = 'S&aacute;bado';
+                    break;
+                    case '7':
+                        dia = 'Domingo';
+                    break;
+                    default:
+                        dia = '';
+                    break;
+                }
+                return dia;
+            },
+            targets: -1
+          }
+        ]
+      });
+
 });
 
 function load_data() {
