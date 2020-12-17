@@ -60,6 +60,8 @@
                             <a class="nav-link" href="#">Services</a>
                         </li>
                         <li class="nav-item dropdown">
+                            <?php if ($current_session->user_type == 'Maestro' || $current_session->user_type == 'Admin') {
+                                ?>
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <?=@$current_session->nombre_maestro." ".@$current_session->apellido_paterno_maestro." ".@$current_session->apellido_materno_maestro;?>
@@ -67,11 +69,27 @@
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                                 <a class="dropdown-item" href="<?=base_url('profesores/perfil_profesor');?>">Mi
                                     perfil</a>
-                                <a class="dropdown-item" href="#">Another action</a>
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="<?=base_url('login_profesor/logout');?>">Cerrar
                                     Sesi&oacute;n</a>
                             </div>
+                            <?php
+                            }else{
+                                ?>
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <?=@$current_session->nombre_alumno." ".@$current_session->apellido_paterno_alumno." ".@$current_session->apellido_materno_alumno;?>
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="<?=base_url('Alumnos/perfil_alumno');?>">Mi
+                                    perfil</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="<?=base_url('login_alumno/logout');?>">Cerrar
+                                    Sesi&oacute;n</a>
+                            </div>
+                            <?php
+                            }?>
+
                         </li>
                     </ul>
                 </div>
