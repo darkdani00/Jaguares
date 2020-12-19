@@ -84,10 +84,15 @@ class Profesores extends MY_RootController {
 			$data_container['container_data'] = $this->DAO->selectEntity('maestro_view');
 		}
 		else{
-			$where = array(
-				$this->input->post("search-options") => $this->input->post("search-input"),
-			);
-			$data_container['container_data'] = $this->DAO->selectEntity('maestro_view',$where);
+			$where = $this->input->post("search-input");
+			if ($this->input->post("search-options") == 'nombre_maestro') {
+				$data_container['container_data'] = $this->DAO->customQuery("SELECT * FROM maestro_view WHERE nombre_escuela LIKE '%$where%' OR apellido_paterno_maestro LIKE '%$where%' OR apellido_materno_maestro LIKE '%$where%'");
+			}elseif($this->input->post("search-options") == 'edad_maestro' || $this->input->post("search-options") == 'nombre_escuela'){
+				$where_clause = array($this->input->post("search-options") => $this->input->post("search-input"));
+				$data_container['container_data'] = $this->DAO->selectEntity('maestro_view',$where_clause);
+			}else{
+				$data_container['container_data'] = $this->DAO->selectEntity('maestro_view');
+			}
 		}
 		echo $this->load->view('profesores/profesores_data_page',$data_container,TRUE);
 	}
