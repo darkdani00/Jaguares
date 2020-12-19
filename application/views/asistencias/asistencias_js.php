@@ -124,7 +124,7 @@ $(function() {
     $(document).on('submit', '#search-bar', function(e) {
         e.preventDefault();
         $.ajax({
-            'url': '<?=base_url('escuelas/searchEscuela');?>',
+            'url': '<?=base_url('asistencias/searchClase');?>',
             'data': new FormData(this),
             'contentType': false,
             'processData': false,

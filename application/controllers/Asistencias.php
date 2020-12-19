@@ -236,16 +236,14 @@ class Asistencias extends MY_RootController {
 	}
 
 	public function searchClase(){
-		// buscar clase por hora inicio y dia
 		if ($this->input->post("search-input")==null) {
-			$data_container['container_data'] = $this->DAO->selectEntity('alumno_view');
+			$data_container['container_data'] = $this->DAO->selectEntity('clase_view');
 		}else{
-			$where = array(
-				$this->input->post("search-options") => $this->input->post("search-input"),
-			);
-			$data_container['container_data'] = $this->DAO->selectEntity('alumno_view',$where);
+			$hora_inicia = $this->input->post("search-input");
+			$dia_semana = $this->input->post("search-options");
+			$data_container['container_data'] = $this->DAO->customQuery("SELECT * FROM clase_view WHERE hora_inicia = '$hora_inicia' AND dia_semana = '$dia_semana' ");
 		}
-		echo $this->load->view('alumnos/alumnos_data_page',$data_container,TRUE);
+		echo $this->load->view('asistencias/asistencias_data_page',$data_container,TRUE);
 	}
 
 	public function get_Alumnos(){
