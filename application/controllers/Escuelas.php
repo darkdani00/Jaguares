@@ -69,10 +69,8 @@ class Escuelas extends MY_RootController {
 		if ($this->input->post("search-input")==null) {
 			$data_container['container_data'] = $this->DAO->selectEntity('escuela');
 		}else{
-			$where = array(
-				"nombre_escuela" => $this->input->post("search-input")
-			);
-			$data_container['container_data'] = $this->DAO->selectEntity('escuela',$where);
+			$where = $this->input->post("search-input");
+			$data_container['container_data'] = $this->DAO->customQuery("SELECT * FROM escuela WHERE nombre_escuela LIKE '%$where%'");
 		}
 		echo $this->load->view('escuelas/escuelas_data_page',$data_container,TRUE);
 	}
