@@ -107,10 +107,20 @@ class Alumnos extends MY_RootController {
 		if ($this->input->post("search-input")==null) {
 			$data_container['container_data'] = $this->DAO->selectEntity('alumno_view');
 		}else{
-			$where = array(
-				$this->input->post("search-options") => $this->input->post("search-input"),
-			);
-			$data_container['container_data'] = $this->DAO->selectEntity('alumno_view',$where);
+			$where = $this->input->post("search-input");
+			if ($this->input->post("search-options") == 'nombre_alumno') {
+				$data_container['container_data'] = $this->DAO->customQuery("SELECT * FROM alumno_view WHERE nombre_alumno LIKE '%$where%' OR apellido_paterno_alumno LIKE '%$where%' OR apellido_materno_alumno LIKE '%$where%'");
+			}elseif($this->input->post("search-options") == 'edad_alumno' || $this->input->post("search-options") == 'nombre_escuela'){
+				$where_clause = array(
+					$this->input->post("search-options") => $this->input->post("search-input"),
+				);
+				$data_container['container_data'] = $this->DAO->selectEntity('alumno_view',$where_clause);
+			}elseif($this->input->post("search-options") == 'nombre_maestro'){
+				$data_container['container_data'] = $this->DAO->customQuery("SELECT * FROM alumno_view WHERE nombre_maestro LIKE '%$where%' OR apellido_paterno_maestro LIKE '%$where%' OR apellido_materno_maestro LIKE '%$where%'");
+			}
+			else{
+				$data_container['container_data'] = $this->DAO->selectEntity('alumno_view',$where);
+			}
 		}
 		echo $this->load->view('alumnos/alumnos_data_page',$data_container,TRUE);
 	}

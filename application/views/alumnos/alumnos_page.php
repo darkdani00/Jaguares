@@ -9,8 +9,6 @@
                                 <div class="input-group-prepend">
                                     <select name="search-options" id="search-options">
                                         <option value="nombre_alumno" >Nombre</option>
-                                        <option value="apellido_paterno_alumno" >Apellido Paterno</option>
-                                        <option value="apellido_materno_alumno" >Apellido Materno</option>
                                         <option value="edad_alumno" >Edad</option>
                                         <option value="nombre_escuela" >Escuela</option>
                                         <option value="nombre_maestro" >Maestro</option>
