@@ -72,6 +72,7 @@ $(function() {
                 var convert_response = JSON.parse(response);
                 if (convert_response.status == "success") {
                     load_alumnos_clase(convert_response.clase_id);
+                    fillSelectAddAlumnos(convert_response.clase_id);
                 } else {
                     Swal.fire(
                         convert_response.status,
@@ -190,6 +191,7 @@ $(function() {
             'data': _data,
             'success': function(response) {
                 $(document).find('#modalContent').empty().append(response);
+                fillSelectAddAlumnos(id_clase);
             }
         });
     });
@@ -207,6 +209,7 @@ $(function() {
                 if (convert_response.status == "success") {
                     // actualizar el contenedor alumnos_container
                     load_alumnos_clase(convert_response.clase_id);
+                    fillSelectAddAlumnos(convert_response.clase_id);
                 } else if (convert_response.status == "error") {
                     // si falla la bd
                     Swal.fire(
@@ -379,5 +382,25 @@ function fillSelectAlumnos() {
         }
     });
     $('#alumno_clase').select2();
+}
+
+function fillSelectAddAlumnos(id_clase) {
+    var _data = {
+        "clase_id": id_clase
+    };
+    $.ajax({
+        'url': '<?=base_url('Asistencias/get_Alumnos_Add');?>',
+        'data': _data,
+        'success': function(response) {
+            var convert_response = JSON.parse(response);
+            $("#alumno_clase_add").empty();
+            convert_response.forEach(function(element) {
+                $(document).find('#alumno_clase_add').empty().append('<option value="' + element.id_alumno +
+                    '">' + element.nombre_alumno + " " + element.apellido_paterno_alumno + " " +
+                    element.apellido_materno_alumno + '</option>');
+            });
+        }
+    });
+    $('#alumno_clase_add').select2();
 }
 </script>

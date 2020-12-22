@@ -267,6 +267,14 @@ class Asistencias extends MY_RootController {
 		echo json_encode($data_response);
 	}
 
+	public function get_Alumnos_Add(){
+		$current_session = $this->session->userdata('user_sess');
+		$clase_id =  $this->input->get('clase_id'); 
+		$alumnos_ids = $this->DAO->customQuery("SELECT id_alumno FROM alumno WHERE profeFk = '$current_session->id_maestro'  EXCEPT (SELECT alumnoFk FROM alumnos_clase WHERE claseFk = '$clase_id')");
+		$data_response =  $this->DAO->multipleSlect('alumno',$alumnos_ids,'id_alumno');
+		echo json_encode($data_response);
+	}
+
 
 	// Esta funcion es para la pagina en donde el alumno ve sus asistencias
 	public function asistencias_alumno(){

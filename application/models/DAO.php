@@ -216,5 +216,19 @@ class DAO extends CI_Model {
          }
     }
 
+    function multipleSlect($entity,$values,$where){
+        $string = "";
+        foreach($values AS $valor){
+            $string .= "$valor->id_alumno, "; 
+        }
+        $string = substr($string, 0, -2);
+        $result = $this->db->query("SELECT * FROM $entity WHERE $where IN ('$string')")->result();
+        if ($this->db->error()['message'] != '') {
+            return null;
+         }else{
+            return $result;
+         }
+    }
+
     
 }

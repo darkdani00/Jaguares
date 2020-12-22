@@ -49,8 +49,8 @@
     <form id="agregar_alumno_clase_form">
         <div class="form-group">
             <input type="hidden" value="<?php echo $clase_data?>" name="clase_id">
-            <label for="alumno_clase">Agregar Alumnos</label>
-            <select class="form-control" id="alumno_clase" name="alumno_clase[]" multiple="multiple">
+            <label for="alumno_clase_add">Agregar Alumnos</label>
+            <select class="form-control" id="alumno_clase_add" name="alumno_clase[]" multiple="multiple">
             </select>
         </div>
         <div class="row">
