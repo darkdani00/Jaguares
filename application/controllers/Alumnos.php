@@ -137,6 +137,12 @@ class Alumnos extends MY_RootController {
         echo $this->load->view('alumnos/alumnos_data_page',$data_container,TRUE);
 	}
 
+	public function showAsistenciasAlumno()
+    {        
+        $data_container['container_data'] = $this->DAO->selectEntity('asistencia_alumno_view',array('id_alumno'=>$this->input->get('id_alumno')));
+        echo $this->load->view('alumnos/alumno_asistencias_modal',$data_container,TRUE);
+	}
+
 	public function get_Escuelas(){
 		$data_response = $this->DAO->selectEntity('escuela');
 		echo json_encode($data_response);

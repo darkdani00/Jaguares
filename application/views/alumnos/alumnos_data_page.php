@@ -116,6 +116,9 @@
                             </div>
                         </div>
                     </div>
+                    <div class="card-footer">
+                        <button class="btn btn-info" data-key="<?=$alumno->id_alumno;?>" data-toggle="modal" data-target="#modalView" id="ver_asistencias_btn"><i class="fas fa-check"></i></button>
+                    </div>
                 </div>
             </div>
             <?php } ?>

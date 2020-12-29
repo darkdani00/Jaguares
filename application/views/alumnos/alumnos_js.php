@@ -10,6 +10,21 @@ $(function() {
         });
     });
 
+    // esta funcion es la que voy a usar para mostrar las asistencias del alumno
+    $(document).on('click', '#ver_asistencias_btn', function() {
+        id_alumno = $(this).attr('data-key');
+        var _data = {
+            "id_alumno": id_alumno
+        };
+        $.ajax({
+            'url': '<?=base_url('alumnos/showAsistenciasAlumno');?>',
+            'data': _data,
+            'success': function(response) {
+                $(document).find('#modalContent').empty().append(response);
+            }
+        });
+    });
+
 
     $("#modalView").on("shown.bs.modal", function(e) {
         fillSelectEscuela();
