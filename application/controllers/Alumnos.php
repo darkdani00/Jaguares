@@ -152,4 +152,15 @@ class Alumnos extends MY_RootController {
 		$data_response = $this->DAO->selectEntity('maestro');
 		echo json_encode($data_response);
 	}
+
+	public function deleteAsistenciaAlumno(){
+		$asistencia = $this->DAO->selectEntity('asistencia_alumno_view',array('id_asistencia_alumno'=>$this->input->get('id_asistencia')),TRUE);
+		$response = $this->DAO->deleteItemEntity('asistencia_alumno',array('id_asistencia_alumno'=>$this->input->get('id_asistencia')));
+		$data_response = array(
+			"status" => $response['status'],
+			"message" => $response['message'],
+			"data" => $asistencia->id_alumno
+		);
+		echo json_encode($data_response);
+	}
 }

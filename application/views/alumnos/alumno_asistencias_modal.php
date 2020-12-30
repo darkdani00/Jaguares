@@ -23,7 +23,7 @@
                     </td>
                     <td><?=$asistencias->hora_inicia?> - <?=$asistencias->hora_termina?></td>
                     <td><?=$asistencias->asistencia?></td>
-                    <td><button class="btn btn-danger"><i class="fas fa-times"></i></button></td>
+                    <td><button class="btn btn-danger" data-key="<?=$asistencias->id_asistencia_alumno?>" id="eliminar_asistencia_btn"><i class="fas fa-times"></i></button></td>
                 </tr>
                 <?php } ?>
             </tbody>

@@ -25,6 +25,41 @@ $(function() {
         });
     });
 
+    // Funcion para eliminar asistencia
+    $(document).on('click', '#eliminar_asistencia_btn', function() {
+        id_asistencia = $(this).attr('data-key');
+        var _data = {
+            "id_asistencia": id_asistencia
+        };
+        $.ajax({
+            'url': '<?=base_url('alumnos/deleteAsistenciaAlumno');?>',
+            'data': _data,
+            'success': function(response) {
+                var convert_response = JSON.parse(response);
+                console.log(convert_response);
+
+                if (convert_response.status == "success") {
+                    // recargar modal
+                    load_asistencias_alumno(convert_response.data);
+                    Swal.fire(
+                        convert_response.status,
+                        convert_response.message,
+                        convert_response.status
+                    );
+                }else{
+                    // cerrar modal
+                    $(document).find('#modalView').modal('hide');
+                    Swal.fire(
+                        convert_response.status,
+                        convert_response.message,
+                        convert_response.status
+                    );
+                }
+               
+            }
+        });
+    });
+
 
     $("#modalView").on("shown.bs.modal", function(e) {
         fillSelectEscuela();
@@ -142,6 +177,19 @@ function load_data() {
         'url': '<?=base_url('alumnos/showDataContainer');?>',
         'success': function(response) {
             $(document).find('#data_container').empty().append(response);
+        }
+    });
+}
+
+function load_asistencias_alumno(id_alumno){
+        var _data = {
+            "id_alumno": id_alumno
+        };
+    $.ajax({
+        'url': '<?=base_url('alumnos/showAsistenciasAlumno');?>',
+        'data': _data,
+        'success': function(response) {
+            $(document).find('#modalContent').empty().append(response);
         }
     });
 }
