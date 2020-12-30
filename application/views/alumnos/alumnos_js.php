@@ -36,8 +36,6 @@ $(function() {
             'data': _data,
             'success': function(response) {
                 var convert_response = JSON.parse(response);
-                console.log(convert_response);
-
                 if (convert_response.status == "success") {
                     // recargar modal
                     load_asistencias_alumno(convert_response.data);
