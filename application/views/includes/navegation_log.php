@@ -1,24 +1,31 @@
+<style>
+    .side-active{
+        background: #9e9e9e;
+    }
+
+</style>
+
 <?php
     $current_session = $this->session->userdata('user_sess');
     switch($current_session->user_type){
         case 'Maestro':
           $menus = array(
-            array("menu_text" => "Alumnos","menu_uri" => "Alumnos", "menu_icon"=>"fas fa-users"),
-            array("menu_text" => "Asistencias","menu_uri" => "Asistencias", "menu_icon"=>"fas fa-user-check")
+            array("menu_text" => "Alumnos","menu_uri" => "Alumnos", "menu_icon"=>"fas fa-users",'active'=> @$alumnos_selected ? TRUE : FALSE ),
+            array("menu_text" => "Asistencias","menu_uri" => "Asistencias", "menu_icon"=>"fas fa-user-check",'active'=> @$asistencias_selected ? TRUE : FALSE )
           );
         break;
         case 'Admin':
           $menus = array(
-            array("menu_text" => "Maestros","menu_uri" => "Profesores", "menu_icon"=>"fas fa-chalkboard-teacher"),
-            array("menu_text" => "Alumnos","menu_uri" => "Alumnos", "menu_icon"=>"fas fa-users"),
-            array("menu_text" => "Escuelas","menu_uri" => "Escuelas", "menu_icon"=>"fas fa-school"),
-            array("menu_text" => "Asistencias","menu_uri" => "Asistencias", "menu_icon"=>"fas fa-user-check")
+            array("menu_text" => "Maestros","menu_uri" => "Profesores", "menu_icon"=>"fas fa-chalkboard-teacher",'active'=> @$maestros_selected ? TRUE : FALSE),
+            array("menu_text" => "Alumnos","menu_uri" => "Alumnos", "menu_icon"=>"fas fa-users",'active'=> @$alumnos_selected ? TRUE : FALSE),
+            array("menu_text" => "Escuelas","menu_uri" => "Escuelas", "menu_icon"=>"fas fa-school",'active'=> @$escuelas_selected ? TRUE : FALSE),
+            array("menu_text" => "Asistencias","menu_uri" => "Asistencias", "menu_icon"=>"fas fa-user-check",'active'=> @$asistencias_selected ? TRUE : FALSE)
           );
         break;
         case 'Alumno':
           $menus = array(
-            array("menu_text" => "Mis Asistencias","menu_uri" => "Asistencias/asistencias_alumno", "menu_icon"=>"fas fa-user-check"),
-            array("menu_text" => "Perfil","menu_uri" => "Alumnos/perfil_alumno", "menu_icon"=>"fas fa-user")
+            array("menu_text" => "Mis Asistencias","menu_uri" => "Asistencias/asistencias_alumno", "menu_icon"=>"fas fa-user-check",'active'=> @$asistencias_selected ? TRUE : FALSE),
+            array("menu_text" => "Perfil","menu_uri" => "Alumnos/perfil_alumno", "menu_icon"=>"fas fa-user",'active'=> @$perfil_alumno_selected ? TRUE : FALSE)
           );
         break;
       }
@@ -32,7 +39,7 @@
         </div>
         <div class="menu">
             <?php foreach($menus as $iMenu){ ?>
-            <a href="<?=base_url($iMenu['menu_uri']);?>" class="text-light inline">
+            <a href="<?=base_url($iMenu['menu_uri']);?>" class="text-light inline <?=@$iMenu['active'] ? 'side-active' : '';?>">
                 <div class="nav_icon-container">
                     <i class="<?=$iMenu['menu_icon'];?>"></i>
                 </div>

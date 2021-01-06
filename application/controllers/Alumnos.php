@@ -12,8 +12,9 @@ class Alumnos extends MY_RootController {
 
 	public function index()
 	{
-        $this->load->view('includes/header_log');
-		$this->load->view('includes/navegation_log.php');
+		$this->load->view('includes/header_log');
+		$data_menu['alumnos_selected'] = true;
+		$this->load->view('includes/navegation_log.php',$data_menu);
 		$current_session = $this->session->userdata('user_sess');
 		if ($current_session->user_type == 'Admin') {
 			$data_container['container_data'] = $this->DAO->selectEntity('alumno_view');

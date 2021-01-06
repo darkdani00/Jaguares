@@ -13,8 +13,9 @@ class Asistencias extends MY_RootController {
 
 	public function index()
 	{
-        $this->load->view('includes/header_log');
-		$this->load->view('includes/navegation_log.php');
+		$this->load->view('includes/header_log');
+		$data_menu['asistencias_selected'] = true;
+		$this->load->view('includes/navegation_log.php',$data_menu);
 		$current_session = $this->session->userdata('user_sess');
 		if ($current_session->user_type == 'Admin') {
 			$data_container['container_data'] = $this->DAO->customQuery('SELECT * FROM clase_view ORDER BY dia_semana,hora_inicia');
