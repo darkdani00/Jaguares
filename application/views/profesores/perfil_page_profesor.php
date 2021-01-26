@@ -20,7 +20,7 @@
                         <?=$current_session->nombre_maestro." ".$current_session->apellido_paterno_maestro." ".$current_session->apellido_materno_maestro?>
                     </h5>
                     <h6>
-                        Profesor
+                        Privilegios de <?=$current_session->user_type?>
                     </h6>
                     <ul class="nav nav-tabs" id="myTab" role="tablist">
                         <li class="nav-item">
@@ -36,6 +36,7 @@
             </div>
             <div class="col-md-2">
                 <!--Puede ir un botón de editar-->
+
             </div>
         </div>
         <div class="row">
@@ -56,7 +57,8 @@
                                 <label>Apellidos</label>
                             </div>
                             <div class="col-md-6">
-                                <p><?=$current_session->apellido_paterno_maestro." ".$current_session->apellido_materno_maestro?></p>
+                                <p><?=$current_session->apellido_paterno_maestro." ".$current_session->apellido_materno_maestro?>
+                                </p>
                             </div>
                         </div>
                         <div class="row">
@@ -99,7 +101,7 @@
                                 <p><?=$current_session->nombre_escuela?></p>
                             </div>
                         </div>
-                        
+
                     </div>
                     <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
                         <div class="row">

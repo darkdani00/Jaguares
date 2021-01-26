@@ -80,6 +80,23 @@ class Profesores extends MY_RootController {
 
 	}
 
+	public function delete_profesor(){
+		$profe = $this->input->get('id_maestro '); 
+		$response = $this->DAO->deleteItemEntity('maestro',array('id_maestro'=>$profe));
+		if($response['status']=='error'){
+			$data_response = array(
+                "status" =>$response['status'],
+                "message" =>  $response['message']
+            );
+		}else{
+			$data_response = array(
+                "status" => $response['status'],
+                "message" => $response['message']
+            );
+		}
+		echo json_encode($data_response);
+	}
+	
 	public function searchProfesor(){
 		if ($this->input->post("search-input")==null) {
 			$data_container['container_data'] = $this->DAO->selectEntity('maestro_view');
@@ -97,7 +114,6 @@ class Profesores extends MY_RootController {
 		}
 		echo $this->load->view('profesores/profesores_data_page',$data_container,TRUE);
 	}
-
 
 	public function showProfesoresForm(){
 		$data['container_data'] = $this->DAO->selectEntity('escuela');
@@ -122,4 +138,3 @@ class Profesores extends MY_RootController {
 		echo json_encode($data_response);
 	}
 }
-

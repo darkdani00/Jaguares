@@ -55,6 +55,56 @@ $(function() {
         });
     });
 
+
+//eliminar escuela
+$(document).on('click', '#delete-esceula', function(e) {
+        e.preventDefault();
+        Swal.fire({
+            title: '¿Desea eliminar la escuela?',
+            showDenyButton: true,
+            confirmButtonText: `Continuar`,
+            denyButtonText: `Cancelar`,
+            icon: 'warning'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                id_escuela = $(this).attr('data-key');
+                var _data = {
+                    "escuela_id": id_escuela
+                };
+                $.ajax({
+                    'url': '<?=base_url('Escuelas/delete_clase');?>',
+                    'data': _data,
+                    'success': function(response) {
+                        var convert_response = JSON.parse(response);
+                        if (convert_response.status == "success") {
+                            // actualizar el contenedor 
+                            alert('Eliminado con exito');
+                            load_data();
+                        } else if (convert_response.status == "error") {
+                            // si falla la bd
+                            Swal.fire(
+                                'Error',
+                                convert_response.message,
+                                'error'
+                            );
+                        } else {
+                            // si falla algo
+                            Swal.fire(
+                                'Error',
+                                convert_response.message,
+                                'error'
+                            );
+                        }
+                    }
+                });
+            } else if (result.isDenied) {
+                Swal.close()
+            }
+        });
+    });
+
+
+
     $(document).on('submit', '#search-bar', function(e) {
         e.preventDefault();
         $.ajax({

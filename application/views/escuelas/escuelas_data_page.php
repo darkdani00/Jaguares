@@ -15,12 +15,13 @@
             <div class="row text-muted">
                 <div class="col-md-8">
                     <div class="card-body">
-                    <div class="row  mb-2">
+                        <div class="row  mb-2">
                             <div class="col-3">
                                 <i class="fas fa-phone"></i>
                             </div>
                             <div class="col-9">
-                                <div>Tel&eacute;fono: <span class="text-dark"><?=$escuela->telefono_escuela?></span></div>
+                                <div>Tel&eacute;fono: <span class="text-dark"><?=$escuela->telefono_escuela?></span>
+                                </div>
                             </div>
                         </div>
                         <div class="row mb-2">
@@ -31,6 +32,13 @@
                                 <div>Direcci&oacute;n: <span class="text-dark"><?=$escuela->direccion_escuela?></span>
                                 </div>
                             </div>
+                        </div>
+                        <div class="card-footer">
+                            <button class="btn btn-danger" data-key="<?=$escuela->id_escuela;?>" id="delete-esceula"><i
+                                    class="fas fa-trash"></i></button>
+
+                            <button class="btn btn-success" data-key="<?=$escuela->id_escuela ;?>" id="edit-escuela"
+                                data-toggle="modal" data-target="#modalView"><i class="fas fa-pencil-alt"></i></button>
                         </div>
                     </div>
                 </div>

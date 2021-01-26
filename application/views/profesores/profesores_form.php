@@ -66,6 +66,7 @@
         <div class="form-group">
             <label for="escuela_prof">Escuela</label>
             <select id="escuela_prof" name="escuela_prof" class="form-control" value="<?=@$current_data['escuela_prof'];?>">
+            <option> Vacio </option>
             </select>
         </div>
     </div>

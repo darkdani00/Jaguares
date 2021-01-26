@@ -81,6 +81,69 @@ $(function() {
     });
 
 });
+//editar profesores
+$(document).on('click', '#edit-profe', function(e) {
+        id_clase = $(this).attr('data-key');
+        var _data = {
+            "clase_id": id_clase
+        };
+        $.ajax({
+            'url': '<?=base_url('Profesores/editProfe');?>',
+            'data': _data,
+            'success': function(response) {
+                $(document).find('#modalContent').empty().append(response);
+                fillSelectAddAlumnos(id_clase);
+            }
+        });
+    });
+
+//eliminar profesor
+    $(document).on('click', '#delete-profe', function(e) {
+        e.preventDefault();
+        Swal.fire({
+            title: '¿Desea eliminar al profesor?',
+            showDenyButton: true,
+            confirmButtonText: `Continuar`,
+            denyButtonText: `Cancelar`,
+            icon: 'warning'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                id_maestro = $(this).attr('data-key');
+                var _data = {
+                    "id_maestro ": id_maestro
+                };
+                $.ajax({
+                    'url': '<?=base_url('Profesores/delete_profesor');?>',
+                    'data': _data,
+                    'success': function(response) {
+                        var convert_response = JSON.parse(response);
+                        if (convert_response.status == "success") {
+                            // actualizar el contenedor 
+                            load_data();
+                        } else if (convert_response.status == "error") {
+                            // si falla la bd
+                            Swal.fire(
+                                'Error',
+                                convert_response.message,
+                                'error'
+                            );
+                        } else {
+                            // si falla algo
+                            Swal.fire(
+                                'Error',
+                                convert_response.message,
+                                'error'
+                            );
+                        }
+                    }
+                });
+            } else if (result.isDenied) {
+                Swal.close()
+            }
+        });
+    });
+
+
 
 // funcion para que se vuelva a llenar el select
 function fillSelectEscuela() {

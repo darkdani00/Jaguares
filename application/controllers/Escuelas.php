@@ -66,6 +66,27 @@ class Escuelas extends MY_RootController {
 
 	}
 
+	public function delete_clase(){
+		$profe = $this->input->get('id_escuela'); 
+		$response = $this->DAO->deleteItemEntity('escuela',array('id_escuela'=>$profe));
+		if($response['status']=='error'){
+			$data_response = array(
+                "status" =>$response['status'],
+                "message" =>  $response['message']
+            );
+		}else{
+			$data_response = array(
+                "status" => $response['status'],
+                "message" => $response['message']
+            );
+		}
+		echo json_encode($data_response);
+	}
+
+	public function edit_clase(){
+		
+	}
+
 	public function searchEscuela(){
 		if ($this->input->post("search-input")==null) {
 			$data_container['container_data'] = $this->DAO->selectEntity('escuela');
