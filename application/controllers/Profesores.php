@@ -24,61 +24,57 @@ class Profesores extends MY_RootController {
 	}
 
 	public function saveOrUpdate(){
-		if ($this->input->post('id_maestro')) {
-
-			$data_response = array(
-				"message" => "Entraste a Editar"
+		$this->load->library('form_validation');
+		$this->form_validation->set_rules('nom_prof','Nombre','required|max_length[80]');
+		$this->form_validation->set_rules('ape_pa_prof','Apellido paterno','required|max_length[80]');
+		$this->form_validation->set_rules('ape_mat_prof','Apellido Paterno','required|max_length[80]');
+		$this->form_validation->set_rules('email','Correo','required|max_length[80]|valid_email');
+		$this->form_validation->set_rules('genero_prof','Nombre','required|max_length[80]');
+		$this->form_validation->set_rules('edad_prof','Edad','required|numeric');
+		$this->form_validation->set_rules('num_prof','Numero','required|numeric');
+		$this->form_validation->set_rules('grado_cinta_prof','Grado de cinta','required|max_length[80]');
+		$this->form_validation->set_rules('escuela_prof','Escuela','required|numeric');
+		if ($this->form_validation->run()) {			
+			$data = array(
+				"nombre_maestro" => $this->input->post('nom_prof'),
+				"apellido_paterno_maestro" => $this->input->post('ape_pa_prof'),
+				"apellido_materno_maestro" => $this->input->post('ape_mat_prof'),
+				"genero_maestro" => $this->input->post('genero_prof'),
+				"edad_maestro" => $this->input->post('edad_prof'),
+				"telefono_maestro" => $this->input->post('num_prof'),
+				"grado_cinta_maestro" => $this->input->post('grado_cinta_prof'),
+				"escuelaFk" => $this->input->post('escuela_prof'),
+				"email_maestro" => $this->input->post('email')
 			);
-		}else{
-			$this->load->library('form_validation');
-			$this->form_validation->set_rules('nom_prof','Nombre','required|max_length[80]');
-			$this->form_validation->set_rules('ape_pa_prof','Apellido paterno','required|max_length[80]');
-			$this->form_validation->set_rules('ape_mat_prof','Apellido Paterno','required|max_length[80]');
-			$this->form_validation->set_rules('email','Correo','required|max_length[80]|valid_email');
-			$this->form_validation->set_rules('genero_prof','Nombre','required|max_length[80]');
-			$this->form_validation->set_rules('edad_prof','Edad','required|numeric');
-			$this->form_validation->set_rules('num_prof','Numero','required|numeric');
-			$this->form_validation->set_rules('grado_cinta_prof','Grado de cinta','required|max_length[80]');
-			$this->form_validation->set_rules('escuela_prof','Escuela','required|numeric');
-			if ($this->form_validation->run()) {			
-				// datos formulario
-				$data = array(
-					"nombre_maestro" => $this->input->post('nom_prof'),
-					"apellido_paterno_maestro" => $this->input->post('ape_pa_prof'),
-					"apellido_materno_maestro" => $this->input->post('ape_mat_prof'),
-					"genero_maestro" => $this->input->post('genero_prof'),
-					"edad_maestro" => $this->input->post('edad_prof'),
-					"telefono_maestro" => $this->input->post('num_prof'),
-					"grado_cinta_maestro" => $this->input->post('grado_cinta_prof'),
-					"escuelaFk" => $this->input->post('escuela_prof'),
-					"email_maestro" => $this->input->post('email')
-				);
-	
-				$response = $this->DAO->saveOrUpdateEntity('maestro',$data);
-				if ($response['status'] == "success") {
-					$data_response = array(
-						"status" => "success"
-					);
-	
-				}else{
-					// error en la base de datos
-					$data['current_data'] = $this->input->post();
-					$data_response = array(
-						"status" => "error",
-						"message" => $response["message"],
-						"data" =>  $this->load->view('profesores/profesores_form',$data,TRUE)
-					);
-				} 
+			// si es editar
+			if ($this->input->post('id_maestro')) {
+				$response = $this->DAO->saveOrUpdateEntity('maestro',$data,array('id_maestro'=>$this->input->post('id_maestro')));
 			}else{
-				// mandar errores a la vista
+				$response = $this->DAO->saveOrUpdateEntity('maestro',$data);
+			}
+			if ($response['status'] == "success") {
+				$data_response = array(
+					"status" => "success"
+				);
+
+			}else{
+				// error en la base de datos
 				$data['current_data'] = $this->input->post();
 				$data_response = array(
-					"status" => "warning",
-					"message" => "Información incorrecta, valida los campos!",
-					"data" =>  $this->load->view('profesores/profesores_form',$data,TRUE),
-					"errors" => $this->form_validation->error_array()
+					"status" => "error",
+					"message" => $response["message"],
+					"data" =>  $this->load->view('profesores/profesores_form',$data,TRUE)
 				);
-			}
+			} 
+		}else{
+			// mandar errores a la vista
+			$data['current_data'] = $this->input->post();
+			$data_response = array(
+				"status" => "warning",
+				"message" => "Información incorrecta, valida los campos!",
+				"data" =>  $this->load->view('profesores/profesores_form',$data,TRUE),
+				"errors" => $this->form_validation->error_array()
+			);
 		}
 		echo json_encode($data_response);
 	}
@@ -132,7 +128,8 @@ class Profesores extends MY_RootController {
 				'edad_prof' => $array['edad_maestro'],
 				'num_prof' => $array['telefono_maestro'],
 				'grado_cinta_prof' => $array['grado_cinta_maestro'],
-				'escuela_prof' => $escuela->nombre_escuela
+				'escuela_prof' => $escuela->nombre_escuela,
+				'id_maestro' => $this->input->get('id_maestro')
 			);
 		}
 		$data_view['container_data'] = $this->DAO->selectEntity('escuela');
@@ -141,7 +138,7 @@ class Profesores extends MY_RootController {
 	
 	public function showDataContainer()
     {        
-        $data_container['container_data'] = $this->DAO->selectEntity('maestro');
+        $data_container['container_data'] = $this->DAO->selectEntity('maestro_view');
         echo $this->load->view('profesores/profesores_data_page',$data_container,TRUE);
 	}
 	
