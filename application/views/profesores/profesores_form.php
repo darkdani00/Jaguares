@@ -24,7 +24,7 @@
         </div>
         <div class="form-group">
             <label for="genero_prof">G&eacute;nero</label>
-            <select class="form-control" id="genero_prof" name="genero_prof" value="<?=@$current_data['genero_prof'];?>">
+            <select class="form-control" id="genero_prof" name="genero_prof">
                 <?php if (@$current_data['genero_prof']=='Femenino') {
                     ?>
                         <option>Femenino</option>
@@ -66,7 +66,6 @@
         <div class="form-group">
             <label for="escuela_prof">Escuela</label>
             <select id="escuela_prof" name="escuela_prof" class="form-control" value="<?=@$current_data['escuela_prof'];?>">
-            <option> Vacio </option>
             </select>
         </div>
     </div>

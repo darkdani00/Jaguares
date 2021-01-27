@@ -83,16 +83,17 @@ $(function() {
 });
 //editar profesores
 $(document).on('click', '#edit-profe', function(e) {
-        id_clase = $(this).attr('data-key');
+        id_profe = $(this).attr('data-key');
         var _data = {
-            "clase_id": id_clase
+            "id_maestro": id_profe
         };
         $.ajax({
-            'url': '<?=base_url('Profesores/editProfe');?>',
+            'url': '<?=base_url('Profesores/showProfesoresForm');?>',
             'data': _data,
             'success': function(response) {
+                // cambiar el titulo del modal por editar y no registrar
+                // console.log(response);
                 $(document).find('#modalContent').empty().append(response);
-                fillSelectAddAlumnos(id_clase);
             }
         });
     });
