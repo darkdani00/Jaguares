@@ -131,6 +131,21 @@ $(function() {
         });
     });
 
+    // Editar alumno
+    $(document).on('click', '#edit-alumno', function(e) {
+        id_alumno = $(this).attr('data-key');
+        var _data = {
+            "id_alumno": id_alumno
+        };
+        $.ajax({
+            'url': '<?=base_url('Alumnos/showAlumnosForm');?>',
+            'data': _data,
+            'success': function(response) {
+                $(document).find('#modalContent').empty().append(response);
+            }
+        });
+    });
+
 
 });
 

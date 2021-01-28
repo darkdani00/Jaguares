@@ -35,7 +35,6 @@ class Alumnos extends MY_RootController {
 	}
 
 	public function saveOrUpdate(){
-
         $this->load->library('form_validation');
 		$this->form_validation->set_rules('nom_alumno','Nombre','required|max_length[80]');
 		$this->form_validation->set_rules('ape_pa_alumno','Apellido paterno','required|max_length[80]');
@@ -71,13 +70,16 @@ class Alumnos extends MY_RootController {
 				"hora_entrenamiento_alumno" => $this->input->post('hora_entrenamiento'),
 				"pago_realizado" => $this->input->post('pagado')
 			);
-
-			$response = $this->DAO->saveOrUpdateEntity('alumno',$data);
+			if ($this->input->post('id_alumno')) {
+				// si es editar
+				$response = $this->DAO->saveOrUpdateEntity('alumno',$data,array('id_alumno'=>$this->input->post('id_alumno')));
+			}else{
+				$response = $this->DAO->saveOrUpdateEntity('alumno',$data);
+			}
 			if ($response['status'] == "success") {
 				$data_response = array(
 					"status" => "success"
 				);
-
 			}else{
 				// error en la base de datos
 				$data['current_data'] = $this->input->post();
@@ -87,8 +89,6 @@ class Alumnos extends MY_RootController {
 					"data" =>  $this->load->view('alumnos/alumno_form',$data,TRUE)
 				);
 			} 
-
-
 		}else{
 			// mandar errores a la vista
             $data['current_data'] = $this->input->post();
@@ -100,7 +100,6 @@ class Alumnos extends MY_RootController {
             );
 		}
 		echo json_encode($data_response);
-
 	}
 
 	public function searchAlumno(){
@@ -128,13 +127,32 @@ class Alumnos extends MY_RootController {
 
 
 	public function showAlumnosForm(){
-		$data['container_data'] = $this->DAO->selectEntity('escuela');
-		echo $this->load->view('alumnos/alumno_form',$data,TRUE);
+		if ($this->input->get('id_alumno')) {
+			$data  = $this->DAO->selectEntity('alumno',array('id_alumno'=>$this->input->get('id_alumno')),TRUE);
+			$array = (array) $data;
+			$data_view['current_data'] = array(
+				'nom_alumno' => $array['nombre_alumno'],
+				'ape_pa_alumno' => $array['apellido_paterno_alumno'],
+				'ape_mat_alumno' => $array['apellido_materno_alumno'],
+				'email' => $array['email_alumno'],
+				'genero_alumno' => $array['genero_alumno'],
+				'edad_alumno' => $array['edad_alumno'],
+				'num_alumno' => $array['telefono_alumno'],
+				'grado_cinta_alumno' => $array['grado_cinta_alumno'],
+				'discapacidades' => $this->input->get('discapacidad_alumno'),
+				'entrenamiento' => $this->input->get('years_entrenamiento'),
+				'pagado' => $this->input->get('pago_realizado'),
+				'id_alumno' => $this->input->get('id_alumno'),
+				'tutor' => $this->input->get('tutor_alumno')
+			);
+		}
+		$data_view['container_data'] = $this->DAO->selectEntity('escuela');
+		echo $this->load->view('alumnos/alumno_form',$data_view,TRUE);
 	}
 	
 	public function showDataContainer()
     {        
-        $data_container['container_data'] = $this->DAO->selectEntity('alumno');
+        $data_container['container_data'] = $this->DAO->selectEntity('alumno_view');
         echo $this->load->view('alumnos/alumnos_data_page',$data_container,TRUE);
 	}
 

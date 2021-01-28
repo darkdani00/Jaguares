@@ -7,6 +7,7 @@
 <form id="form_alumnos">
     <div class="modal-body">
         <div class="form-group">
+            <input type="hidden" name="id_alumno" value="<?=@$current_data['id_alumno'];?>">
             <label for="nom_alumno">Nombre</label>
             <input type="text" class="form-control" id="nom_alumno" name="nom_alumno" value="<?=@$current_data['nom_alumno'];?>">
         </div>

@@ -118,6 +118,10 @@
                     </div>
                     <div class="card-footer">
                         <button class="btn btn-info" data-key="<?=$alumno->id_alumno;?>" data-toggle="modal" data-target="#modalView" id="ver_asistencias_btn"><i class="fas fa-check"></i></button>
+                        <button class="btn btn-success" data-key="<?=$alumno->id_alumno;?>" id="edit-alumno"
+                            data-toggle="modal" data-target="#modalView"><i class="fas fa-pencil-alt"></i></button>
+                        <button class="btn btn-danger" data-key="<?=$alumno->id_alumno;?>" id="delete-alumno"><i
+                                class="fas fa-trash"></i></button>
                     </div>
                 </div>
             </div>
