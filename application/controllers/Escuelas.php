@@ -35,7 +35,12 @@ class Escuelas extends MY_RootController {
 				"direccion_escuela" => $this->input->post('direccion_escuela'),
 				"telefono_escuela" => $this->input->post('tel_escuela')
 			);
-			$response = $this->DAO->saveOrUpdateEntity('escuela',$data);
+
+			if ($this->input->post('id_escuela')) {
+				$response = $this->DAO->saveOrUpdateEntity('escuela',$data,array('id_escuela'=>$this->input->post('id_escuela')));
+			}else{
+				$response = $this->DAO->saveOrUpdateEntity('escuela',$data);
+			}
 			if ($response['status'] == "success") {
 				$data_response = array(
 					"status" => "success"
@@ -99,7 +104,17 @@ class Escuelas extends MY_RootController {
 
 
 	public function showEscuelasForm(){
-		$this->load->view('escuelas/escuelas_form');
+		if ($this->input->get('id_escuela')) {
+			$data  = $this->DAO->selectEntity('escuela',array('id_escuela'=>$this->input->get('id_escuela')),TRUE);
+			$array = (array) $data;
+			$data_view['current_data'] = array(
+				'nom_escuela' => $array['nombre_escuela'],
+				'tel_escuela' => $array['telefono_escuela'],
+				'direccion_escuela' => $array['direccion_escuela'],
+				'id_escuela' => $array['id_escuela']
+			);
+		}
+		echo $this->load->view('escuelas/escuelas_form',@$data_view,TRUE);
 	}
 	
 	public function showDataContainer()

@@ -56,6 +56,23 @@ $(function() {
     });
 
 
+//editar escuela
+$(document).on('click', '#edit-escuela', function(e) {
+        id_escuela = $(this).attr('data-key');
+        var _data = {
+            "id_escuela": id_escuela
+        };
+        $.ajax({
+            'url': '<?=base_url('Escuelas/showEscuelasForm');?>',
+            'data': _data,
+            'success': function(response) {
+                // cambiar el titulo del modal por editar y no registrar
+                // console.log(response);
+                $(document).find('#modalContent').empty().append(response);
+            }
+        });
+    });
+
 //eliminar escuela
 $(document).on('click', '#delete-esceula', function(e) {
         e.preventDefault();
