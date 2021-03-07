@@ -7,6 +7,7 @@ CREATE TABLE escuela(
     nombre_escuela VARCHAR(80) NOT NULL,
     direccion_escuela TEXT,
     telefono_escuela INT,
+    escuela_status enum('Active','Inactive') DEFAULT 'Active',
     created_escuela timestamp default current_timestamp,
     update_escuela timestamp default current_timestamp on update current_timestamp
 );
@@ -25,6 +26,7 @@ CREATE TABLE maestro(
     escuelaFk INT NOT NULL,
     FOREIGN KEY(escuelaFk) REFERENCES escuela(id_escuela),
     user_type enum('Admin','Maestro') DEFAULT 'Maestro' NOT NULL,
+    maestro_status enum('Active','Inactive') DEFAULT 'Active',
     created_maestro timestamp default current_timestamp,
     update_maestro timestamp default current_timestamp on update current_timestamp
 );
@@ -48,6 +50,7 @@ CREATE TABLE alumno(
     years_entrenamiento INT,
     tutor_alumno VARCHAR(80),
     user_type enum('Alumno') DEFAULT 'Alumno' NOT NULL,
+    alumno_status enum('Active','Inactive') DEFAULT 'Active',
     created_alumno timestamp default current_timestamp,
     update_alumno timestamp default current_timestamp on update current_timestamp
 );

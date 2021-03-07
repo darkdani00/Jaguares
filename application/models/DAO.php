@@ -181,6 +181,17 @@ class DAO extends CI_Model {
         }
     }
 
+    function checkReferences($referencias){
+        foreach($referencias as $referencia){   
+            $query = $this->db->get_where($referencia['table'],array($referencia['foreign_key']=>$referencia['id']));
+            // si regresa informacion retornar falso
+            if($query->num_rows() > 0){
+                return FALSE;
+            }
+        }
+        return True;
+    }
+
     function saveAttendance($alumno_asistencia){
         $this->db->trans_start();
         foreach($alumno_asistencia as $asistencia){

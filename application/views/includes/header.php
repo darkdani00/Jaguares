@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Jaguares</title>
+    <link rel="icon" href="<?=base_url("resources/img/favicon.ico");?>" />
     <!-- Bootstrap -->
     <link rel="stylesheet" type="text/css" href="<?=base_url("resources/bootstrap/css/bootstrap.min.css");?>">
     <!-- Font awesome -->

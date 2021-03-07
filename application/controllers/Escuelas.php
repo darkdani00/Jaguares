@@ -15,7 +15,7 @@ class Escuelas extends MY_RootController {
 		$this->load->view('includes/header_log');
 		$data_menu['escuelas_selected'] = true;
 		$this->load->view('includes/navegation_log.php',$data_menu);
-		$data_container['container_data'] = $this->DAO->selectEntity('escuela');
+		$data_container['container_data'] = $this->DAO->selectEntity('escuela',array('escuela_status'=>'Active'));
 		$data_main['container_data'] = $this->load->view('escuelas/escuelas_data_page',$data_container,TRUE);
 		$this->load->view('escuelas/escuelas_page',$data_main);
 		$this->load->view('includes/footer_log');
@@ -71,9 +71,20 @@ class Escuelas extends MY_RootController {
 
 	}
 
-	public function delete_clase(){
-		$profe = $this->input->get('id_escuela'); 
-		$response = $this->DAO->deleteItemEntity('escuela',array('id_escuela'=>$profe));
+	public function delete_escuela(){
+		$escuela_id = $this->input->get('id_escuela'); 
+		// hacer una consulata para ver si tiene referencias en otras tablas
+		$referencias = $this->DAO->checkReferences(array(
+			array('table'=>'maestro','foreign_key'=>'escuelaFk','id'=>$escuela_id),
+			array('table'=>'alumno','foreign_key'=>'escuelaFk','id'=>$escuela_id)
+		));
+		// si tiene referencias en otras tablas cambiar el estado a inactive
+		if(!$referencias){
+			$response = $this->DAO->saveOrUpdateEntity('escuela',array('escuela_status'=>'Inactive'),array('id_escuela'=>$escuela_id));
+		}else{
+			// si no tiene referencias en otras tablas borra el elemento
+			$response = $this->DAO->deleteItemEntity('escuela',array('id_escuela'=>$escuela_id));
+		}
 		if($response['status']=='error'){
 			$data_response = array(
                 "status" =>$response['status'],

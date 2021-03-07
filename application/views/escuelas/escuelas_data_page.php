@@ -34,7 +34,7 @@
                             </div>
                         </div>
                         <div class="card-footer">
-                            <button class="btn btn-danger" data-key="<?=$escuela->id_escuela;?>" id="delete-esceula"><i
+                            <button class="btn btn-danger" data-key="<?=$escuela->id_escuela;?>" id="delete-escuela"><i
                                     class="fas fa-trash"></i></button>
 
                             <button class="btn btn-success" data-key="<?=$escuela->id_escuela ;?>" id="edit-escuela"

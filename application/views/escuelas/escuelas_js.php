@@ -74,7 +74,7 @@ $(document).on('click', '#edit-escuela', function(e) {
     });
 
 //eliminar escuela
-$(document).on('click', '#delete-esceula', function(e) {
+$(document).on('click', '#delete-escuela', function(e) {
         e.preventDefault();
         Swal.fire({
             title: '¿Desea eliminar la escuela?',
@@ -86,16 +86,15 @@ $(document).on('click', '#delete-esceula', function(e) {
             if (result.isConfirmed) {
                 id_escuela = $(this).attr('data-key');
                 var _data = {
-                    "escuela_id": id_escuela
+                    "id_escuela": id_escuela
                 };
                 $.ajax({
-                    'url': '<?=base_url('Escuelas/delete_clase');?>',
+                    'url': '<?=base_url('Escuelas/delete_escuela');?>',
                     'data': _data,
                     'success': function(response) {
                         var convert_response = JSON.parse(response);
                         if (convert_response.status == "success") {
                             // actualizar el contenedor 
-                            alert('Eliminado con exito');
                             load_data();
                         } else if (convert_response.status == "error") {
                             // si falla la bd
