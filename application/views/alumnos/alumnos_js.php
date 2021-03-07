@@ -146,6 +146,52 @@ $(function() {
         });
     });
 
+    //eliminar alumno
+    $(document).on('click', '#delete-alumno', function(e) {
+            e.preventDefault();
+            Swal.fire({
+                title: '¿Desea eliminar alumno?',
+                showDenyButton: true,
+                confirmButtonText: `Continuar`,
+                denyButtonText: `Cancelar`,
+                icon: 'warning'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    id_alumno = $(this).attr('data-key');
+                    var _data = {
+                        "id_alumno": id_alumno
+                    };
+                    $.ajax({
+                        'url': '<?=base_url('Alumnos/delete_alumno');?>',
+                        'data': _data,
+                        'success': function(response) {
+                            var convert_response = JSON.parse(response);
+                            if (convert_response.status == "success") {
+                                // actualizar el contenedor 
+                                load_data();
+                            } else if (convert_response.status == "error") {
+                                // si falla la bd
+                                Swal.fire(
+                                    'Error',
+                                    convert_response.message,
+                                    'error'
+                                );
+                            } else {
+                                // si falla algo
+                                Swal.fire(
+                                    'Error',
+                                    convert_response.message,
+                                    'error'
+                                );
+                            }
+                        }
+                    });
+                } else if (result.isDenied) {
+                    Swal.close()
+                }
+            });
+        });
+
 
 });
 

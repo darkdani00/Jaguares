@@ -17,9 +17,9 @@ class Alumnos extends MY_RootController {
 		$this->load->view('includes/navegation_log.php',$data_menu);
 		$current_session = $this->session->userdata('user_sess');
 		if ($current_session->user_type == 'Admin') {
-			$data_container['container_data'] = $this->DAO->selectEntity('alumno_view');
+			$data_container['container_data'] = $this->DAO->selectEntity('alumno_view',array('alumno_status'=>'Active'));
 		}else{
-			$data_container['container_data'] = $this->DAO->customQuery("SELECT * FROM alumno_view WHERE profeFk = '$current_session->id_maestro'");
+			$data_container['container_data'] = $this->DAO->customQuery("SELECT * FROM alumno_view WHERE profeFk = '$current_session->id_maestro' AND alumno_status = 'Active'");
 		}
 		$data_main['container_data'] = $this->load->view('alumnos/alumnos_data_page',$data_container,TRUE);
 		$this->load->view('alumnos/alumnos_page',$data_main);
@@ -102,6 +102,34 @@ class Alumnos extends MY_RootController {
 		echo json_encode($data_response);
 	}
 
+	
+	public function delete_alumno(){
+		$alumno_id = $this->input->get('id_alumno'); 
+		// hacer una consulata para ver si tiene referencias en otras tablas
+		$referencias = $this->DAO->checkReferences(array(
+			array('table'=>'alumnos_clase','foreign_key'=>'alumnoFk','id'=>$alumno_id)
+		));
+		// si tiene referencias en otras tablas cambiar el estado a inactive
+		if(!$referencias){
+			$response = $this->DAO->saveOrUpdateEntity('alumno',array('alumno_status'=>'Inactive'),array('id_alumno'=>$alumno_id));
+		}else{
+			// si no tiene referencias en otras tablas borra el elemento
+			$response = $this->DAO->deleteItemEntity('alumno',array('id_alumno'=>$alumno_id));
+		}
+		if($response['status']=='error'){
+			$data_response = array(
+                "status" =>$response['status'],
+                "message" =>  $response['message']
+            );
+		}else{
+			$data_response = array(
+                "status" => $response['status'],
+                "message" => $response['message']
+            );
+		}
+		echo json_encode($data_response);
+	}
+
 	public function searchAlumno(){
 		// agregar que pase algo si no existe en la base de datos por si modifican el html
 		if ($this->input->post("search-input")==null) {
@@ -152,7 +180,7 @@ class Alumnos extends MY_RootController {
 	
 	public function showDataContainer()
     {        
-        $data_container['container_data'] = $this->DAO->selectEntity('alumno_view');
+        $data_container['container_data'] = $this->DAO->selectEntity('alumno_view',array('alumno_status'=>'Active'));
         echo $this->load->view('alumnos/alumnos_data_page',$data_container,TRUE);
 	}
 

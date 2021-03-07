@@ -130,7 +130,7 @@ class Escuelas extends MY_RootController {
 	
 	public function showDataContainer()
     {        
-        $data_container['container_data'] = $this->DAO->selectEntity('escuela');
+        $data_container['container_data'] = $this->DAO->selectEntity('escuela',array('escuela_status'=>'Active'));
         echo $this->load->view('escuelas/escuelas_data_page',$data_container,TRUE);
 	}
 }
