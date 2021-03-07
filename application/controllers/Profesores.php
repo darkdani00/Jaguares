@@ -16,7 +16,7 @@ class Profesores extends MY_RootController {
 		$this->load->view('includes/header_log');
 		$data_menu['maestros_selected'] = true;
 		$this->load->view('includes/navegation_log.php',$data_menu);
-		$data_container['container_data'] = $this->DAO->selectEntity('maestro_view');
+		$data_container['container_data'] = $this->DAO->selectEntity('maestro_view',array('maestro_status'=>'Active'));
 		$data_main['container_data'] = $this->load->view('profesores/profesores_data_page',$data_container,TRUE);
 		$this->load->view('profesores/profesores_page',$data_main);
 		$this->load->view('includes/footer_log');
@@ -80,8 +80,19 @@ class Profesores extends MY_RootController {
 	}
 
 	public function delete_profesor(){
-		$profe = $this->input->get('id_maestro '); 
-		$response = $this->DAO->deleteItemEntity('maestro',array('id_maestro'=>$profe));
+		$profe_id = $this->input->get('profe_id'); 
+		// hacer una consulata para ver si tiene referencias en otras tablas
+		$referencias = $this->DAO->checkReferences(array(
+			array('table'=>'alumno','foreign_key'=>'profeFk','id'=>$profe_id),
+			array('table'=>'clase','foreign_key'=>'profeFk','id'=>$profe_id)
+		));
+		// si tiene referencias en otras tablas cambiar el estado a inactive
+		if(!$referencias){
+			$response = $this->DAO->saveOrUpdateEntity('maestro',array('maestro_status'=>'Inactive'),array('id_maestro'=>$profe_id));
+		}else{
+			// si no tiene referencias en otras tablas borra el elemento
+			$response = $this->DAO->deleteItemEntity('maestro',array('id_maestro'=>$profe_id));
+		}
 		if($response['status']=='error'){
 			$data_response = array(
                 "status" =>$response['status'],
@@ -138,7 +149,7 @@ class Profesores extends MY_RootController {
 	
 	public function showDataContainer()
     {        
-        $data_container['container_data'] = $this->DAO->selectEntity('maestro_view');
+        $data_container['container_data'] = $this->DAO->selectEntity('maestro_view',array('maestro_status'=>'Active'));
         echo $this->load->view('profesores/profesores_data_page',$data_container,TRUE);
 	}
 	
