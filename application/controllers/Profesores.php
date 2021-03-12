@@ -27,7 +27,7 @@ class Profesores extends MY_RootController {
 		$this->load->library('form_validation');
 		$this->form_validation->set_rules('nom_prof','Nombre','required|max_length[80]');
 		$this->form_validation->set_rules('ape_pa_prof','Apellido paterno','required|max_length[80]');
-		$this->form_validation->set_rules('ape_mat_prof','Apellido Paterno','required|max_length[80]');
+		$this->form_validation->set_rules('ape_mat_prof','Apellido materno','required|max_length[80]');
 		$this->form_validation->set_rules('email','Correo','required|max_length[80]|valid_email');
 		$this->form_validation->set_rules('genero_prof','Nombre','required|max_length[80]');
 		$this->form_validation->set_rules('edad_prof','Edad','required|numeric');

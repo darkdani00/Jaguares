@@ -51,17 +51,15 @@
         <div class="form-group">
             <label for="grado_cinta_prof">Grado de cinta</label>
             <select class="form-control" id="grado_cinta_prof" name="grado_cinta_prof" value="<?=@$current_data['grado_cinta_prof'];?>">
-                <option>Cinta Blanca</option>
-                <option>Cinta Amarilla</option>
-                <option>Cinta Naranja</option>
-                <option>Cinta Naranja Avanzado</option>
-                <option>Cinta Verde</option>
-                <option>Cinta Verde Avanzado</option>
-                <option>Cinta Azul</option>
-                <option>Cinta Azul Avanzado</option>
-                <option>Cinta Roja</option>
-                <option>Cinta Roja Avanzado</option>
-                <option>Cinta Negra</option>
+                <option>Cinta Negra 1er Dan</option>
+                <option>Cinta Negra 2do Dan</option>
+                <option>Cinta Negra 3er Dan</option>
+                <option>Cinta Negra 4to Dan</option>
+                <option>Cinta Negra 5to Dan</option>
+                <option>Cinta Negra 6to Dan</option>
+                <option>Cinta Negra 7mo Dan</option>
+                <option>Cinta Negra 8vo Dan</option>
+                <option>Cinta Negra 9no Dan</option>
             </select>
         </div>
         <div class="form-group">

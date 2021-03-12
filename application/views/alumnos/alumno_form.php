@@ -79,17 +79,6 @@
             <label for="tutor">Tutor</label>
             <input type="text" class="form-control" id="tutor" name="tutor" value="<?=@$current_data['tutor'];?>">
         </div>
-        <div class="form-group">
-            <label for="hora_entrenamiento">Hora de entrenamiento</label>
-            <input type="time" class="form-control" id="hora_entrenamiento" name="hora_entrenamiento" value="<?=@$current_data['hora_entrenamiento'];?>">
-        </div>
-        <div class="form-group">
-            <label for="pagado">Mensualidad Pagada</label>
-            <select class="form-control" id="pagado" name="pagado">
-                <option>Si</option>
-                <option>No</option>
-            </select>
-        </div>
     </div>
     <div class="modal-footer">
         <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>

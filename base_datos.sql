@@ -20,10 +20,10 @@ CREATE TABLE maestro(
     genero_maestro enum("Masculino","Femenino") NOT NULL,
     edad_maestro INT NOT NULL,
     telefono_maestro INT, 
-    grado_cinta_maestro enum("Cinta Blanca","Cinta Amarilla","Cinta Naranja","Cinta Naranja Avanzado","Cinta Verde","Cinta Verde Avanzado","Cinta Azul","Cinta Azul Avanzado","Cinta Rojo","Cinta Rojo Avanzado", "Cinta Negra"),
-    password_maestro VARCHAR(80) NOT NULL,
+    grado_cinta_maestro enum("Cinta Negra 1er Dan","Cinta Negra 2do Dan","Cinta Negra 3er Dan","Cinta Negra 4to Dan","Cinta Negra 5to Dan","Cinta Negra 6to Dan","Cinta Negra 7mo Dan","Cinta Negra 8vo Dan","Cinta Negra 9no Dan"),
+    password_maestro VARCHAR(80) NOT NULL DEFAULT 'password',
     email_maestro VARCHAR(80) NOT NULL UNIQUE,
-    escuelaFk INT NOT NULL,
+    escuelaFk INT,
     FOREIGN KEY(escuelaFk) REFERENCES escuela(id_escuela),
     user_type enum('Admin','Maestro') DEFAULT 'Maestro' NOT NULL,
     maestro_status enum('Active','Inactive') DEFAULT 'Active',
@@ -40,7 +40,7 @@ CREATE TABLE alumno(
     edad_alumno INT NOT NULL,
     telefono_alumno INT, 
     email_alumno VARCHAR(80) NOT NULL UNIQUE,
-    password_alumno VARCHAR(80) NOT NULL,
+    password_alumno VARCHAR(80) NOT NULL DEFAULT 'password',
     grado_cinta_alumno enum("Cinta Blanca","Cinta Amarilla","Cinta Naranja","Cinta Naranja Avanzado","Cinta Verde","Cinta Verde Avanzado","Cinta Azul","Cinta Azul Avanzado","Cinta Rojo","Cinta Rojo Avanzado", "Cinta Negra"),
     escuelaFk INT NOT NULL,
     FOREIGN KEY(escuelaFk) REFERENCES escuela(id_escuela),
@@ -98,3 +98,8 @@ CREATE OR REPLACE VIEW alumnos_clase_view AS SELECT ac.*,c.hora_inicia,c.hora_te
 
 CREATE OR REPLACE VIEW asistencia_alumno_view AS SELECT aa.*, ac.*,a.*,c.hora_inicia,c.hora_termina,c.dia_semana FROM asistencia_alumno AS aa JOIN alumnos_clase AS ac ON aa.alumnos_clase_fk = ac.id_alumnos_clase JOIN alumno AS a ON ac.alumnoFk = a.id_alumno JOIN clase AS c ON ac.claseFk = c.id_clase;
 
+--INSERTS--
+INSERT INTO escuela (nombre_escuela,direccion_escuela,telefono_escuela) VALUES ('Central','Santa Monica',43234);
+
+INSERT INTO maestro (nombre_maestro,apellido_paterno_maestro,apellido_materno_maestro,genero_maestro,edad_maestro,telefono_maestro,grado_cinta_maestro,password_maestro,email_maestro,escuelaFk,user_type)
+VALUES ('prueba','admin','profe','Masculino',23,44234123,'Cinta Negra 2do Dan','qwerty','admin@admin.com',1,'Admin');

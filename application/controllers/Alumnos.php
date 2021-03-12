@@ -38,9 +38,9 @@ class Alumnos extends MY_RootController {
         $this->load->library('form_validation');
 		$this->form_validation->set_rules('nom_alumno','Nombre','required|max_length[80]');
 		$this->form_validation->set_rules('ape_pa_alumno','Apellido paterno','required|max_length[80]');
-		$this->form_validation->set_rules('ape_mat_alumno','Apellido Paterno','required|max_length[80]');
+		$this->form_validation->set_rules('ape_mat_alumno','Apellido Materno','required|max_length[80]');
 		$this->form_validation->set_rules('email','Correo','required|max_length[80]|valid_email');
-		$this->form_validation->set_rules('genero_alumno','Nombre','required|max_length[80]');
+		$this->form_validation->set_rules('genero_alumno','Genero','required|max_length[80]');
 		$this->form_validation->set_rules('edad_alumno','Edad','required|numeric');
 		$this->form_validation->set_rules('num_alumno','Numero','required|numeric');
 		$this->form_validation->set_rules('grado_cinta_alumno','Grado de cinta','required|max_length[80]');
@@ -49,8 +49,6 @@ class Alumnos extends MY_RootController {
 		$this->form_validation->set_rules('discapacidades','Discapacidades','required');
 		$this->form_validation->set_rules('entrenamiento','A&ntilde;os de entrenamiento','required|numeric');
 		$this->form_validation->set_rules('tutor','Tutor','required');
-		$this->form_validation->set_rules('hora_entrenamiento','Hora de entrenamiento','required');
-		$this->form_validation->set_rules('pagado','Informaci&oacute;n de pago','required');
 		if ($this->form_validation->run()) {			
 			// datos formulario
 			$data = array(
@@ -60,15 +58,13 @@ class Alumnos extends MY_RootController {
 				"genero_alumno" => $this->input->post('genero_alumno'),
 				"edad_alumno" => $this->input->post('edad_alumno'),
 				"telefono_alumno" => $this->input->post('num_alumno'),
+				"email_alumno" => $this->input->post('email'),
 				"grado_cinta_alumno" => $this->input->post('grado_cinta_alumno'),
 				"escuelaFk" => $this->input->post('escuela_alumno'),
-				"email_alumno" => $this->input->post('email'),
 				"profeFk" => $this->input->post('prof_alumno'),
 				"discapacidad_alumno" => $this->input->post('discapacidades'),
 				"years_entrenamiento" => $this->input->post('entrenamiento'),
-				"tutor_alumno" => $this->input->post('tutor'),
-				"hora_entrenamiento_alumno" => $this->input->post('hora_entrenamiento'),
-				"pago_realizado" => $this->input->post('pagado')
+				"tutor_alumno" => $this->input->post('tutor')
 			);
 			if ($this->input->post('id_alumno')) {
 				// si es editar

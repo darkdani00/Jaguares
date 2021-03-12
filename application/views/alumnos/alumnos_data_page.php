@@ -82,22 +82,6 @@
                                 </div>
                                 <div class="row  mb-2">
                                     <div class="col-3">
-                                        <i class="far fa-clock"></i>
-                                    </div>
-                                    <div class="col-9">
-                                        <div>Hora de entrenamiento: <span class="text-dark">Aqui van a ir las clases en las que esta registrado en alumnos_clase, va a ser una mini tabla en la que venga el dia y la hora</span></div>
-                                    </div>
-                                </div>
-                                <div class="row  mb-2">
-                                    <div class="col-3">
-                                        <i class="far fa-money-bill-alt"></i>
-                                    </div>
-                                    <div class="col-9">
-                                        <div>Mensualidad: <span class="text-dark"><?=$alumno->pago_realizado?></span></div>
-                                    </div>
-                                </div>
-                                <div class="row  mb-2">
-                                    <div class="col-3">
                                         <i class="fas fa-school"></i>
                                     </div>
                                     <div class="col-9">
