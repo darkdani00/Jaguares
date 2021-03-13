@@ -64,7 +64,8 @@ class Alumnos extends MY_RootController {
 				"profeFk" => $this->input->post('prof_alumno'),
 				"discapacidad_alumno" => $this->input->post('discapacidades'),
 				"years_entrenamiento" => $this->input->post('entrenamiento'),
-				"tutor_alumno" => $this->input->post('tutor')
+				"tutor_alumno" => $this->input->post('tutor'),
+				"password_alumno"=>$this->generateRandomPassword(),
 			);
 			if ($this->input->post('id_alumno')) {
 				// si es editar

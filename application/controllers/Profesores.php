@@ -44,7 +44,8 @@ class Profesores extends MY_RootController {
 				"telefono_maestro" => $this->input->post('num_prof'),
 				"grado_cinta_maestro" => $this->input->post('grado_cinta_prof'),
 				"escuelaFk" => $this->input->post('escuela_prof'),
-				"email_maestro" => $this->input->post('email')
+				"email_maestro" => $this->input->post('email'),
+				"password_maestro"=>$this->generateRandomPassword(),
 			);
 			// si es editar
 			if ($this->input->post('id_maestro')) {
