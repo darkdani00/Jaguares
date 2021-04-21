@@ -34,39 +34,86 @@ class Profesores extends MY_RootController {
 		$this->form_validation->set_rules('num_prof','Numero','required|numeric');
 		$this->form_validation->set_rules('grado_cinta_prof','Grado de cinta','required|max_length[80]');
 		$this->form_validation->set_rules('escuela_prof','Escuela','required|numeric');
+        $this->form_validation->set_rules('pic_profe','pic','callback_valid_pic');
 		if ($this->form_validation->run()) {			
-			$data = array(
-				"nombre_maestro" => $this->input->post('nom_prof'),
-				"apellido_paterno_maestro" => $this->input->post('ape_pa_prof'),
-				"apellido_materno_maestro" => $this->input->post('ape_mat_prof'),
-				"genero_maestro" => $this->input->post('genero_prof'),
-				"edad_maestro" => $this->input->post('edad_prof'),
-				"telefono_maestro" => $this->input->post('num_prof'),
-				"grado_cinta_maestro" => $this->input->post('grado_cinta_prof'),
-				"escuelaFk" => $this->input->post('escuela_prof'),
-				"email_maestro" => $this->input->post('email'),
-				"password_maestro"=>$this->generateRandomPassword(),
-			);
 			// si es editar
 			if ($this->input->post('id_maestro')) {
+                $data = array(
+                    "nombre_maestro" => $this->input->post('nom_prof'),
+                    "apellido_paterno_maestro" => $this->input->post('ape_pa_prof'),
+                    "apellido_materno_maestro" => $this->input->post('ape_mat_prof'),
+                    "genero_maestro" => $this->input->post('genero_prof'),
+                    "edad_maestro" => $this->input->post('edad_prof'),
+                    "telefono_maestro" => $this->input->post('num_prof'),
+                    "grado_cinta_maestro" => $this->input->post('grado_cinta_prof'),
+                    "escuelaFk" => $this->input->post('escuela_prof'),
+                    "email_maestro" => $this->input->post('email'),
+                );
 				$response = $this->DAO->saveOrUpdateEntity('maestro',$data,array('id_maestro'=>$this->input->post('id_maestro')));
 			}else{
-				$response = $this->DAO->saveOrUpdateEntity('maestro',$data);
-			}
-			if ($response['status'] == "success") {
-				$data_response = array(
-					"status" => "success"
-				);
+                //Guardar imagen    
+                $config['upload_path']          = './uploads/profesores/';
+                $config['allowed_types']        = 'jpg|png';
+                $config['max_size']             = 2048;
+                $config['file_name'] = time();    
+                $this->load->library('upload',$config);
 
-			}else{
-				// error en la base de datos
-				$data['current_data'] = $this->input->post();
-				$data_response = array(
-					"status" => "error",
-					"message" => $response["message"],
-					"data" =>  $this->load->view('profesores/profesores_form',$data,TRUE)
-				);
-			} 
+                $uploaded_file = $this->upload->do_upload('pic_profe');
+
+                //Si se subio la img
+                if ($uploaded_file) {
+                    $data = array(
+                        "nombre_maestro" => $this->input->post('nom_prof'),
+                        "apellido_paterno_maestro" => $this->input->post('ape_pa_prof'),
+                        "apellido_materno_maestro" => $this->input->post('ape_mat_prof'),
+                        "genero_maestro" => $this->input->post('genero_prof'),
+                        "edad_maestro" => $this->input->post('edad_prof'),
+                        "telefono_maestro" => $this->input->post('num_prof'),
+                        "grado_cinta_maestro" => $this->input->post('grado_cinta_prof'),
+                        "escuelaFk" => $this->input->post('escuela_prof'),
+                        "email_maestro" => $this->input->post('email'),
+                        "password_maestro"=>$this->generateRandomPassword(),
+                        "pic_maestro"=>$this->upload->data()['file_name'],
+                    );
+					//Guardar en base de datos
+					$response = $this->DAO->saveOrUpdateEntity('maestro',$data);
+					
+					if ($response['status'] == "success") {
+						$data_response = array(
+							"status" => "success",
+						);
+					}else{
+						// error en la base de datos
+						$data['current_data'] = $this->input->post();
+						$data_response = array(
+							"status" => "error",
+							"message" => $response["message"],
+							"data" =>  $this->load->view('profesores/profesores_form',$data,TRUE)
+						);
+					} 
+                }
+                else {
+                    //si no se guardo la imagen
+                    $data = array(
+                        "nombre_maestro" => $this->input->post('nom_prof'),
+                        "apellido_paterno_maestro" => $this->input->post('ape_pa_prof'),
+                        "apellido_materno_maestro" => $this->input->post('ape_mat_prof'),
+                        "genero_maestro" => $this->input->post('genero_prof'),
+                        "edad_maestro" => $this->input->post('edad_prof'),
+                        "telefono_maestro" => $this->input->post('num_prof'),
+                        "grado_cinta_maestro" => $this->input->post('grado_cinta_prof'),
+                        "escuelaFk" => $this->input->post('escuela_prof'),
+                        "email_maestro" => $this->input->post('email'),
+                        "password_maestro"=>$this->generateRandomPassword(),
+                    );
+                    $data_response = array(
+                        "status" => "error",
+                        "message" =>  $this->upload->display_errors(),
+                        "data" =>  $this->load->view('profesores/profesores_form',$data,TRUE)
+                    );
+                }
+
+			}
 		}else{
 			// mandar errores a la vista
 			$data['current_data'] = $this->input->post();
@@ -79,6 +126,22 @@ class Profesores extends MY_RootController {
 		}
 		echo json_encode($data_response);
 	}
+
+
+
+    function valid_pic($value){
+        if (empty($_FILES['pic_profe']['name'])) {
+            if ($this->input->post('id_maestro')) {
+                return true;
+            }else {
+                $this->form_validation->set_message('valid_pic','The {field} is required');
+                return false;
+            }
+        }
+        else{
+            return true;
+        }
+    }
 
 	public function delete_profesor(){
 		$profe_id = $this->input->get('profe_id'); 

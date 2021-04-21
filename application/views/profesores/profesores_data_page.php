@@ -6,7 +6,7 @@
             <div class="card-header">
                 <div class="row pt-4">
                     <div class="col-3 text-center">
-                        <img src="<?=base_url("resources/img/usuario.jpg");?>" alt="..." style="width:50px"
+                        <img src="<?=base_url("uploads/profesores/".$profe->pic_maestro);?>" alt="..." style="width:50px"
                             class="rounded-circle">
                     </div>
                     <div class="col-9 pt-2">

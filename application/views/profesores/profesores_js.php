@@ -32,7 +32,7 @@ $(function() {
                     $(document).find('#modalView').modal('hide');
                     load_data();
                     Swal.fire(
-                        'Correcto',
+                        convert_response.errors,
                         'Formulario enviado correctamente',
                         'success'
                     );
@@ -43,7 +43,7 @@ $(function() {
                         convert_response.message,
                         'error'
                     );
-                } else {
+                }else {
                     $(document).find('#modalContent').empty().append(convert_response.data);
                     fillSelectEscuela();
                     $('#grado_cinta_prof').select2({

@@ -17,6 +17,8 @@
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet" />
     <!-- stilos bootstrap para select2 -->
     <link rel="stylesheet" href="<?=base_url("resources/select2-bootstrap.css");?>" />
+    <!-- Dropify -->
+    <link href="<?=base_url('resources/dropify/dist/css/dropify.css');?>" rel="stylesheet">
 </head>
 <body>
     

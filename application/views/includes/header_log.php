@@ -19,6 +19,8 @@
     <link rel="stylesheet" href="<?=base_url('resources/css/perfil.css');?>">
     <!-- customize styles -->
     <link href="<?=base_url("resources/css/navegation.css");?>" rel="stylesheet">
+    <!-- Dropify -->
+    <link href="<?=base_url('resources/dropify/dist/css/dropify.css');?>" rel="stylesheet">
 </head>
 <body>
 <style>

@@ -7,6 +7,11 @@
 <form id="form_profesores">
     <div class="modal-body">
         <input type="hidden" name="id_maestro" value="<?=@$current_data['id_maestro'];?>">
+        <div class="row">
+            <div class="col-12">
+                <input type="file" name="pic_profe" class="dropify" data-default-file="<?=base_url('resources/img/placeholder.jpg');?>" data-allowed-file-extensions="png jpg" data-max-file-size='2M' />
+            </div>
+        </div>
         <div class="form-group">
             <label for="nom_prof">Nombre</label>
             <input type="text" class="form-control" id="nom_prof" name="nom_prof" value="<?=@$current_data['nom_prof'];?>">
@@ -73,3 +78,10 @@
         <button type="submit" class="btn btn-success">Guardar</button>
     </div>
 </form>
+
+
+<script type="text/javascript">
+    $(function(){
+        $('.dropify').dropify();
+    });
+</script>

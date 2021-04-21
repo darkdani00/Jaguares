@@ -23,6 +23,7 @@ CREATE TABLE maestro(
     grado_cinta_maestro enum("Cinta Negra 1er Dan","Cinta Negra 2do Dan","Cinta Negra 3er Dan","Cinta Negra 4to Dan","Cinta Negra 5to Dan","Cinta Negra 6to Dan","Cinta Negra 7mo Dan","Cinta Negra 8vo Dan","Cinta Negra 9no Dan"),
     password_maestro VARCHAR(80) NOT NULL,
     email_maestro VARCHAR(80) NOT NULL UNIQUE,
+    pic_maestro VARCHAR(180) NOT NULL,
     escuelaFk INT,
     FOREIGN KEY(escuelaFk) REFERENCES escuela(id_escuela),
     user_type enum('Admin','Maestro') DEFAULT 'Maestro' NOT NULL,
@@ -101,5 +102,5 @@ CREATE OR REPLACE VIEW asistencia_alumno_view AS SELECT aa.*, ac.*,a.*,c.hora_in
 --INSERTS--
 INSERT INTO escuela (nombre_escuela,direccion_escuela,telefono_escuela) VALUES ('Central','Santa Monica',43234);
 
-INSERT INTO maestro (nombre_maestro,apellido_paterno_maestro,apellido_materno_maestro,genero_maestro,edad_maestro,telefono_maestro,grado_cinta_maestro,password_maestro,email_maestro,escuelaFk,user_type)
-VALUES ('prueba','admin','profe','Masculino',23,44234123,'Cinta Negra 2do Dan','qwerty','admin@admin.com',1,'Admin');
+INSERT INTO maestro (nombre_maestro,apellido_paterno_maestro,apellido_materno_maestro,genero_maestro,edad_maestro,telefono_maestro,grado_cinta_maestro,password_maestro,email_maestro,escuelaFk,user_type, pic_maestro)
+VALUES ('prueba','admin','profe','Masculino',23,44234123,'Cinta Negra 2do Dan','qwerty','admin@admin.com',1,'Admin', 'prueba');
