@@ -154,20 +154,38 @@ class Profesores extends MY_RootController {
 		if(!$referencias){
 			$response = $this->DAO->saveOrUpdateEntity('maestro',array('maestro_status'=>'Inactive'),array('id_maestro'=>$profe_id));
 		}else{
-			// si no tiene referencias en otras tablas borra el elemento
-			$response = $this->DAO->deleteItemEntity('maestro',array('id_maestro'=>$profe_id));
+            //hacer consulta para obtener el nombre de la img
+            $profe_data = $this->DAO->selectEntity('maestro',array('id_maestro'=>$profe_id));
+            //borrar imagen
+            $file = $profe_data[0]->pic_maestro;
+            //si no tiene img en la bd
+            if($file == ''){
+                // borrar el elemento
+                $response = $this->DAO->deleteItemEntity('maestro',array('id_maestro'=>$profe_id));
+            }else{
+                if(unlink('uploads/profesores/'.$file)) {
+                    // si no tiene referencias en otras tablas borra el elemento
+                    $response = $this->DAO->deleteItemEntity('maestro',array('id_maestro'=>$profe_id));
+                }
+                else {
+                    $response = array(
+                        "status" => "error",
+                        "message" =>"Error eliminando imagen" 
+                    );
+                }
+            }
 		}
-		if($response['status']=='error'){
-			$data_response = array(
+        if($response['status']=='error'){
+            $data_response = array(
                 "status" =>$response['status'],
                 "message" =>  $response['message']
             );
-		}else{
-			$data_response = array(
+        }else{
+            $data_response = array(
                 "status" => $response['status'],
                 "message" => $response['message']
             );
-		}
+        }
 		echo json_encode($data_response);
 	}
 	

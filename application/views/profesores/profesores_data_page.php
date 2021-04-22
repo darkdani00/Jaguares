@@ -6,8 +6,15 @@
             <div class="card-header">
                 <div class="row pt-4">
                     <div class="col-3 text-center">
-                        <img src="<?=base_url("uploads/profesores/".$profe->pic_maestro);?>" alt="..." style="width:50px"
-                            class="rounded-circle">
+                    <?php 
+                        $url = '';  
+                        if($profe->pic_maestro != ''){
+                            $url = "uploads/profesores/".$profe->pic_maestro;
+                        }else{
+                            $url = "resources/img/usuario.jpg"; 
+                        }
+                    ?>
+                    <img src=<?=$url?> alt="..." style="width:50px" class="rounded-circle">
                     </div>
                     <div class="col-9 pt-2">
                         <h5 class="card-title">
