@@ -6,10 +6,23 @@
 </div>
 <form id="form_profesores">
     <div class="modal-body">
+        <label for="pic_category">Foto:</label>
         <input type="hidden" name="id_maestro" value="<?=@$current_data['id_maestro'];?>">
         <div class="row">
             <div class="col-12">
-                <input type="file" name="pic_profe" class="dropify" data-default-file="<?=base_url('resources/img/placeholder.jpg');?>" data-allowed-file-extensions="png jpg" data-max-file-size='2M' />
+                <?php if (empty(@$current_data['id_maestro'])) {
+                    ?>
+                        <input type="file" name="pic_profe" class="dropify" data-default-file="<?=base_url('resources/img/placeholder.jpg');?>" data-allowed-file-extensions="png jpg" data-max-file-size='2M' />
+                    <?php
+                    if (@$errors['pic_profe']) {
+                        ?>
+                            <small class="form-text text-danger float-right">
+                                <?=$errors['pic_profe'];?>
+                            </small>
+                        <?php } ?>
+                    <?php } else { ?>
+                        <img src="<?=base_url('uploads/profesores/'.$current_data['pic_maestro']);?>" class="card-img-top" alt="...">
+                <?php } ?>
             </div>
         </div>
         <div class="form-group">

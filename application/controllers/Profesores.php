@@ -204,7 +204,8 @@ class Profesores extends MY_RootController {
 				'num_prof' => $array['telefono_maestro'],
 				'grado_cinta_prof' => $array['grado_cinta_maestro'],
 				'escuela_prof' => $escuela->nombre_escuela,
-				'id_maestro' => $this->input->get('id_maestro')
+                'id_maestro' => $this->input->get('id_maestro'),
+                'pic_maestro' =>$array['pic_maestro'],
 			);
 		}
 		$data_view['container_data'] = $this->DAO->selectEntity('escuela');
