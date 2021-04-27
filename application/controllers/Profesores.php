@@ -161,6 +161,9 @@ class Profesores extends MY_RootController {
                 if ($uploaded_file) {
                     //guardar la nueva y actualizar bd
                     $response = $this->DAO->saveOrUpdateEntity('maestro',array('pic_maestro'=>$this->upload->data()['file_name']),array('id_maestro'=>$profe_id));
+                    //actualizar session
+                    $user_data = $this->DAO->selectEntity('maestro_view',array('id_maestro'=>$profe_id));
+                    $this->session->set_userdata('user_sess',$user_data[0]);
                 }else{
                     $response = array(
                         "status" => "error",
@@ -176,9 +179,8 @@ class Profesores extends MY_RootController {
         }
         $data_response = array(
             "status" => $response['status'],
-            "message" => $response["message"],
+            "message" => $response['message']
         );
-        //Esta funcionando bien, ahora es necesario que si se actualizo entonces actualizar las cookies
 		echo json_encode($data_response);
     }
 

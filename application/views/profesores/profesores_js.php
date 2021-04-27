@@ -158,12 +158,16 @@ $(document).on('change','#update_img_input',function(e){
         'method': "post",
         'success': function(response) {
             var convert_response = JSON.parse(response);
-            console.log(convert_response.message);
-            //Swal.fire(
-                //convert_response.status,
-                //convert_response.message,
-                //convert_response.status,
-            //);
+            if(convert_response.status=='success'){
+                //recargar pagina
+                window.location.reload(true)
+            }else{
+                Swal.fire(
+                    convert_response.status,
+                    convert_response.message,
+                    convert_response.status,
+                );
+            }
             }
     });
     });    

@@ -7,7 +7,15 @@
         <div class="row">
             <div class="col-md-4">
                 <div class="profile-img">
-                    <img src="<?=base_url("uploads/profesores/".$current_session->pic_maestro);?>" alt="" />
+                    <?php 
+                        $url = '';  
+                        if($current_session->pic_maestro != ''){
+                            $url = "uploads/profesores/".$current_session->pic_maestro;
+                        }else{
+                            $url = "resources/img/usuario.jpg"; 
+                        }
+                    ?>
+                    <img src="<?=base_url($url);?>" alt="" />
                     <div class="file btn btn-lg btn-primary">
                         Cambiar foto
                        <form id="form_update_pic">

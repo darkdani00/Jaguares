@@ -29,3 +29,10 @@ user_guide_src/cilexer/pycilexer.egg-info/*
 *.sublime-project
 /tests/tests/
 /tests/results/
+
+# vim files
+*.swp
+*.swo
+*~
+
+uploads/*
