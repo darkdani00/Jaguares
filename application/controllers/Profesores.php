@@ -128,6 +128,60 @@ class Profesores extends MY_RootController {
 	}
 
 
+    function update_img(){
+        //checar que tenga imagen
+        $profe_id = $this->input->post('id_maestro'); 
+        $have_img = $this->DAO->customQuery("SELECT pic_maestro FROM maestro WHERE id_maestro = $profe_id");
+
+        $config['upload_path']          = './uploads/profesores/';
+        $config['allowed_types']        = 'jpg|png';
+        $config['max_size']             = 2048;
+        $config['file_name'] = time();    
+        $this->load->library('upload',$config);
+
+        //si no tiene imagen
+        if($have_img[0]->pic_maestro=='' || $have_img==null){
+            //guardar la nueva y actualizar bd
+            $uploaded_file = $this->upload->do_upload('update_img_input');
+            if ($uploaded_file) {
+                $response = $this->DAO->saveOrUpdateEntity('maestro',array('pic_maestro'=>$this->upload->data()['file_name']),array('id_maestro'=>$profe_id));
+            }else{
+                $response = array(
+                    "status" => "error",
+                    "message" =>  $this->upload->display_errors()
+                );
+            }
+        }else{
+            //si tiene img
+            $profe_data = $this->DAO->selectEntity('maestro',array('id_maestro'=>$profe_id));
+            $file = $profe_data[0]->pic_maestro;
+            //borrar la img anterior
+            if(unlink('uploads/profesores/'.$file)) {
+                $uploaded_file = $this->upload->do_upload('update_img_input');
+                if ($uploaded_file) {
+                    //guardar la nueva y actualizar bd
+                    $response = $this->DAO->saveOrUpdateEntity('maestro',array('pic_maestro'=>$this->upload->data()['file_name']),array('id_maestro'=>$profe_id));
+                }else{
+                    $response = array(
+                        "status" => "error",
+                        "message" =>  $this->upload->display_errors()
+                    );
+                }
+            }else{
+                $data_response = array(
+                    "status" => "error",
+                    "message" =>"Error al borrar la imagen" 
+                );
+            }
+        }
+        $data_response = array(
+            "status" => $response['status'],
+            "message" => $response["message"],
+        );
+        //Esta funcionando bien, ahora es necesario que si se actualizo entonces actualizar las cookies
+		echo json_encode($data_response);
+    }
+
 
     function valid_pic($value){
         if (empty($_FILES['pic_profe']['name'])) {
@@ -241,6 +295,7 @@ class Profesores extends MY_RootController {
         $this->load->view('includes/navegation_log.php');
 		$this->load->view('profesores/perfil_page_profesor');
 		$this->load->view('includes/footer_log');
+		$this->load->view('profesores/profesores_js');
 	}
 
 	public function get_Escuelas(){

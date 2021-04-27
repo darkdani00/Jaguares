@@ -10,7 +10,10 @@
                     <img src="<?=base_url("uploads/profesores/".$current_session->pic_maestro);?>" alt="" />
                     <div class="file btn btn-lg btn-primary">
                         Cambiar foto
-                        <input type="file" name="file" />
+                       <form id="form_update_pic">
+                        <input type="hidden" name="id_maestro" id="id_maestro" value="<?=$current_session->id_maestro;?>">
+                        <input type="file" name="update_img_input" id="update_img_input" />
+                       </form>     
                     </div>
                 </div>
             </div>

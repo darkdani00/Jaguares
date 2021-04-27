@@ -143,6 +143,32 @@ $(document).on('click', '#delete-profe', function(e) {
             });
         });
 
+// submit on change form para actualizar foto en el perfil
+$(document).on('change','#update_img_input',function(e){
+    e.preventDefault();
+    //obtener formulario 
+    const form = document.querySelector('form');
+    const formData = new FormData(form);
+    formData.append('update_img_input',$('#update_img_input').val());
+    $.ajax({
+        'url': '<?=base_url('Profesores/update_img');?>',
+        'data': formData,
+        'contentType': false,
+        'processData': false,
+        'method': "post",
+        'success': function(response) {
+            var convert_response = JSON.parse(response);
+            console.log(convert_response.message);
+            //Swal.fire(
+                //convert_response.status,
+                //convert_response.message,
+                //convert_response.status,
+            //);
+            }
+    });
+    });    
+    
+
 });
 
 // funcion para que se vuelva a llenar el select
