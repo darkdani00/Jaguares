@@ -19,9 +19,12 @@ $(function() {
 
     $(document).on('submit', '#form_profesores', function(e) {
         e.preventDefault();
+        const form = document.querySelector('#form_profesores');
+        const formData = new FormData(form);
+        formData.append('pic_profe',$('#pic_profe').val());
         $.ajax({
             'url': '<?=base_url('Profesores/saveOrUpdate');?>',
-            'data': new FormData(this),
+            'data': formData,
             'contentType': false,
             'processData': false,
             'method': "post",
