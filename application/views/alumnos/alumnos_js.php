@@ -83,7 +83,7 @@ $(function() {
                     load_data();
                     Swal.fire(
                         'Correcto',
-                        'Formulario enviado correctamente',
+                        convert_response.message,
                         'success'
                     );
                 } else if (convert_response.status == "error") {

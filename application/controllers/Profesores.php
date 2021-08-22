@@ -13,14 +13,14 @@ class Profesores extends MY_RootController {
 
 	public function index()
 	{
-		$this->load->view('includes/header_log');
-		$data_menu['maestros_selected'] = true;
-		$this->load->view('includes/navegation_log.php',$data_menu);
-		$data_container['container_data'] = $this->DAO->selectEntity('maestro_view',array('maestro_status'=>'Active'));
-		$data_main['container_data'] = $this->load->view('profesores/profesores_data_page',$data_container,TRUE);
-		$this->load->view('profesores/profesores_page',$data_main);
-		$this->load->view('includes/footer_log');
-		$this->load->view('profesores/profesores_js');
+        $this->load->view('includes/header_log');
+        $data_menu['maestros_selected'] = true;
+        $this->load->view('includes/navegation_log.php',$data_menu);
+        $data_container['container_data'] = $this->DAO->selectEntity('maestro_view',array('maestro_status'=>'Active'));
+        $data_main['container_data'] = $this->load->view('profesores/profesores_data_page',$data_container,TRUE);
+        $this->load->view('profesores/profesores_page',$data_main);
+        $this->load->view('includes/footer_log');
+        $this->load->view('profesores/profesores_js');
 	}
 
 	public function saveOrUpdate(){
@@ -383,11 +383,11 @@ class Profesores extends MY_RootController {
 	}
 	
 	public function perfil_profesor(){
-		$this->load->view('includes/header_log');
+        $this->load->view('includes/header_log');
         $this->load->view('includes/navegation_log.php');
-		$this->load->view('profesores/perfil_page_profesor');
-		$this->load->view('includes/footer_log');
-		$this->load->view('profesores/profesores_js');
+        $this->load->view('profesores/perfil_page_profesor');
+        $this->load->view('includes/footer_log');
+        $this->load->view('profesores/profesores_js');
 	}
 
 	public function get_Escuelas(){

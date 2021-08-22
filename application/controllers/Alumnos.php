@@ -12,19 +12,19 @@ class Alumnos extends MY_RootController {
 
 	public function index()
 	{
-		$this->load->view('includes/header_log');
-		$data_menu['alumnos_selected'] = true;
-		$this->load->view('includes/navegation_log.php',$data_menu);
-		$current_session = $this->session->userdata('user_sess');
-		if ($current_session->user_type == 'Admin') {
-			$data_container['container_data'] = $this->DAO->selectEntity('alumno_view',array('alumno_status'=>'Active'));
-		}else{
-			$data_container['container_data'] = $this->DAO->customQuery("SELECT * FROM alumno_view WHERE profeFk = '$current_session->id_maestro' AND alumno_status = 'Active'");
-		}
-		$data_main['container_data'] = $this->load->view('alumnos/alumnos_data_page',$data_container,TRUE);
-		$this->load->view('alumnos/alumnos_page',$data_main);
-		$this->load->view('includes/footer_log');
-		$this->load->view('alumnos/alumnos_js');
+        $this->load->view('includes/header_log');
+        $data_menu['alumnos_selected'] = true;
+        $this->load->view('includes/navegation_log.php',$data_menu);
+        $current_session = $this->session->userdata('user_sess');
+        if ($current_session->user_type == 'Admin') {
+            $data_container['container_data'] = $this->DAO->selectEntity('alumno_view',array('alumno_status'=>'Active'));
+        }else{
+            $data_container['container_data'] = $this->DAO->customQuery("SELECT * FROM alumno_view WHERE profeFk = '$current_session->id_maestro' AND alumno_status = 'Active'");
+        }
+        $data_main['container_data'] = $this->load->view('alumnos/alumnos_data_page',$data_container,TRUE);
+        $this->load->view('alumnos/alumnos_page',$data_main);
+        $this->load->view('includes/footer_log');
+        $this->load->view('alumnos/alumnos_js');
 	}
 
 	public function perfil_alumno(){
@@ -74,9 +74,24 @@ class Alumnos extends MY_RootController {
 				$response = $this->DAO->saveOrUpdateEntity('alumno',$data);
 			}
 			if ($response['status'] == "success") {
-				$data_response = array(
-					"status" => "success"
-				);
+				// Enviar correo con la contraseña
+				$email_sent = $this->sendPasswordEmail($data['password_alumno'],$this->input->post('email'),$this->input->post('nom_alumno')." ".$this->input->post('ape_pa_alumno')." ".$this->input->post('ape_mat_alumno'));
+				if ($email_sent) {
+					// Se envio el correo con la contraseña
+                    // Mostrar toast de success
+					$data_response = array(
+                        "status" => "success",
+                        "message"=> "Un correo con la contraseña ha sido enviado al correo del alumno"
+					);
+				}else{
+					//Error al mandar el correo
+                    // Mostrar toast de error
+                    //echo $this->email->print_debugger();
+					 $data_response = array(
+						"status" => "error",
+						"message" => "Error al enviar el correo con la contraseña"
+					 );
+				 }
 			}else{
 				// error en la base de datos
 				$data['current_data'] = $this->input->post();
