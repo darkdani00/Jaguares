@@ -34,11 +34,21 @@
                             </div>
                         </div>
                         <div class="card-footer">
-                            <button class="btn btn-danger" data-key="<?=$escuela->id_escuela;?>" id="delete-escuela"><i
-                                    class="fas fa-trash"></i></button>
+                            <div class="row">
 
-                            <button class="btn btn-success" data-key="<?=$escuela->id_escuela ;?>" id="edit-escuela"
-                                data-toggle="modal" data-target="#modalView"><i class="fas fa-pencil-alt"></i></button>
+                                <div class="col-6">
+
+                                    <button class="btn btn-danger" data-key="<?=$escuela->id_escuela;?>"
+                                        id="delete-escuela"><i class="fas fa-trash"></i></button>
+                                </div>
+                                <div class="col-6">
+
+                                    <button class="btn btn-success" data-key="<?=$escuela->id_escuela ;?>"
+                                        id="edit-escuela" data-toggle="modal" data-target="#modalView"><i
+                                            class="fas fa-pencil-alt"></i></button>
+                                </div>
+                            </div>
+
                         </div>
                     </div>
                 </div>

@@ -1,4 +1,10 @@
-
+<footer class="sticky-footer bg-white">
+        <div class="container my-auto">
+          <div class="copyright text-center my-auto">
+            <span> &copy; Jaguares.com</span>
+          </div>
+        </div>
+      </footer>
 <!-- Estas divisiones son para cerrar divisiones de la navegación -->
         </div>
     </div>
