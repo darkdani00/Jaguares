@@ -1,6 +1,6 @@
 <div class="container align-items-center">
     <div class="row mt-5 justify-content-center">
-        <div class="col-md-6 col-lg-6 col-sm-12 mt-3">
+        <div class="col-md-12 col-lg-6 col-sm-12 mt-3">
             <div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel">
                 <ol class="carousel-indicators">
                     <li data-target="#carouselExampleCaptions" data-slide-to="0" class="active"></li>
@@ -36,16 +36,20 @@
                 </a>
             </div>
         </div>
-        <div class="col-md-6 col-lg-6 col-sm-12 mt-3">
+        <div class="col-md-12 col-lg-6 col-sm-12 mt-3">
+            <center>
+
             <div class="row">
                 <div class="col" style="height:450px">
                     <iframe
                         src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2FJaguares-TKD-Quer%25C3%25A9taro-288080018943&tabs=timeline&width=500&height=500&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=true&appId"
-                        width="100%" height="100%" style="border:none;overflow:hidden" frameborder="0"
+                        width="500px" height="100%" style="border:none;overflow:hidden" frameborder="0"
                         allowfullscreen="true"
                         allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
                 </div>
             </div>
+            </center>
+
         </div>
     </div>
     <div class="row text-center mt-5">
